@@ -1,0 +1,32 @@
+fileFormatVersion: 2
+guid: b69d1428817f56842946e216af66e2eb
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst UnityEngine_1 = require(\"UnityEngine\");\r\nconst
+    ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst MafiaGameManager_1 = require(\"./MafiaGameManager\");\r\nclass
+    MafiaGameUiController extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n   
+    Start() {\r\n        this._gameManager = this.gameManager.GetComponent($typeof(MafiaGameManager_1.default));\r\n       
+    this.attendButton.onClick.AddListener(() => {\r\n            this.OnClickAttendGame();\r\n       
+    });\r\n    }\r\n    UpdatePlayerCount(playerCount) {\r\n        this.playerCount
+    = playerCount;\r\n        this.text.text = playerCount.toString();\r\n    }\r\n   
+    OnClickAttendGame() {\r\n        this._gameManager.AddReadyPlayer();\r\n    }\r\n}\r\nexports.default
+    = MafiaGameUiController;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTWFmaWFVaUNvbnRyb2xsZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJNYWZpYVVpQ29udHJvbGxlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLDZDQUF5QztBQUd6QyxpREFBc0Q7QUFDdEQseURBQWtEO0FBRWxELE1BQXFCLHFCQUFzQixTQUFRLHFDQUFxQjtJQVN0RSxLQUFLO1FBQ0gsSUFBSSxDQUFDLFlBQVksR0FBRyxJQUFJLENBQUMsV0FBVyxDQUFDLFlBQVksU0FBQywwQkFBZ0IsRUFBRyxDQUFDO1FBQ3RFLElBQUksQ0FBQyxZQUFZLENBQUMsT0FBTyxDQUFDLFdBQVcsQ0FBQyxHQUFHLEVBQUU7WUFDekMsSUFBSSxDQUFDLGlCQUFpQixFQUFFLENBQUM7UUFDM0IsQ0FBQyxDQUFDLENBQUM7SUFDTCxDQUFDO0lBRU0saUJBQWlCLENBQUMsV0FBbUI7UUFDMUMsSUFBSSxDQUFDLFdBQVcsR0FBRyxXQUFXLENBQUM7UUFDL0IsSUFBSSxDQUFDLElBQUksQ0FBQyxJQUFJLEdBQUcsV0FBVyxDQUFDLFFBQVEsRUFBRSxDQUFDO0lBQzFDLENBQUM7SUFFRCxpQkFBaUI7UUFDZixJQUFJLENBQUMsWUFBWSxDQUFDLGNBQWMsRUFBRSxDQUFDO0lBQ3JDLENBQUM7Q0FDRjtBQXhCRCx3Q0F3QkMifQ==","assetPath":"Assets/Scripts/MafiaUiController.ts","manifest":{"properties":[{"assembly":"UnityEngine.CoreModule","name":"gameManager","type":"UnityEngine.GameObject","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.UI","name":"attendButton","type":"UnityEngine.UI.Button","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"mscorlib","name":"playerCount","type":"System.Single","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.UI","name":"text","type":"UnityEngine.UI.Text","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"MafiaGameUiController","description":""},"isCompiled":true}'
+  typescriptHash: c683058d174cdd6617148c8196f578f7
+  onlyWriteTrigger: 0

@@ -1,0 +1,59 @@
+fileFormatVersion: 2
+guid: 58ae649d9feb9bc4799671a8d7b1b1dd
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
+    \\\"__esModule\\\", { value: true });\\r\\nconst UnityEngine_1 = require(\\\"UnityEngine\\\");\\r\\nconst
+    UnityEngine_UI_1 = require(\\\"UnityEngine.UI\\\");\\r\\nconst ZEPETO_Script_1
+    = require(\\\"ZEPETO.Script\\\");\\r\\nconst ZEPETO_World_1 = require(\\\"ZEPETO.World\\\");\\r\\nconst
+    WaitForSecondsCash_1 = require(\\\"./WaitForSecondsCash\\\");\\r\\nclass UiController
+    extends ZEPETO_Script_1.ZepetoScriptBehaviour {\\r\\n    // TOAST_MESSAGE = {\\r\\n   
+    //   UPLOADING: \\\"Uploading...\\\",\\r\\n    //   COMPLETE: \\\"Done\\\",\\r\\n   
+    //   FAILED: \\\"Failed\\\",\\r\\n    //   SAVED: \\\"Saved!\\\",\\r\\n    //
+    };\\r\\n    AddVector2(t1, t2) {\\r\\n        return new UnityEngine_1.Vector2(t1.x
+    + t2.x, t1.y + t2.y);\\r\\n    }\\r\\n    Start() {\\r\\n        this.waitForSecond
+    = WaitForSecondsCash_1.default.instance.WaitForSeconds(1);\\r\\n        // SafeArea
+    \uC124\uC815\\r\\n        let safeArea = UnityEngine_1.Screen.safeArea;\\r\\n       
+    let newAnchorMin = safeArea.position;\\r\\n        let newAnchorMax = this.AddVector2(safeArea.position,
+    safeArea.size);\\r\\n        newAnchorMin.x /= UnityEngine_1.Screen.width;\\r\\n       
+    newAnchorMax.x /= UnityEngine_1.Screen.width;\\r\\n        newAnchorMin.y /=
+    UnityEngine_1.Screen.height;\\r\\n        newAnchorMax.y /= UnityEngine_1.Screen.height;\\r\\n       
+    this.safeAreaObjects.map((item) => {\\r\\n            const rect = item.GetComponent($typeof(UnityEngine_1.RectTransform));\\r\\n           
+    rect.anchorMin = newAnchorMin;\\r\\n            rect.anchorMax = newAnchorMax;\\r\\n       
+    });\\r\\n        this.quickModeButton.onClick.AddListener(() => {\\r\\n           
+    this.quickDefaultPanel.SetActive(false);\\r\\n            this.quickModePanel.SetActive(true);\\r\\n       
+    });\\r\\n        this.quickExitButton.onClick.AddListener(() => {\\r\\n           
+    this.quickDefaultPanel.SetActive(true);\\r\\n            this.quickModePanel.SetActive(false);\\r\\n       
+    });\\r\\n        for (var index = 0; index < this.quickContentButtons.length;
+    index++) {\\r\\n            const idx = index;\\r\\n            // ClientStarter.instance.Debug(quickMessages)\\r\\n           
+    // this.quickMessages[index] = this.quickContentButtons[index].transform.GetComponentInChildren<Text>().text\\r\\n           
+    this.quickContentButtons[idx].onClick.AddListener(() => {\\r\\n               
+    var quickMessages = this.quickContentButtons[idx].transform.GetComponentInChildren($typeof(UnityEngine_UI_1.Text)).text;\\r\\n               
+    ZEPETO_World_1.WorldMultiplayChatContent.instance.Send(quickMessages);\\r\\n           
+    });\\r\\n        }\\r\\n    }\\r\\n    *ShowToastMessage(text) {\\r\\n       
+    // let toastMessage: GameObject = null;\\r\\n        // if (text == this.TOAST_MESSAGE.feedFailed)\\r\\n       
+    //     toastMessage = GameObject.Instantiate<GameObject>(this.toastErrorMessage);\\r\\n       
+    // else\\r\\n        //     toastMessage = GameObject.Instantiate<GameObject>(this.toastSuccessMessage);\\r\\n       
+    // toastMessage.transform.SetParent(this.screenShotResultPanel.transform);\\r\\n       
+    // toastMessage.GetComponentInChildren<Text>().text = text;\\r\\n        // GameObject.Destroy(toastMessage,
+    1);\\r\\n    }\\r\\n}\\r\\nexports.default = UiController;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVWlDb250cm9sbGVyLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiVWlDb250cm9sbGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsNkNBT3FCO0FBQ3JCLG1EQUE4QztBQUM5QyxpREFBc0Q7QUFDdEQsK0NBQXlEO0FBQ3pELDZEQUFzRDtBQUV0RCxNQUFxQixZQUFhLFNBQVEscUNBQXFCO0lBaUI3RCxvQkFBb0I7SUFDcEIsK0JBQStCO0lBQy9CLHNCQUFzQjtJQUN0QixzQkFBc0I7SUFDdEIscUJBQXFCO0lBQ3JCLEtBQUs7SUFFTCxVQUFVLENBQUMsRUFBVyxFQUFFLEVBQVc7UUFDakMsT0FBTyxJQUFJLHFCQUFPLENBQUMsRUFBRSxDQUFDLENBQUMsR0FBRyxFQUFFLENBQUMsQ0FBQyxFQUFFLEVBQUUsQ0FBQyxDQUFDLEdBQUcsRUFBRSxDQUFDLENBQUMsQ0FBQyxDQUFDO0lBQy9DLENBQUM7SUFFRCxLQUFLO1FBQ0gsSUFBSSxDQUFDLGFBQWEsR0FBRyw0QkFBa0IsQ0FBQyxRQUFRLENBQUMsY0FBYyxDQUFDLENBQUMsQ0FBQyxDQUFDO1FBRW5FLGNBQWM7UUFDZCxJQUFJLFFBQVEsR0FBUyxvQkFBTSxDQUFDLFFBQVEsQ0FBQztRQUNyQyxJQUFJLFlBQVksR0FBRyxRQUFRLENBQUMsUUFBUSxDQUFDO1FBQ3JDLElBQUksWUFBWSxHQUFHLElBQUksQ0FBQyxVQUFVLENBQUMsUUFBUSxDQUFDLFFBQVEsRUFBRSxRQUFRLENBQUMsSUFBSSxDQUFDLENBQUM7UUFDckUsWUFBWSxDQUFDLENBQUMsSUFBSSxvQkFBTSxDQUFDLEtBQUssQ0FBQztRQUMvQixZQUFZLENBQUMsQ0FBQyxJQUFJLG9CQUFNLENBQUMsS0FBSyxDQUFDO1FBQy9CLFlBQVksQ0FBQyxDQUFDLElBQUksb0JBQU0sQ0FBQyxNQUFNLENBQUM7UUFDaEMsWUFBWSxDQUFDLENBQUMsSUFBSSxvQkFBTSxDQUFDLE1BQU0sQ0FBQztRQUVoQyxJQUFJLENBQUMsZUFBZSxDQUFDLEdBQUcsQ0FBQyxDQUFDLElBQUksRUFBRSxFQUFFO1lBQ2hDLE1BQU0sSUFBSSxHQUFHLElBQUksQ0FBQyxZQUFZLFNBQUMsMkJBQWEsRUFBRyxDQUFDO1lBQ2hELElBQUksQ0FBQyxTQUFTLEdBQUcsWUFBWSxDQUFDO1lBQzlCLElBQUksQ0FBQyxTQUFTLEdBQUcsWUFBWSxDQUFDO1FBQ2hDLENBQUMsQ0FBQyxDQUFDO1FBRUgsSUFBSSxDQUFDLGVBQWUsQ0FBQyxPQUFPLENBQUMsV0FBVyxDQUFDLEdBQUcsRUFBRTtZQUM1QyxJQUFJLENBQUMsaUJBQWlCLENBQUMsU0FBUyxDQUFDLEtBQUssQ0FBQyxDQUFDO1lBQ3hDLElBQUksQ0FBQyxjQUFjLENBQUMsU0FBUyxDQUFDLElBQUksQ0FBQyxDQUFDO1FBQ3RDLENBQUMsQ0FBQyxDQUFDO1FBRUgsSUFBSSxDQUFDLGVBQWUsQ0FBQyxPQUFPLENBQUMsV0FBVyxDQUFDLEdBQUcsRUFBRTtZQUM1QyxJQUFJLENBQUMsaUJBQWlCLENBQUMsU0FBUyxDQUFDLElBQUksQ0FBQyxDQUFDO1lBQ3ZDLElBQUksQ0FBQyxjQUFjLENBQUMsU0FBUyxDQUFDLEtBQUssQ0FBQyxDQUFDO1FBQ3ZDLENBQUMsQ0FBQyxDQUFDO1FBQ0gsS0FBSyxJQUFJLEtBQUssR0FBRyxDQUFDLEVBQUUsS0FBSyxHQUFHLElBQUksQ0FBQyxtQkFBbUIsQ0FBQyxNQUFNLEVBQUUsS0FBSyxFQUFFLEVBQUU7WUFDcEUsTUFBTSxHQUFHLEdBQUcsS0FBSyxDQUFDO1lBRWxCLDhDQUE4QztZQUM5Qyw0R0FBNEc7WUFDNUcsSUFBSSxDQUFDLG1CQUFtQixDQUFDLEdBQUcsQ0FBQyxDQUFDLE9BQU8sQ0FBQyxXQUFXLENBQUMsR0FBRyxFQUFFO2dCQUNyRCxJQUFJLGFBQWEsR0FDZixJQUFJLENBQUMsbUJBQW1CLENBQUMsR0FBRyxDQUFDLENBQUMsU0FBUyxDQUFDLHNCQUFzQixTQUFDLHFCQUFJLEdBQ2hFLElBQUksQ0FBQztnQkFDVix3Q0FBeUIsQ0FBQyxRQUFRLENBQUMsSUFBSSxDQUFDLGFBQWEsQ0FBQyxDQUFDO1lBQ3pELENBQUMsQ0FBQyxDQUFDO1NBQ0o7SUFDSCxDQUFDO0lBRUQsQ0FBQyxnQkFBZ0IsQ0FBQyxJQUFZO1FBQzVCLHVDQUF1QztRQUN2Qyw2Q0FBNkM7UUFDN0MsaUZBQWlGO1FBQ2pGLE9BQU87UUFDUCxtRkFBbUY7UUFDbkYsMEVBQTBFO1FBQzFFLDJEQUEyRDtRQUMzRCx1Q0FBdUM7SUFDekMsQ0FBQztDQUNGO0FBL0VELCtCQStFQyJ9\",\"assetPath\":\"Assets/Scripts/UiController.ts\",\"manifest\":{\"properties\":[{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"safeAreaObjects\",\"type\":\"UnityEngine.GameObject[]\",\"isArray\":true,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[{\"name\":\"SerializeField\",\"args\":[]}]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"quickDefaultPanel\",\"type\":\"UnityEngine.GameObject\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[{\"name\":\"Header\",\"args\":[\"\\\"Quick
+    Panel\\\"\"]}]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"quickModePanel\",\"type\":\"UnityEngine.GameObject\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.UI\",\"name\":\"quickModeButton\",\"type\":\"UnityEngine.UI.Button\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[{\"name\":\"Header\",\"args\":[\"\\\"Quick
+    Mode\\\"\"]}]},{\"assembly\":\"UnityEngine.UI\",\"name\":\"quickExitButton\",\"type\":\"UnityEngine.UI.Button\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.UI\",\"name\":\"quickContentButtons\",\"type\":\"UnityEngine.UI.Button[]\",\"isArray\":true,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]}],\"name\":\"UiController\",\"description\":\"\"},\"isCompiled\":true}"
+  typescriptHash: 24812c7c40c7eea47d9ae0f8a48630a5
+  onlyWriteTrigger: 0

@@ -1,0 +1,31 @@
+fileFormatVersion: 2
+guid: 03137dab318f10749a5c20105811148a
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst UnityEngine_1 = require(\"UnityEngine\");\r\nconst
+    UnityEngine_UI_1 = require(\"UnityEngine.UI\");\r\nconst ZEPETO_Character_Controller_1
+    = require(\"ZEPETO.Character.Controller\");\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nclass
+    ZepetoController extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    Start()
+    {\r\n        ZEPETO_Character_Controller_1.ZepetoPlayers.instance.OnAddedLocalPlayer.AddListener(()
+    => {\r\n            this.gameObject.GetComponentInChildren($typeof(UnityEngine_UI_1.CanvasScaler)).referenceResolution
+    =\r\n                new UnityEngine_1.Vector2(1440, 1080);\r\n        });\r\n   
+    }\r\n}\r\nexports.default = ZepetoController;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiWmVwZXRvQ29udHJvbGxlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIlplcGV0b0NvbnRyb2xsZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSw2Q0FBc0M7QUFDdEMsbURBQThDO0FBQzlDLDZFQUE0RDtBQUM1RCxpREFBc0Q7QUFFdEQsTUFBcUIsZ0JBQWlCLFNBQVEscUNBQXFCO0lBQ2pFLEtBQUs7UUFDSCwyQ0FBYSxDQUFDLFFBQVEsQ0FBQyxrQkFBa0IsQ0FBQyxXQUFXLENBQUMsR0FBRyxFQUFFO1lBQ3pELElBQUksQ0FBQyxVQUFVLENBQUMsc0JBQXNCLFNBQUMsNkJBQVksR0FBSSxtQkFBbUI7Z0JBQ3hFLElBQUkscUJBQU8sQ0FBQyxJQUFJLEVBQUUsSUFBSSxDQUFDLENBQUM7UUFDNUIsQ0FBQyxDQUFDLENBQUM7SUFDTCxDQUFDO0NBQ0Y7QUFQRCxtQ0FPQyJ9","assetPath":"Assets/Scripts/ZepetoController.ts","manifest":{"properties":[],"name":"ZepetoController","description":""},"isCompiled":true}'
+  typescriptHash: 37f5f59ff494881ffc1237fe08db5589
+  onlyWriteTrigger: 0
