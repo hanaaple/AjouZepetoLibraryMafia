@@ -1,6 +1,7 @@
 import {
   Canvas,
   GameObject,
+  LayerMask,
   Random,
   SphereCollider,
   Transform,
@@ -164,6 +165,8 @@ export default class MafiaGameManager extends ZepetoScriptBehaviour {
     );
     this.state.players.ForEach((sessionId: string, player: Player) => {
       const character = ZepetoPlayers.instance.GetPlayer(sessionId);
+
+      this.ChangeLayersRecursively(character.character.transform, "Ghost");
       if (player.jobState == JobState.Mafia) {
         const mafia = character.character.gameObject.AddComponent<Mafia>();
         mafia.Initialize(
@@ -198,5 +201,17 @@ export default class MafiaGameManager extends ZepetoScriptBehaviour {
       spawnPoint.rotation
     );
     ClientStarter.instance.SendTransform(spawnPoint);
+
+    ZepetoPlayers.instance.LocalPlayer.zepetoCamera.camera.cullingMask = ~(
+      1 << LayerMask.NameToLayer("Ghost")
+    );
+  }
+
+  //모든 플레이어 세팅 및 죽었을 경우에도 모든 클라에 실행
+  public ChangeLayersRecursively(trans: Transform, name: string) {
+    trans.gameObject.layer = LayerMask.NameToLayer(name);
+    for (var i = 0; i < trans.childCount; i++) {
+      this.ChangeLayersRecursively(trans.GetChild(i), name);
+    }
   }
 }

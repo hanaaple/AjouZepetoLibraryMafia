@@ -1,4 +1,11 @@
-import { GameObject, Transform } from "UnityEngine";
+import {
+  GameObject,
+  LayerMask,
+  Material,
+  SkinnedMeshRenderer,
+  Transform,
+} from "UnityEngine";
+import { ZepetoPlayers } from "ZEPETO.Character.Controller";
 import { RoomData } from "ZEPETO.Multiplay";
 import ClientStarter from "../ClientStarter";
 import InteractUI from "./InteractUI";
@@ -23,13 +30,33 @@ export default class Citizen extends MafiaPlayer {
       });
     }
   }
-  public OnAttack() {
+  public OnAttack(sessionId: string) {
     ClientStarter.instance.Debug("내가 공격받음");
     // const roomData = new RoomData();
     // roomData.Add("", "value");
     // ClientStarter.instance.GetRoom().Send("asd", roomData);
     // localPlayer.setShader - 자기 쉐이더 변경
-    // localPlayer.setLayer - 못보도록, 대화 못하도록 - 이게 제일 크네;;
+    const player = ZepetoPlayers.instance.GetPlayer(sessionId);
+
+    this.ChangeLayersRecursively(player.character.transform, "Ghost");
+  }
+  public ChangeLayersRecursively(trans: Transform, name: string) {
+    trans.gameObject.layer = LayerMask.NameToLayer(name);
+    for (var i = 0; i < trans.childCount; i++) {
+      this.ChangeLayersRecursively(trans.GetChild(i), name);
+    }
+  }
+
+  public AddMaterial(trans: Transform, material: Material) {
+    const mesh = trans.GetComponentsInChildren<SkinnedMeshRenderer>();
+    mesh.forEach((item: SkinnedMeshRenderer) => {
+      item.materials.push(material);
+    });
+  }
+
+  public OnDied(sessionId: string) {
+    ZepetoPlayers.instance.GetPlayer(sessionId).character.gameObject.layer =
+      LayerMask.NameToLayer("Ghost");
   }
 
   private Interact() {

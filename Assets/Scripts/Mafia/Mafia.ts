@@ -29,17 +29,20 @@ export default class Mafia extends MafiaPlayer {
     // const roomData = new RoomData();
     // roomData.Add("", "value");
     // ClientStarter.instance.GetRoom().Send("asd", roomData);
+
+    // 서버에서는 broadcast
+    // 그리고 OnAttacked 실행
   }
 
   OnTriggerEnter(other: Collider) {
     if (!this.isLocal) return;
     if (other.GetComponent<Citizen>()) {
       const player = other.GetComponent<Citizen>();
-      console.log("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
-      this.citizenArray.forEach((t: MafiaPlayer) => {
-        console.log(t);
-      });
-      console.log("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+      // console.log("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+      // this.citizenArray.forEach((t: MafiaPlayer) => {
+      //   console.log(t);
+      // });
+      // console.log("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
       const hasplayer = this.citizenArray.find((item) => {
         return item == player;
       });
@@ -47,14 +50,14 @@ export default class Mafia extends MafiaPlayer {
         this.citizenArray.push(player);
       }
 
-      console.log("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
-      this.citizenArray.forEach((t: MafiaPlayer) => {
-        console.log(t);
-      });
-      console.log("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
-      if (this.citizenArray.length > 0) {
-        this.interactUI.interactButton.gameObject.SetActive(true);
-      }
+      // console.log("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+      // this.citizenArray.forEach((t: MafiaPlayer) => {
+      //   console.log(t);
+      // });
+      // console.log("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+      // if (this.citizenArray.length > 0) {
+      //   this.interactUI.interactButton.gameObject.SetActive(true);
+      // }
     }
   }
 
@@ -62,21 +65,21 @@ export default class Mafia extends MafiaPlayer {
     if (!this.isLocal) return;
     if (other.GetComponent<Citizen>()) {
       const player = other.GetComponent<Citizen>();
-      console.log("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
-      this.citizenArray.forEach((t: MafiaPlayer) => {
-        console.log(t);
-      });
-      console.log("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
-      const hasplayer = this.citizenArray.find((item) => {
-        return item == player;
-      });
+      // console.log("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+      // this.citizenArray.forEach((t: MafiaPlayer) => {
+      //   console.log(t);
+      // });
+      // console.log("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+      // const hasplayer = this.citizenArray.find((item) => {
+      //   return item == player;
+      // });
       this.citizenArray = this.citizenArray.filter((item) => item != player);
 
-      console.log("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
-      this.citizenArray.forEach((t: MafiaPlayer) => {
-        console.log(t);
-      });
-      console.log("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+      // console.log("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+      // this.citizenArray.forEach((t: MafiaPlayer) => {
+      // console.log(t);
+      // });
+      // console.log("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
 
       if (this.citizenArray.length == 0) {
         this.interactUI.interactButton.gameObject.SetActive(false);
