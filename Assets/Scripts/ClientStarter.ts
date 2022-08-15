@@ -115,7 +115,6 @@ export default class ClientStarter extends ZepetoScriptBehaviour {
           this.Debug(`[온라인 플레이어 생성] player  ${sessionId}`);
           player.OnChange += (changeValues) =>
             this.OnUpdateMultiPlayer(sessionId, player);
-          this.OnUpdateMultiPlayer(sessionId, player);
         }
       });
     }
@@ -137,6 +136,12 @@ export default class ClientStarter extends ZepetoScriptBehaviour {
       spawnInfo.rotation = Quaternion.Euler(rotation);
     }
 
+    console.log(
+      spawnInfo.position.x,
+      spawnInfo.position.y,
+      spawnInfo.position.z
+    );
+
     const isLocal = this.room.SessionId === player.sessionId;
     ZepetoPlayers.instance.CreatePlayerWithUserId(
       sessionId,
@@ -155,18 +160,23 @@ export default class ClientStarter extends ZepetoScriptBehaviour {
     const zepetoPlayer = ZepetoPlayers.instance.GetPlayer(sessionId);
 
     const position = this.ParseVector3(player.transform.position);
-
-    var moveDir = Vector3.op_Subtraction(
+    const rotation = Quaternion.Euler(
+      this.ParseVector3(player.transform.rotation)
+    );
+    const moveDir = Vector3.op_Subtraction(
       position,
       zepetoPlayer.character.transform.position
     );
-    moveDir = new Vector3(moveDir.x, 0, moveDir.z);
+    const manhattenDir = new Vector3(moveDir.x, 0, moveDir.z);
 
-    if (moveDir.magnitude < 0.05) {
+    if (moveDir.magnitude > 5) {
+      console.log("텔레포트");
+      zepetoPlayer.character.Teleport(position, rotation);
+    } else if (manhattenDir.magnitude < 0.05) {
       if (player.state === CharacterState.MoveTurn) return;
       zepetoPlayer.character.StopMoving();
     } else {
-      zepetoPlayer.character.MoveContinuously(moveDir);
+      zepetoPlayer.character.MoveToPosition(position);
     }
 
     if (player.state === CharacterState.Jump) {

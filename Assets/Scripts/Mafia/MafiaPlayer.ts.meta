@@ -1,0 +1,34 @@
+fileFormatVersion: 2
+guid: d4c3eb006f3fa0249b3fee88c799f1a5
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst UnityEngine_1 = require(\"UnityEngine\");\r\nconst
+    ZEPETO_Character_Controller_1 = require(\"ZEPETO.Character.Controller\");\r\nconst
+    ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst InteractUI_1 = require(\"./InteractUI\");\r\nclass
+    MafiaPlayer extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    Initialize(uiPrefab,
+    parentCanvas, isLocal) {\r\n        this.isLocal = isLocal;\r\n        if (isLocal)
+    {\r\n            const collider = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.gameObject.AddComponent($typeof(UnityEngine_1.SphereCollider));\r\n           
+    collider.isTrigger = true;\r\n            collider.center = new UnityEngine_1.Vector3(0,
+    0.6, 0);\r\n            collider.radius = 2;\r\n            this.interactUI =
+    UnityEngine_1.GameObject.Instantiate(uiPrefab, parentCanvas).GetComponent($typeof(InteractUI_1.default));\r\n           
+    this.interactUI.interactButton.gameObject.SetActive(false);\r\n        }\r\n   
+    }\r\n}\r\nexports.default = MafiaPlayer;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTWFmaWFQbGF5ZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJNYWZpYVBsYXllci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLDZDQU1xQjtBQUNyQiw2RUFBNEQ7QUFDNUQsaURBQXNEO0FBQ3RELDZDQUFzQztBQUV0QyxNQUFxQixXQUFZLFNBQVEscUNBQXFCO0lBTXJELFVBQVUsQ0FDZixRQUFvQixFQUNwQixZQUF1QixFQUN2QixPQUFnQjtRQUVoQixJQUFJLENBQUMsT0FBTyxHQUFHLE9BQU8sQ0FBQztRQUV2QixJQUFJLE9BQU8sRUFBRTtZQUNYLE1BQU0sUUFBUSxHQUNaLDJDQUFhLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBQyxZQUFZLENBQUMsU0FBUyxDQUFDLFVBQVUsQ0FBQyxZQUFZLFNBQUMsNEJBQWMsRUFBRyxDQUFDO1lBQ3RHLFFBQVEsQ0FBQyxTQUFTLEdBQUcsSUFBSSxDQUFDO1lBQzFCLFFBQVEsQ0FBQyxNQUFNLEdBQUcsSUFBSSxxQkFBTyxDQUFDLENBQUMsRUFBRSxHQUFHLEVBQUUsQ0FBQyxDQUFDLENBQUM7WUFDekMsUUFBUSxDQUFDLE1BQU0sR0FBRyxDQUFDLENBQUM7WUFFcEIsSUFBSSxDQUFDLFVBQVUsR0FBRyx3QkFBVSxDQUFDLFdBQVcsQ0FDdEMsUUFBUSxFQUNSLFlBQVksQ0FDYixDQUFDLFlBQVksU0FBQyxvQkFBVSxFQUFHLENBQUM7WUFFN0IsSUFBSSxDQUFDLFVBQVUsQ0FBQyxjQUFjLENBQUMsVUFBVSxDQUFDLFNBQVMsQ0FBQyxLQUFLLENBQUMsQ0FBQztTQUM1RDtJQUNILENBQUM7Q0FDRjtBQTVCRCw4QkE0QkMifQ==","assetPath":"Assets/Scripts/Mafia/MafiaPlayer.ts","manifest":{"properties":[{"assembly":"mscorlib","name":"isLocal","type":"System.Boolean","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"MafiaPlayer","description":""},"isCompiled":true}'
+  typescriptHash: 8fdb402df029f9248c9a37b440135e0b
+  onlyWriteTrigger: 0

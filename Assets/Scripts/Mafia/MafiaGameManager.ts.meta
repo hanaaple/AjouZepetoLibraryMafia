@@ -19,51 +19,85 @@ ScriptedImporter:
   WrapperFilters: []
   wrapperOutputDirectory: Generated
   compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
-    \\\"__esModule\\\", { value: true });\\r\\nconst UnityEngine_1 = require(\\\"UnityEngine\\\");\\r\\nconst
+    \\\"__esModule\\\", { value: true });\\r\\nexports.InGameState = exports.JobState
+    = exports.MafiaPlayerState = void 0;\\r\\nconst UnityEngine_1 = require(\\\"UnityEngine\\\");\\r\\nconst
     ZEPETO_Character_Controller_1 = require(\\\"ZEPETO.Character.Controller\\\");\\r\\nconst
     ZEPETO_Multiplay_1 = require(\\\"ZEPETO.Multiplay\\\");\\r\\nconst ZEPETO_Script_1
-    = require(\\\"ZEPETO.Script\\\");\\r\\nconst MafiaUiController_1 = require(\\\"./MafiaUiController\\\");\\r\\nconst
-    ClientStarter_1 = require(\\\"../../../../AjouZepetoLibrary/Assets/Scripts/ClientStarter\\\");\\r\\nvar
-    MafiaPlayerState;\\r\\n(function (MafiaPlayerState) {\\r\\n    MafiaPlayerState[MafiaPlayerState[\\\"None\\\"]
-    = -2] = \\\"None\\\";\\r\\n    MafiaPlayerState[MafiaPlayerState[\\\"Ready\\\"]
-    = -1] = \\\"Ready\\\";\\r\\n    MafiaPlayerState[MafiaPlayerState[\\\"Citizen\\\"]
-    = 0] = \\\"Citizen\\\";\\r\\n    MafiaPlayerState[MafiaPlayerState[\\\"Mafia\\\"]
-    = 1] = \\\"Mafia\\\";\\r\\n    MafiaPlayerState[MafiaPlayerState[\\\"Ghost\\\"]
-    = 99] = \\\"Ghost\\\";\\r\\n})(MafiaPlayerState || (MafiaPlayerState = {}));\\r\\nclass
-    MafiaGameManager extends ZEPETO_Script_1.ZepetoScriptBehaviour {\\r\\n    constructor()
-    {\\r\\n        super(...arguments);\\r\\n        this.playerCount = 0;\\r\\n       
-    this.minPlayer = 8;\\r\\n    }\\r\\n    static get instance() {\\r\\n       
-    return this._instance;\\r\\n    }\\r\\n    Awake() {\\r\\n        MafiaGameManager._instance
-    = this;\\r\\n    }\\r\\n    Start() {\\r\\n        ClientStarter_1.default.instance.multiplay.add_RoomJoined((room)
+    = require(\\\"ZEPETO.Script\\\");\\r\\nconst ClientStarter_1 = require(\\\"../ClientStarter\\\");\\r\\nconst
+    Citizen_1 = require(\\\"./Citizen\\\");\\r\\nconst Mafia_1 = require(\\\"./Mafia\\\");\\r\\nconst
+    MafiaUiController_1 = require(\\\"./MafiaUiController\\\");\\r\\nvar MafiaPlayerState;\\r\\n(function
+    (MafiaPlayerState) {\\r\\n    MafiaPlayerState[MafiaPlayerState[\\\"None\\\"]
+    = -1] = \\\"None\\\";\\r\\n    MafiaPlayerState[MafiaPlayerState[\\\"Ready\\\"]
+    = 1] = \\\"Ready\\\";\\r\\n    MafiaPlayerState[MafiaPlayerState[\\\"Play\\\"]
+    = 2] = \\\"Play\\\";\\r\\n})(MafiaPlayerState = exports.MafiaPlayerState || (exports.MafiaPlayerState
+    = {}));\\r\\nvar JobState;\\r\\n(function (JobState) {\\r\\n    JobState[JobState[\\\"None\\\"]
+    = -2] = \\\"None\\\";\\r\\n    JobState[JobState[\\\"Citizen\\\"] = 1] = \\\"Citizen\\\";\\r\\n   
+    JobState[JobState[\\\"Mafia\\\"] = 2] = \\\"Mafia\\\";\\r\\n})(JobState = exports.JobState
+    || (exports.JobState = {}));\\r\\nvar InGameState;\\r\\n(function (InGameState)
+    {\\r\\n    InGameState[InGameState[\\\"ALIVE\\\"] = 1] = \\\"ALIVE\\\";\\r\\n   
+    InGameState[InGameState[\\\"GHOST\\\"] = 2] = \\\"GHOST\\\";\\r\\n})(InGameState
+    = exports.InGameState || (exports.InGameState = {}));\\r\\nclass MafiaGameManager
+    extends ZEPETO_Script_1.ZepetoScriptBehaviour {\\r\\n    constructor() {\\r\\n       
+    super(...arguments);\\r\\n        this.minPlayer = 8;\\r\\n    }\\r\\n    static
+    get instance() {\\r\\n        return this._instance;\\r\\n    }\\r\\n    Awake()
+    {\\r\\n        MafiaGameManager._instance = this;\\r\\n    }\\r\\n    Start()
+    {\\r\\n        ClientStarter_1.default.instance.multiplay.add_RoomJoined((room)
     => {\\r\\n            room.add_OnStateChange(this.OnStateChange.bind(this));\\r\\n       
     });\\r\\n        this._mafiaGameUIController = this.mafiaGameUIController.GetComponent($typeof(MafiaUiController_1.default));\\r\\n   
     }\\r\\n    OnStateChange(state, isFirst) {\\r\\n        if (!isFirst)\\r\\n           
-    return;\\r\\n        this.state = ClientStarter_1.default.instance.GetRoom().State;\\r\\n       
-    state.players.ForEach((sessionId, player) => {\\r\\n            this.OnAddPlayerHandler(player);\\r\\n       
-    });\\r\\n        state.players.OnAdd((sessionId, player) => {\\r\\n           
-    this.OnAddPlayerHandler(player);\\r\\n        });\\r\\n    }\\r\\n    // \uB85C\uCEEC\\r\\n   
-    SendState(state) {\\r\\n        const data = new ZEPETO_Multiplay_1.RoomData();\\r\\n       
-    data.Add(\\\"state\\\", state);\\r\\n        ClientStarter_1.default.instance\\r\\n           
-    .GetRoom()\\r\\n            .Send(\\\"onMafiaChangedState\\\", data.GetObject());\\r\\n   
-    }\\r\\n    // \uB85C\uCEEC\\r\\n    AddReadyPlayer() {\\r\\n        if (this.state.players.ContainsKey(ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id))\\r\\n           
-    return;\\r\\n        ClientStarter_1.default.instance.GetRoom().Send(\\\"onAddMafiaPlayer\\\");\\r\\n   
-    }\\r\\n    RemovePlayer() {\\r\\n        if (!this.state.players.ContainsKey(ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id))\\r\\n           
-    return;\\r\\n        // ClientStarter.instance.GetRoom().Send(\\\"onRemoveMafiaPlayer\\\");\\r\\n   
-    }\\r\\n    // \uC628\uB77C\uC778\\r\\n    OnAddPlayerHandler(player) {\\r\\n       
-    // this.SendState(MafiaPlayerState.Ready);\\r\\n        this.playerCount = this.state.players.Count;\\r\\n       
-    this._mafiaGameUIController.UpdatePlayerCount(this.playerCount);\\r\\n    }\\r\\n   
-    CheckPlayerNum() {\\r\\n        return this.playerCount >= this.minPlayer;\\r\\n   
-    }\\r\\n    GameStart() {\\r\\n        //\uC544\uB798 \uCF54\uB4DC\uB294 \uC11C\uBC84
-    \uB2E8\uC5D0\uC11C \uC2E4\uD589\\r\\n        // const player: Player = this.state.players.get_Item(\\r\\n       
-    //   Random.Range(0, this.state.players.Count - 1)\\r\\n        // );\\r\\n       
-    // player.gameState = MafiaPlayerState.Mafia;\\r\\n        this.state.players.ForEach((sessionId,
-    player) => {\\r\\n            if (player.gameState != MafiaPlayerState.Mafia)
-    {\\r\\n                player.gameState = MafiaPlayerState.Citizen;\\r\\n           
-    }\\r\\n            // \uD50C\uB808\uC774\uC5B4 \uC9C1\uC5C5 \uD560\uB2F9, \uBBF8\uC158
-    \uD560\uB2F9, State \uD560\uB2F9\\r\\n            // player.player\\r\\n           
-    // player.gameState\\r\\n            //\uB9F5 \uB0B4 \uB79C\uB364 \uC774\uB3D9
-    - spawn point[]\uAC00 \uC874\uC7AC\\r\\n            // let randomPoint = Random.Range(0,
-    this.spawnPoints.length - 1);\\r\\n            // this.spawnPoints.get_Item(randomPoint);\\r\\n       
-    });\\r\\n    }\\r\\n}\\r\\nexports.default = MafiaGameManager;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTWFmaWFHYW1lTWFuYWdlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIk1hZmlhR2FtZU1hbmFnZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSw2Q0FBNEQ7QUFFNUQsNkVBQTBFO0FBQzFFLHVEQUFrRDtBQUVsRCxpREFBc0Q7QUFDdEQsMkRBQXdEO0FBQ3hELDhGQUF1RjtBQUV2RixJQUFLLGdCQU1KO0FBTkQsV0FBSyxnQkFBZ0I7SUFDbkIsd0RBQVMsQ0FBQTtJQUNULDBEQUFVLENBQUE7SUFDViw2REFBVyxDQUFBO0lBQ1gseURBQVMsQ0FBQTtJQUNULDBEQUFVLENBQUE7QUFDWixDQUFDLEVBTkksZ0JBQWdCLEtBQWhCLGdCQUFnQixRQU1wQjtBQUVELE1BQXFCLGdCQUFpQixTQUFRLHFDQUFxQjtJQUFuRTs7UUFDVSxnQkFBVyxHQUFXLENBQUMsQ0FBQztRQUV4QixjQUFTLEdBQVcsQ0FBQyxDQUFDO0lBc0doQyxDQUFDO0lBaEdRLE1BQU0sS0FBSyxRQUFRO1FBQ3hCLE9BQU8sSUFBSSxDQUFDLFNBQVMsQ0FBQztJQUN4QixDQUFDO0lBUUQsS0FBSztRQUNILGdCQUFnQixDQUFDLFNBQVMsR0FBRyxJQUFJLENBQUM7SUFDcEMsQ0FBQztJQUVELEtBQUs7UUFDSCx1QkFBYSxDQUFDLFFBQVEsQ0FBQyxTQUFTLGdCQUFlLENBQUMsSUFBVSxFQUFFLEVBQUU7WUFDNUQsSUFBSSxtQkFBa0IsSUFBSSxDQUFDLGFBQWEsYUFBQztRQUMzQyxDQUFDLEVBQUM7UUFDRixJQUFJLENBQUMsc0JBQXNCLEdBQ3pCLElBQUksQ0FBQyxxQkFBcUIsQ0FBQyxZQUFZLFNBQUMsMkJBQXFCLEVBQUcsQ0FBQztJQUNyRSxDQUFDO0lBRUQsYUFBYSxDQUFDLEtBQVksRUFBRSxPQUFnQjtRQUMxQyxJQUFJLENBQUMsT0FBTztZQUFFLE9BQU87UUFFckIsSUFBSSxDQUFDLEtBQUssR0FBRyx1QkFBYSxDQUFDLFFBQVEsQ0FBQyxPQUFPLEVBQUUs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\",\"assetPath\":\"Assets/Scripts/Mafia/MafiaGameManager.ts\",\"manifest\":{\"properties\":[{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"spawnPoints\",\"type\":\"UnityEngine.Transform[]\",\"isArray\":true,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"mafiaGameUIController\",\"type\":\"UnityEngine.GameObject\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]}],\"name\":\"MafiaGameManager\",\"description\":\"\"},\"isCompiled\":true}"
-  typescriptHash: 4d996f1c504e6b3849ef04063cbc0154
+    return;\\r\\n        this.state = state;\\r\\n        ZEPETO_Character_Controller_1.ZepetoPlayers.instance.OnAddedLocalPlayer.AddListener(()
+    => {\\r\\n            this.AddPlayer();\\r\\n        });\\r\\n        ClientStarter_1.default.instance\\r\\n           
+    .GetRoom()\\r\\n            .AddMessageHandler(\\\"UpdateReadyMafiaPlayer\\\",
+    (readyPlayerCount) => {\\r\\n            this._mafiaGameUIController.UpdatePlayerCount(readyPlayerCount);\\r\\n       
+    });\\r\\n        ClientStarter_1.default.instance\\r\\n            .GetRoom()\\r\\n           
+    .AddMessageHandler(\\\"GameStart\\\", (message) => {\\r\\n            this.GameStart();\\r\\n       
+    });\\r\\n        ClientStarter_1.default.instance\\r\\n            .GetRoom()\\r\\n           
+    .AddMessageHandler(\\\"GameStartCount\\\", (count) => {\\r\\n            this.StartCoroutine(this._mafiaGameUIController.GameStartCount(count));\\r\\n       
+    });\\r\\n        this._mafiaGameUIController.UpdatePlayerCount(state.readyPlayerCount);\\r\\n   
+    }\\r\\n    // \uB85C\uCEEC\\r\\n    SendState(state) {\\r\\n        const data
+    = new ZEPETO_Multiplay_1.RoomData();\\r\\n        data.Add(\\\"state\\\", state);\\r\\n       
+    ClientStarter_1.default.instance\\r\\n            .GetRoom()\\r\\n           
+    .Send(\\\"onMafiaChangedState\\\", data.GetObject());\\r\\n    }\\r\\n    //
+    \uB85C\uCEEC\\r\\n    AddPlayer() {\\r\\n        const data = new ZEPETO_Multiplay_1.RoomData();\\r\\n       
+    data.Add(\\\"state\\\", MafiaPlayerState.None);\\r\\n        ClientStarter_1.default.instance.GetRoom().Send(\\\"onAddMafiaPlayer\\\",
+    data.GetObject());\\r\\n    }\\r\\n    GameStateUpdate(state) {\\r\\n       
+    const data = new ZEPETO_Multiplay_1.RoomData();\\r\\n        data.Add(\\\"state\\\",
+    state);\\r\\n        if (state == MafiaPlayerState.None) {\\r\\n            ClientStarter_1.default.instance\\r\\n               
+    .GetRoom()\\r\\n                .Send(\\\"onNotReadyMafiaPlayer\\\", data.GetObject());\\r\\n       
+    }\\r\\n        else if (state == MafiaPlayerState.Ready) {\\r\\n            ClientStarter_1.default.instance\\r\\n               
+    .GetRoom()\\r\\n                .Send(\\\"onReadyMafiaPlayer\\\", data.GetObject());\\r\\n       
+    }\\r\\n    }\\r\\n    // public RemovePlayer() {\\r\\n    //   if (\\r\\n   
+    //     this.state.players.ContainsKey(\\r\\n    //       ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id\\r\\n   
+    //     )\\r\\n    //   ) {\\r\\n    //     ClientStarter.instance.GetRoom().Send(\\\"onRemoveMafiaPlayer\\\");\\r\\n   
+    //   }\\r\\n    // }\\r\\n    GameStart() {\\r\\n        console.log(\\\"\uAC8C\uC784
+    \uC2DC\uC791\\\");\\r\\n        const player = this.state.players.get_Item(ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id);\\r\\n       
+    // console.log(\\r\\n        //   ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id,\\r\\n       
+    //   ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.userId\\r\\n        // );\\r\\n       
+    console.log(\\\"\uC9C1\uC5C5 :  \\\" +\\r\\n            player.jobState +\\r\\n           
+    \\\"  \\\" +\\r\\n            player.GamePlayerState +\\r\\n            \\\"   
+    \\\" +\\r\\n            player.InGamePlayerState);\\r\\n        this.state.players.ForEach((sessionId,
+    player) => {\\r\\n            const character = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.GetPlayer(sessionId);\\r\\n           
+    if (player.jobState == JobState.Mafia) {\\r\\n                const mafia = character.character.gameObject.AddComponent($typeof(Mafia_1.default));\\r\\n               
+    mafia.Initialize(this.mafiaUiPrefab, this.canvasRoot, character.isLocalPlayer);\\r\\n           
+    }\\r\\n            else if (player.jobState == JobState.Citizen) {\\r\\n               
+    const citizen = character.character.gameObject.AddComponent($typeof(Citizen_1.default));\\r\\n               
+    citizen.Initialize(this.citizenUiPrefab, this.canvasRoot, character.isLocalPlayer);\\r\\n           
+    }\\r\\n        });\\r\\n        // \uD50C\uB808\uC774\uC5B4 \uC9C1\uC5C5 \uD560\uB2F9,
+    \uBBF8\uC158 \uD560\uB2F9, State \uD560\uB2F9\\r\\n        // player.player\\r\\n       
+    // player.gameState\\r\\n        // \uB9F5 \uB0B4 \uB79C\uB364 \uC774\uB3D9 -
+    spawn point[]\uAC00 \uC874\uC7AC\\r\\n        let randomIdx = Math.floor(UnityEngine_1.Random.Range(0,
+    this.spawnPoints.length));\\r\\n        // const message = new RoomData();\\r\\n       
+    // message.Add(\\\"radomIdx\\\", randomIdx);\\r\\n        // ClientStarter.instance.SendMessage(\\\"randomTeleport\\\",
+    message.GetObject());\\r\\n        const spawnPoint = this.spawnPoints[randomIdx];\\r\\n       
+    console.log(spawnPoint.position, spawnPoint.rotation);\\r\\n        console.log(ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.transform\\r\\n           
+    .position.x, \\\" \\\", ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.transform\\r\\n           
+    .position.y, \\\" \\\", ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.transform\\r\\n           
+    .position.z, \\\" \\\");\\r\\n        console.log(\\\"\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\\\");\\r\\n       
+    ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.Teleport(spawnPoint.position,
+    spawnPoint.rotation);\\r\\n        console.log(ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.transform\\r\\n           
+    .position.x, \\\" \\\", ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.transform\\r\\n           
+    .position.y, \\\" \\\", ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.transform\\r\\n           
+    .position.z, \\\" \\\");\\r\\n        ClientStarter_1.default.instance.SendTransform(spawnPoint);\\r\\n   
+    }\\r\\n}\\r\\nexports.default = MafiaGameManager;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTWFmaWFHYW1lTWFuYWdlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIk1hZmlhR2FtZU1hbmFnZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7O0FBQUEsNkNBT3FCO0FBRXJCLDZFQUEwRTtBQUMxRSx1REFBa0Q7QUFFbEQsaURBQXNEO0FBQ3RELG9EQUE2QztBQUM3Qyx1Q0FBZ0M7QUFDaEMsbUNBQTRCO0FBQzVCLDJEQUF3RDtBQUV4RCxJQUFZLGdCQUlYO0FBSkQsV0FBWSxnQkFBZ0I7SUFDMUIsd0RBQVMsQ0FBQTtJQUNULHlEQUFTLENBQUE7SUFDVCx1REFBUSxDQUFBO0FBQ1YsQ0FBQyxFQUpXLGdCQUFnQixHQUFoQix3QkFBZ0IsS0FBaEIsd0JBQWdCLFFBSTNCO0FBRUQsSUFBWSxRQUlYO0FBSkQsV0FBWSxRQUFRO0lBQ2xCLHdDQUFTLENBQUE7SUFDVCw2Q0FBVyxDQUFBO0lBQ1gseUNBQVMsQ0FBQTtBQUNYLENBQUMsRUFKVyxRQUFRLEdBQVIsZ0JBQVEsS0FBUixnQkFBUSxRQUluQjtBQUVELElBQVksV0FHWDtBQUhELFdBQVksV0FBVztJQUNyQiwrQ0FBUyxDQUFBO0lBQ1QsK0NBQVMsQ0FBQTtBQUNYLENBQUMsRUFIVyxXQUFXLEdBQVgsbUJBQVcsS0FBWCxtQkFBVyxRQUd0QjtBQUVELE1BQXFCLGdCQUFpQixTQUFRLHFDQUFxQjtJQUFuRTs7UUFDVSxjQUFTLEdBQVcsQ0FBQyxDQUFDO0lBOExoQyxDQUFDO0lBeExRLE1BQU0sS0FBSyxRQUFRO1FBQ3hCLE9BQU8sSUFBSSxDQUFDLFNBQVMsQ0FBQztJQUN4QixDQUFDO0lBaUJELEtBQUs7UUFDSCxnQkFBZ0IsQ0FBQyxTQUFTLEdBQUcsSUFBSSxDQUFDO0lBQ3BDLENBQUM7SUFFRCxLQUFLO1FBQ0gsdUJBQWEsQ0FBQyxRQUFRLENBQUMsU0FBUyxnQkFBZSxDQUFDLElBQVUsRUFBRSxFQUFFO1lBQzVELElBQUksbUJBQWtCLElBQUksQ0FBQyxhQUFhLGFBQUM7UUFD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\",\"assetPath\":\"Assets/Scripts/Mafia/MafiaGameManager.ts\",\"manifest\":{\"properties\":[{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"spawnPoints\",\"type\":\"UnityEngine.Transform[]\",\"isArray\":true,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"mafiaGameUIController\",\"type\":\"UnityEngine.GameObject\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"canvasRoot\",\"type\":\"UnityEngine.Transform\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[{\"name\":\"SerializeField\",\"args\":[]}]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"mafiaUiPrefab\",\"type\":\"UnityEngine.GameObject\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[{\"name\":\"SerializeField\",\"args\":[]}]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"citizenUiPrefab\",\"type\":\"UnityEngine.GameObject\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[{\"name\":\"SerializeField\",\"args\":[]}]}],\"name\":\"MafiaGameManager\",\"description\":\"\"},\"isCompiled\":true}"
+  typescriptHash: 96950f32b779c0a5bb55ae2049b8fb85
   onlyWriteTrigger: 0

@@ -1,0 +1,58 @@
+fileFormatVersion: 2
+guid: 7c0fdf85756252149a5624ef73bdbb97
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
+    \\\"__esModule\\\", { value: true });\\r\\nconst UnityEngine_1 = require(\\\"UnityEngine\\\");\\r\\nconst
+    ClientStarter_1 = require(\\\"../ClientStarter\\\");\\r\\nconst Citizen_1 = require(\\\"./Citizen\\\");\\r\\nconst
+    MafiaPlayer_1 = require(\\\"./MafiaPlayer\\\");\\r\\nclass Mafia extends MafiaPlayer_1.default
+    {\\r\\n    Start() {\\r\\n        this.citizenArray = new Array();\\r\\n    }\\r\\n   
+    Initialize(uiPrefab, parentCanvas, isLocal) {\\r\\n        super.Initialize(uiPrefab,
+    parentCanvas, isLocal);\\r\\n        if (isLocal) {\\r\\n            this.interactUI.interactButton.onClick.AddListener(()
+    => {\\r\\n                this.Attack();\\r\\n            });\\r\\n        }\\r\\n   
+    }\\r\\n    Attack() {\\r\\n        console.log(\\\"\uACF5\uACA9!\\\");\\r\\n       
+    ClientStarter_1.default.instance.Debug(\\\"\uACF5\uACA9!\\\");\\r\\n        //
+    const roomData = new RoomData();\\r\\n        // roomData.Add(\\\"\\\", \\\"value\\\");\\r\\n       
+    // ClientStarter.instance.GetRoom().Send(\\\"asd\\\", roomData);\\r\\n    }\\r\\n   
+    OnTriggerEnter(other) {\\r\\n        if (!this.isLocal)\\r\\n            return;\\r\\n       
+    if (other.GetComponent($typeof(Citizen_1.default))) {\\r\\n            const
+    player = other.GetComponent($typeof(Citizen_1.default));\\r\\n            console.log(\\\"\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\\\");\\r\\n           
+    this.citizenArray.forEach((t) => {\\r\\n                console.log(t);\\r\\n           
+    });\\r\\n            console.log(\\\"\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\\\");\\r\\n           
+    const hasplayer = this.citizenArray.find((item) => {\\r\\n                return
+    item == player;\\r\\n            });\\r\\n            if (!hasplayer) {\\r\\n               
+    this.citizenArray.push(player);\\r\\n            }\\r\\n            console.log(\\\"\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\\\");\\r\\n           
+    this.citizenArray.forEach((t) => {\\r\\n                console.log(t);\\r\\n           
+    });\\r\\n            console.log(\\\"\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\\\");\\r\\n           
+    if (this.citizenArray.length > 0) {\\r\\n                this.interactUI.interactButton.gameObject.SetActive(true);\\r\\n           
+    }\\r\\n        }\\r\\n    }\\r\\n    OnTriggerExit(other) {\\r\\n        if (!this.isLocal)\\r\\n           
+    return;\\r\\n        if (other.GetComponent($typeof(Citizen_1.default))) {\\r\\n           
+    const player = other.GetComponent($typeof(Citizen_1.default));\\r\\n           
+    console.log(\\\"\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\\\");\\r\\n           
+    this.citizenArray.forEach((t) => {\\r\\n                console.log(t);\\r\\n           
+    });\\r\\n            console.log(\\\"\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\\\");\\r\\n           
+    const hasplayer = this.citizenArray.find((item) => {\\r\\n                return
+    item == player;\\r\\n            });\\r\\n            this.citizenArray = this.citizenArray.filter((item)
+    => item != player);\\r\\n            console.log(\\\"\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\\\");\\r\\n           
+    this.citizenArray.forEach((t) => {\\r\\n                console.log(t);\\r\\n           
+    });\\r\\n            console.log(\\\"\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\\\");\\r\\n           
+    if (this.citizenArray.length == 0) {\\r\\n                this.interactUI.interactButton.gameObject.SetActive(false);\\r\\n           
+    }\\r\\n        }\\r\\n    }\\r\\n}\\r\\nexports.default = Mafia;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTWFmaWEuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJNYWZpYS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLDZDQUE4RDtBQUM5RCxvREFBNkM7QUFDN0MsdUNBQWdDO0FBQ2hDLCtDQUF3QztBQUV4QyxNQUFxQixLQUFNLFNBQVEscUJBQVc7SUFJNUMsS0FBSztRQUNILElBQUksQ0FBQyxZQUFZLEdBQUcsSUFBSSxLQUFLLEVBQWUsQ0FBQztJQUMvQyxDQUFDO0lBQ00sVUFBVSxDQUNmLFFBQW9CLEVBQ3BCLFlBQXVCLEVBQ3ZCLE9BQWdCO1FBRWhCLEtBQUssQ0FBQyxVQUFVLENBQUMsUUFBUSxFQUFFLFlBQVksRUFBRSxPQUFPLENBQUMsQ0FBQztRQUVsRCxJQUFJLE9BQU8sRUFBRTtZQUNYLElBQUksQ0FBQyxVQUFVLENBQUMsY0FBYyxDQUFDLE9BQU8sQ0FBQyxXQUFXLENBQUMsR0FBRyxFQUFFO2dCQUN0RCxJQUFJLENBQUMsTUFBTSxFQUFFLENBQUM7WUFDaEIsQ0FBQyxDQUFDLENBQUM7U0FDSjtJQUNILENBQUM7SUFDTSxNQUFNO1FBQ1gsT0FBTyxDQUFDLEdBQUcsQ0FBQyxLQUFLLENBQUMsQ0FBQztRQUNuQix1QkFBYSxDQUFDLFFBQVEsQ0FBQyxLQUFLLENBQUMsS0FBSyxDQUFDLENBQUM7UUFDcEMsbUNBQW1DO1FBQ25DLDZCQUE2QjtRQUM3QiwwREFBMEQ7SUFDNUQsQ0FBQztJQUVELGNBQWMsQ0FBQyxLQUFlO1FBQzVCLElBQUksQ0FBQyxJQUFJLENBQUMsT0FBTztZQUFFLE9BQU87UUFDMUIsSUFBSSxLQUFLLENBQUMsWUFBWSxTQUFDLGlCQUFPLElBQUs7WUFDakMsTUFBTSxNQUFNLEdBQUcsS0FBSyxDQUFDLFlBQVksU0FBQyxpQkFBTyxFQUFHLENBQUM7WUFDN0MsT0FBTyxDQUFDLEdBQUcsQ0FBQyxnQkFBZ0IsQ0FBQyxDQUFDO1lBQzlCLElBQUksQ0FBQyxZQUFZLENBQUMsT0FBTyxDQUFDLENBQUMsQ0FB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\",\"assetPath\":\"Assets/Scripts/Mafia/Mafia.ts\",\"manifest\":{\"properties\":[{\"assembly\":\"mscorlib\",\"name\":\"isLocal\",\"type\":\"System.Boolean\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]}],\"name\":\"Mafia\",\"description\":\"\"},\"isCompiled\":true}"
+  typescriptHash: 80d27567bd7a22e594ae2b11fcca8b28
+  onlyWriteTrigger: 0

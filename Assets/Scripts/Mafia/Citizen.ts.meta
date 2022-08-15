@@ -1,0 +1,39 @@
+fileFormatVersion: 2
+guid: d7d64c35c987f8c4d8c5b3d4c32c880d
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
+    \\\"__esModule\\\", { value: true });\\r\\nconst UnityEngine_1 = require(\\\"UnityEngine\\\");\\r\\nconst
+    ClientStarter_1 = require(\\\"../ClientStarter\\\");\\r\\nconst MafiaPlayer_1
+    = require(\\\"./MafiaPlayer\\\");\\r\\nclass Citizen extends MafiaPlayer_1.default
+    {\\r\\n    // private interactUI: InteractUI;\\r\\n    Initialize(uiPrefab, parentCanvas,
+    isLocal) {\\r\\n        super.Initialize(uiPrefab, parentCanvas, isLocal);\\r\\n       
+    if (isLocal) {\\r\\n            this.interactUI.interactButton.onClick.AddListener(()
+    => {\\r\\n                this.Interact();\\r\\n            });\\r\\n       
+    }\\r\\n    }\\r\\n    OnAttack() {\\r\\n        ClientStarter_1.default.instance.Debug(\\\"\uB0B4\uAC00
+    \uACF5\uACA9\uBC1B\uC74C\\\");\\r\\n        // const roomData = new RoomData();\\r\\n       
+    // roomData.Add(\\\"\\\", \\\"value\\\");\\r\\n        // ClientStarter.instance.GetRoom().Send(\\\"asd\\\",
+    roomData);\\r\\n        // localPlayer.setShader - \uC790\uAE30 \uC250\uC774\uB354
+    \uBCC0\uACBD\\r\\n        // localPlayer.setLayer - \uBABB\uBCF4\uB3C4\uB85D,
+    \uB300\uD654 \uBABB\uD558\uB3C4\uB85D - \uC774\uAC8C \uC81C\uC77C \uD06C\uB124;;\\r\\n   
+    }\\r\\n    Interact() {\\r\\n        console.log(\\\"Interact\\\");\\r\\n       
+    ClientStarter_1.default.instance.Debug(\\\"\uC778\uD130\uB799\uD2B8\\\");\\r\\n   
+    }\\r\\n}\\r\\nexports.default = Citizen;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQ2l0aXplbi5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIkNpdGl6ZW4udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSw2Q0FBb0Q7QUFFcEQsb0RBQTZDO0FBRTdDLCtDQUF3QztBQUV4QyxNQUFxQixPQUFRLFNBQVEscUJBQVc7SUFJOUMsa0NBQWtDO0lBRTNCLFVBQVUsQ0FDZixRQUFvQixFQUNwQixZQUF1QixFQUN2QixPQUFnQjtRQUVoQixLQUFLLENBQUMsVUFBVSxDQUFDLFFBQVEsRUFBRSxZQUFZLEVBQUUsT0FBTyxDQUFDLENBQUM7UUFFbEQsSUFBSSxPQUFPLEVBQUU7WUFDWCxJQUFJLENBQUMsVUFBVSxDQUFDLGNBQWMsQ0FBQyxPQUFPLENBQUMsV0FBVyxDQUFDLEdBQUcsRUFBRTtnQkFDdEQsSUFBSSxDQUFDLFFBQVEsRUFBRSxDQUFDO1lBQ2xCLENBQUMsQ0FBQyxDQUFDO1NBQ0o7SUFDSCxDQUFDO0lBQ00sUUFBUTtRQUNiLHVCQUFhLENBQUMsUUFBUSxDQUFDLEtBQUssQ0FBQyxTQUFTLENBQUMsQ0FBQztRQUN4QyxtQ0FBbUM7UUFDbkMsNkJBQTZCO1FBQzdCLDBEQUEwRDtRQUMxRCxvQ0FBb0M7UUFDcEMsb0RBQW9EO0lBQ3RELENBQUM7SUFFTyxRQUFRO1FBQ2QsT0FBTyxDQUFDLEdBQUcsQ0FBQyxVQUFVLENBQUMsQ0FBQztRQUN4Qix1QkFBYSxDQUFDLFFBQVEsQ0FBQyxLQUFLLENBQUMsTUFBTSxDQUFDLENBQUM7SUFDdkMsQ0FBQztDQUNGO0FBaENELDBCQWdDQyJ9\",\"assetPath\":\"Assets/Scripts/Mafia/Citizen.ts\",\"manifest\":{\"properties\":[{\"assembly\":\"mscorlib\",\"name\":\"isLocal\",\"type\":\"System.Boolean\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]}],\"name\":\"Citizen\",\"description\":\"\"},\"isCompiled\":true}"
+  typescriptHash: dd8a4f125c7948cb8a96f0c26a05919e
+  onlyWriteTrigger: 0

@@ -12,6 +12,9 @@ export default class extends Sandbox {
     // Room 객체의 상태나 데이터 초기화를 처리 한다.
 
     // console.log(options.tickInterval)
+
+    this.state.readyPlayerCount = 0;
+
     this.onMessage("onChangedTransform", (client, message) => {
       const player = this.state.players.get(client.sessionId);
 
@@ -38,6 +41,88 @@ export default class extends Sandbox {
     this.onMessage("DebugUpdate", (client, message) => {
       console.log("[Debug]: " + message.sentence);
     });
+
+    this.onMessage("onAddMafiaPlayer", (client, message) => {
+      const player = this.state.players.get(client.sessionId);
+      player.GamePlayerState = message.state;
+
+      // this.broadcast("AddMafiaPlayer", client.sessionId);
+    });
+
+    this.onMessage("onNotReadyMafiaPlayer", (client, message) => {
+      const player = this.state.players.get(client.sessionId);
+      player.GamePlayerState = message.state;
+      this.state.readyPlayerCount--;
+      this.broadcast("UpdateReadyMafiaPlayer", this.state.readyPlayerCount);
+    });
+
+    this.onMessage("onReadyMafiaPlayer", (client, message) => {
+      const player = this.state.players.get(client.sessionId);
+      player.GamePlayerState = message.state;
+      this.state.readyPlayerCount++;
+      console.log(this.state.readyPlayerCount);
+      this.broadcast("UpdateReadyMafiaPlayer", this.state.readyPlayerCount);
+      if (this.state.readyPlayerCount == 1) {
+        (async () => {
+          const gameCount = 5000;
+          this.broadcast("GameStartCount", gameCount / 1000);
+          const wait = (timeToDelay: number) =>
+            new Promise((resolve) => setTimeout(resolve, timeToDelay)); //이와 같이 선언 후
+          await wait(gameCount - 1000);
+          this.onStartGame();
+        })();
+      }
+    });
+
+    this.onMessage("onRemoveMafiaPlayer", (client, message) => {
+      //딱히
+    });
+  }
+
+  onStartGame() {
+    const playerCount = this.state.players.size;
+
+    console.log(playerCount);
+    console.log("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+    for (var i = 0; i < 100; i++) {
+      console.log(Math.floor(Math.random() * playerCount));
+    }
+    console.log("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+    // const ran = Math.floor(Math.random() * playerCount);
+    const ran = 0;
+    // console.log("랜덤" + ran.toString());
+    let num: number = 0;
+    this.state.players.forEach((player: Player) => {
+      console.log(num);
+      player.GamePlayerState = 2; // Play
+      player.InGamePlayerState = 1; // ALIVE
+      if (ran == num) {
+        player.jobState = 2; // Mafia
+        console.log(
+          "너가 마피아 : " + player.sessionId + "   " + player.zepetoUserId
+        );
+      } else {
+        player.jobState = 1; // Citizen
+      }
+      num++;
+
+      console.log(
+        "직업 :  " +
+          player.jobState +
+          "/" +
+          player.GamePlayerState +
+          "/" +
+          player.InGamePlayerState
+      );
+    });
+    console.log("브로드캐스트");
+    (async () => {
+      const gameCount = 1000;
+      const wait = (timeToDelay: number) =>
+        new Promise((resolve) => setTimeout(resolve, timeToDelay)); //이와 같이 선언 후
+      await wait(gameCount);
+      this.broadcast("GameStart", "");
+    })();
   }
 
   async onJoin(client: SandboxPlayer) {
