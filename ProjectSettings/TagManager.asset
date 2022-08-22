@@ -14,9 +14,9 @@ TagManager:
   - UI
   - LocalPlayer
   - Player
-  - 
-  - 
-  - 
+  - Wall
+  - Ghost
+  - Live
   - 
   - 
   - 

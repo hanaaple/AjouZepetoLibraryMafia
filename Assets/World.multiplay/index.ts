@@ -77,6 +77,14 @@ export default class extends Sandbox {
     this.onMessage("onRemoveMafiaPlayer", (client, message) => {
       //딱히
     });
+
+    this.onMessage("onKill", (client, message) => {
+      console.log(message.killed);
+      console.log(message.mafia);
+      const player = this.state.players.get(message.killed);
+      player.InGamePlayerState = 2; // GHOST
+      this.broadcast("onKill", message);
+    });
   }
 
   onStartGame() {

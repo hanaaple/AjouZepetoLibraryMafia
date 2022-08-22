@@ -20,9 +20,10 @@ export default class Citizen extends MafiaPlayer {
   public Initialize(
     uiPrefab: GameObject,
     parentCanvas: Transform,
-    isLocal: boolean
+    isLocal: boolean,
+    sessionId: string
   ) {
-    super.Initialize(uiPrefab, parentCanvas, isLocal);
+    super.Initialize(uiPrefab, parentCanvas, isLocal, sessionId);
 
     if (isLocal) {
       this.interactUI.interactButton.onClick.AddListener(() => {

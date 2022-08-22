@@ -20,41 +20,38 @@ ScriptedImporter:
   wrapperOutputDirectory: Generated
   compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
     \\\"__esModule\\\", { value: true });\\r\\nconst UnityEngine_1 = require(\\\"UnityEngine\\\");\\r\\nconst
-    ClientStarter_1 = require(\\\"../ClientStarter\\\");\\r\\nconst Citizen_1 = require(\\\"./Citizen\\\");\\r\\nconst
-    MafiaPlayer_1 = require(\\\"./MafiaPlayer\\\");\\r\\nclass Mafia extends MafiaPlayer_1.default
-    {\\r\\n    Start() {\\r\\n        this.citizenArray = new Array();\\r\\n    }\\r\\n   
-    Initialize(uiPrefab, parentCanvas, isLocal) {\\r\\n        super.Initialize(uiPrefab,
-    parentCanvas, isLocal);\\r\\n        if (isLocal) {\\r\\n            this.interactUI.interactButton.onClick.AddListener(()
+    ZEPETO_Character_Controller_1 = require(\\\"ZEPETO.Character.Controller\\\");\\r\\nconst
+    ZEPETO_Multiplay_1 = require(\\\"ZEPETO.Multiplay\\\");\\r\\nconst ClientStarter_1
+    = require(\\\"../ClientStarter\\\");\\r\\nconst Citizen_1 = require(\\\"./Citizen\\\");\\r\\nconst
+    MafiaPlayer_1 = require(\\\"./MafiaPlayer\\\");\\r\\nconst PlayerId_1 = require(\\\"./PlayerId\\\");\\r\\nclass
+    Mafia extends MafiaPlayer_1.default {\\r\\n    Start() {\\r\\n        this.citizenArray
+    = new Array();\\r\\n    }\\r\\n    Initialize(uiPrefab, parentCanvas, isLocal,
+    sessionId) {\\r\\n        super.Initialize(uiPrefab, parentCanvas, isLocal, sessionId);\\r\\n       
+    if (isLocal) {\\r\\n            this.interactUI.interactButton.onClick.AddListener(()
     => {\\r\\n                this.Attack();\\r\\n            });\\r\\n        }\\r\\n   
     }\\r\\n    Attack() {\\r\\n        console.log(\\\"\uACF5\uACA9!\\\");\\r\\n       
-    ClientStarter_1.default.instance.Debug(\\\"\uACF5\uACA9!\\\");\\r\\n        //
-    const roomData = new RoomData();\\r\\n        // roomData.Add(\\\"\\\", \\\"value\\\");\\r\\n       
-    // ClientStarter.instance.GetRoom().Send(\\\"asd\\\", roomData);\\r\\n       
-    // \uC11C\uBC84\uC5D0\uC11C\uB294 broadcast\\r\\n        // \uADF8\uB9AC\uACE0
-    OnAttacked \uC2E4\uD589\\r\\n    }\\r\\n    OnTriggerEnter(other) {\\r\\n       
-    if (!this.isLocal)\\r\\n            return;\\r\\n        if (other.GetComponent($typeof(Citizen_1.default)))
-    {\\r\\n            const player = other.GetComponent($typeof(Citizen_1.default));\\r\\n           
-    // console.log(\\\"\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\\\");\\r\\n           
-    // this.citizenArray.forEach((t: MafiaPlayer) => {\\r\\n            //   console.log(t);\\r\\n           
-    // });\\r\\n            // console.log(\\\"\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\\\");\\r\\n           
+    ClientStarter_1.default.instance.Debug(\\\"\uACF5\uACA9!\\\");\\r\\n        const
+    position = this.transform.position;\\r\\n        const nearPlayer = this.citizenArray.reduce((prev,
+    cur) => UnityEngine_1.Vector3.Distance(position, prev.transform.position) >\\r\\n           
+    UnityEngine_1.Vector3.Distance(position, cur.transform.position)\\r\\n           
+    ? cur\\r\\n            : prev);\\r\\n        console.log(ZEPETO_Character_Controller_1.ZepetoPlayers.instance.GetPlayer(nearPlayer.sessionId));\\r\\n       
+    const roomData = new ZEPETO_Multiplay_1.RoomData();\\r\\n        roomData.Add(\\\"killed\\\",
+    nearPlayer.sessionId);\\r\\n        roomData.Add(\\\"mafia\\\", this.sessionId);\\r\\n       
+    ClientStarter_1.default.instance.GetRoom().Send(\\\"onKill\\\", roomData.GetObject());\\r\\n       
+    this.citizenArray = this.citizenArray.filter((item) => item != nearPlayer);\\r\\n       
+    if (this.citizenArray.length == 0) {\\r\\n            this.interactUI.interactButton.gameObject.SetActive(false);\\r\\n       
+    }\\r\\n    }\\r\\n    OnTriggerEnter(other) {\\r\\n        if (!this.isLocal)\\r\\n           
+    return;\\r\\n        const player = other.GetComponent($typeof(PlayerId_1.default));\\r\\n       
+    if (player && player.sessionId != this.sessionId && !player.isDead) {\\r\\n           
     const hasplayer = this.citizenArray.find((item) => {\\r\\n                return
-    item == player;\\r\\n            });\\r\\n            if (!hasplayer) {\\r\\n               
-    this.citizenArray.push(player);\\r\\n            }\\r\\n            // console.log(\\\"\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\\\");\\r\\n           
-    // this.citizenArray.forEach((t: MafiaPlayer) => {\\r\\n            //   console.log(t);\\r\\n           
-    // });\\r\\n            // console.log(\\\"\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\\\");\\r\\n           
-    // if (this.citizenArray.length > 0) {\\r\\n            //   this.interactUI.interactButton.gameObject.SetActive(true);\\r\\n           
-    // }\\r\\n        }\\r\\n    }\\r\\n    OnTriggerExit(other) {\\r\\n        if
-    (!this.isLocal)\\r\\n            return;\\r\\n        if (other.GetComponent($typeof(Citizen_1.default)))
-    {\\r\\n            const player = other.GetComponent($typeof(Citizen_1.default));\\r\\n           
-    // console.log(\\\"\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\\\");\\r\\n           
-    // this.citizenArray.forEach((t: MafiaPlayer) => {\\r\\n            //   console.log(t);\\r\\n           
-    // });\\r\\n            // console.log(\\\"\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\\\");\\r\\n           
-    // const hasplayer = this.citizenArray.find((item) => {\\r\\n            //  
-    return item == player;\\r\\n            // });\\r\\n            this.citizenArray
-    = this.citizenArray.filter((item) => item != player);\\r\\n            // console.log(\\\"\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\\\");\\r\\n           
-    // this.citizenArray.forEach((t: MafiaPlayer) => {\\r\\n            // console.log(t);\\r\\n           
-    // });\\r\\n            // console.log(\\\"\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\u3161\\\");\\r\\n           
-    if (this.citizenArray.length == 0) {\\r\\n                this.interactUI.interactButton.gameObject.SetActive(false);\\r\\n           
-    }\\r\\n        }\\r\\n    }\\r\\n}\\r\\nexports.default = Mafia;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTWFmaWEuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJNYWZpYS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLDZDQUE4RDtBQUM5RCxvREFBNkM7QUFDN0MsdUNBQWdDO0FBQ2hDLCtDQUF3QztBQUV4QyxNQUFxQixLQUFNLFNBQVEscUJBQVc7SUFJNUMsS0FBSztRQUNILElBQUksQ0FBQyxZQUFZLEdBQUcsSUFBSSxLQUFLLEVBQWUsQ0FBQztJQUMvQyxDQUFDO0lBQ00sVUFBVSxDQUNmLFFBQW9CLEVBQ3BCLFlBQXVCLEVBQ3ZCLE9BQWdCO1FBRWhCLEtBQUssQ0FBQyxVQUFVLENBQUMsUUFBUSxFQUFFLFlBQVksRUFBRSxPQUFPLENBQUMsQ0FBQztRQUVsRCxJQUFJLE9BQU8sRUFBRTtZQUNYLElBQUksQ0FBQyxVQUFVLENBQUMsY0FBYyxDQUFDLE9BQU8sQ0FBQyxXQUFXLENBQUMsR0FBRyxFQUFFO2dCQUN0RCxJQUFJLENBQUMsTUFBTSxFQUFFLENBQUM7WUFDaEIsQ0FBQyxDQUFDLENBQUM7U0FDSjtJQUNILENBQUM7SUFDTSxNQUFNO1FBQ1gsT0FBTyxDQUFDLEdBQUcsQ0FBQyxLQUFLLENBQUMsQ0FBQztRQUNuQix1QkFBYSxDQUFDLFFBQVEsQ0FBQyxLQUFLLENBQUMsS0FBSyxDQUFDLENBQUM7UUFDcEMsbUNBQW1DO1FBQ25DLDZCQUE2QjtRQUM3QiwwREFBMEQ7UUFFMUQsa0JBQWtCO1FBQ2xCLG9CQUFvQjtJQUN0QixDQUFDO0lBRUQsY0FBYyxDQUFDLEtBQWU7UUFDNUIsSUFBSSxDQUFDLElBQUksQ0FBQyxPQUFPO1lBQUUsT0FBTztRQUMxQixJQUFJLEtBQUssQ0FBQyxZQUFZLFNBQUMsaUJBQU8sSUFBSztZQUNqQyxNQUFNLE1BQU0sR0FBRyxLQUFLLENBQUMsWUFBWSxTQUFDLGlCQUFPLEVBQUcsQ0FBQztZQUM3QyxpQ0FBaUM7WUFDakMsa0RBQWtEO1lBQ2xELG9CQUFvQjtZQUNwQixNQUFNO1lBQ04saUNBQWlDO1lBQ2pDLE1BQU0sU0FBUyxHQUFHLElBQUksQ0FBQyxZQUFZLENBQUMsSUFBSSxDQUFDLENBQUMsSUFBSSxFQUFFLEVBQUU7Z0JBQ2hELE9BQU8sSUFBSSxJQUFJLE1BQU0sQ0FBQztZQUN4QixDQUFDLENBQUMsQ0FBQztZQUNILElBQUksQ0FBQyxTQUFTLEVBQUU7Z0JBQ2QsSUFBSSxDQUFDLFlBQVksQ0FBQyxJQUFJLENBQUMsTUFBTSxDQUFDLENBQUM7YUFDaEM7WUFFRCxpQ0FBaUM7WUFDakMsa0RBQWtEO1lBQ2xELG9CQUFvQjtZQUNwQixNQUFNO1lBQ04saUNBQWlDO1lBQ2pDLHNDQUFzQztZQUN0QywrREFBK0Q7WUFDL0QsSUFBSTtTQUNMO0lBQ0gsQ0FBQztJQUVELGFBQWEsQ0FBQyxLQUFlO1FBQzNCLElBQUksQ0FBQyxJQUFJLENBQUMsT0FBTztZQUFFLE9BQU87UUFDMUIsSUFBSSxLQUFLLENBQUMsWUFBWSxTQUFDLGlCQUFPLElBQUs7WUFDakMsTUFBTSxNQUFNLEdBQUcsS0FBSyxDQUFDLFlBQVksU0FBQyxpQkFBTyxFQUFHLENBQUM7WUFDN0MsaUNBQWlDO1lBQ2pDLGtEQUFrRDtZQUNsRCxvQkFBb0I7WUFDcEIsTUFBTTtZQUNOLGlDQUFpQztZQUNqQyx1REFBdUQ7WUFDdkQsMkJBQTJCO1lBQzNCLE1BQU07WUFDTixJQUFJLENBQUMsWUFBWSxHQUFHLElBQUksQ0FBQyxZQUFZLENBQUMsTUFBTSxDQUFDLENBQUMsSUFBSSxFQUFFLEVBQUUsQ0FBQyxJQUFJLElBQUksTUFBTSxDQUFDLENBQUM7WUFFdkUsaUNBQWlDO1lBQ2pDLGtEQUFrRDtZQUNsRCxrQkFBa0I7WUFDbEIsTUFBTTtZQUNOLGlDQUFpQztZQUVqQyxJQUFJLElBQUksQ0FBQyxZQUFZLENBQUMsTUFBTSxJQUFJLENBQUMsRUFBRTtnQkFDakMsSUFBSSxDQUFDLFVBQVUsQ0FBQyxjQUFjLENBQUMsVUFBVSxDQUFDLFNBQVMsQ0FBQyxLQUFLLENBQUMsQ0FBQzthQUM1RDtTQUNGO0lBQ0gsQ0FBQztDQUNGO0FBbkZELHdCQW1GQyJ9\",\"assetPath\":\"Assets/Scripts/Mafia/Mafia.ts\",\"manifest\":{\"properties\":[{\"assembly\":\"mscorlib\",\"name\":\"isLocal\",\"type\":\"System.Boolean\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]}],\"name\":\"Mafia\",\"description\":\"\"},\"isCompiled\":true}"
-  typescriptHash: e4f94998ceab2cb81a047509b6aa6d14
+    item == player;\\r\\n            });\\r\\n            if (!hasplayer && player.sessionId
+    != this.sessionId) {\\r\\n                this.citizenArray.push(player);\\r\\n               
+    this.interactUI.interactButton.gameObject.SetActive(true);\\r\\n            }\\r\\n       
+    }\\r\\n    }\\r\\n    OnTriggerExit(other) {\\r\\n        if (!this.isLocal)\\r\\n           
+    return;\\r\\n        const player = other.GetComponent($typeof(PlayerId_1.default));\\r\\n       
+    if (player) {\\r\\n            this.citizenArray = this.citizenArray.filter((item)
+    => item != player);\\r\\n            if (this.citizenArray.length == 0) {\\r\\n               
+    this.interactUI.interactButton.gameObject.SetActive(false);\\r\\n           
+    }\\r\\n        }\\r\\n    }\\r\\n}\\r\\nexports.default = Mafia;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTWFmaWEuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJNYWZpYS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLDZDQUF1RTtBQUN2RSw2RUFJcUM7QUFDckMsdURBQTRDO0FBQzVDLG9EQUE2QztBQUM3Qyx1Q0FBZ0M7QUFDaEMsK0NBQXdDO0FBQ3hDLHlDQUFrQztBQUVsQyxNQUFxQixLQUFNLFNBQVEscUJBQVc7SUFJNUMsS0FBSztRQUNILElBQUksQ0FBQyxZQUFZLEdBQUcsSUFBSSxLQUFLLEVBQVksQ0FBQztJQUM1QyxDQUFDO0lBQ00sVUFBVSxDQUNmLFFBQW9CLEVBQ3BCLFlBQXVCLEVBQ3ZCLE9BQWdCLEVBQ2hCLFNBQWlCO1FBRWpCLEtBQUssQ0FBQyxVQUFVLENBQUMsUUFBUSxFQUFFLFlBQVksRUFBRSxPQUFPLEVBQUUsU0FBUyxDQUFDLENBQUM7UUFFN0QsSUFBSSxPQUFPLEVBQUU7WUFDWCxJQUFJLENBQUMsVUFBVSxDQUFDLGNBQWMsQ0FBQyxPQUFPLENBQUMsV0FBVyxDQUFDLEdBQUcsRUFBRTtnQkFDdEQsSUFBSSxDQUFDLE1BQU0sRUFBRSxDQUFDO1lBQ2hCLENBQUMsQ0FBQyxDQUFDO1NBQ0o7SUFDSCxDQUFDO0lBQ00sTUFBTTtRQUNYLE9BQU8sQ0FBQyxHQUFHLENBQUMsS0FBSyxDQUFDLENBQUM7UUFDbkIsdUJBQWEsQ0FBQyxRQUFRLENBQUMsS0FBSyxDQUFDLEtBQUssQ0FBQyxDQUFDO1FBQ3BDLE1BQU0sUUFBUSxHQUFHLElBQUksQ0FBQyxTQUFTLENBQUMsUUFBUSxDQUFDO1FBQ3pDLE1BQU0sVUFBVSxHQUFHLElBQUksQ0FBQyxZQUFZLENBQUMsTUFBTSxDQUN6QyxDQUFDLElBQWMsRUFBRSxHQUFhLEVBQUUsRUFBRSxDQUNoQyxxQkFBTyxDQUFDLFFBQVEsQ0FBQyxRQUFRLEVBQUUsSUFBSSxDQUFDLFNBQVMsQ0FBQyxRQUFRLENBQUM7WUFDbkQscUJBQU8sQ0FBQyxRQUFRLENBQUMsUUFBUSxFQUFFLEdBQUcsQ0FBQyxTQUFTLENBQUMsUUFBUSxDQUFDO1lBQ2hELENBQUMsQ0FBQyxHQUFHO1lBQ0wsQ0FBQyxDQUFDLElBQUksQ0FDWCxDQUFDO1FBQ0YsT0FBTyxDQUFDLEdBQUcsQ0FBQywyQ0FBYSxDQUFDLFFBQVEsQ0FBQyxTQUFTLENBQUMsVUFBVSxDQUFDLFNBQVMsQ0FBQyxDQUFDLENBQUM7UUFDcEUsTUFBTSxRQUFRLEdBQUcsSUFBSSwyQkFBUSxFQUFFLENBQUM7UUFDaEMsUUFBUSxDQUFDLEdBQUcsQ0FBQyxRQUFRLEVBQUUsVUFBVSxDQUFDLFNBQVMsQ0FBQyxDQUFDO1FBQzdDLFFBQVEsQ0FBQyxHQUFHLENBQUMsT0FBTyxFQUFFLElBQUksQ0FBQyxTQUFTLENBQUMsQ0FBQztRQUN0Qyx1QkFBYSxDQUFDLFFBQVEsQ0FBQyxPQUFPLEVBQUUsQ0FBQyxJQUFJLENBQUMsUUFBUSxFQUFFLFFBQVEsQ0FBQyxTQUFTLEVBQUUsQ0FBQyxDQUFDO1FBRXRFLElBQUksQ0FBQyxZQUFZLEdBQUcsSUFBSSxDQUFDLFlBQVksQ0FBQyxNQUFNLENBQUMsQ0FBQyxJQUFJLEVBQUUsRUFBRSxDQUFDLElBQUksSUFBSSxVQUFVLENBQUMsQ0FBQztRQUMzRSxJQUFJLElBQUksQ0FBQyxZQUFZLENBQUMsTUFBTSxJQUFJLENBQUMsRUFBRTtZQUNqQyxJQUFJLENBQUMsVUFBVSxDQUFDLGNBQWMsQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLEtBQUssQ0FBQyxDQUFDO1NBQzVEO0lBQ0gsQ0FBQztJQUVELGNBQWMsQ0FBQyxLQUFlO1FBQzVCLElBQUksQ0FBQyxJQUFJLENBQUMsT0FBTztZQUFFLE9BQU87UUFFMUIsTUFBTSxNQUFNLEdBQWEsS0FBSyxDQUFDLFlBQVksU0FBQyxrQkFBUSxFQUFHLENBQUM7UUFDeEQsSUFBSSxNQUFNLElBQUksTUFBTSxDQUFDLFNBQVMsSUFBSSxJQUFJLENBQUMsU0FBUyxJQUFJLENBQUMsTUFBTSxDQUFDLE1BQU0sRUFBRTtZQUNsRSxNQUFNLFNBQVMsR0FBRyxJQUFJLENBQUMsWUFBWSxDQUFDLElBQUksQ0FBQyxDQUFDLElBQUksRUFBRSxFQUFFO2dCQUNoRCxPQUFPLElBQUksSUFBSSxNQUFNLENBQUM7WUFDeEIsQ0FBQyxDQUFDLENBQUM7WUFDSCxJQUFJLENBQUMsU0FBUyxJQUFJLE1BQU0sQ0FBQyxTQUFTLElBQUksSUFBSSxDQUFDLFNBQVMsRUFBRTtnQkFDcEQsSUFBSSxDQUFDLFlBQVksQ0FBQyxJQUFJLENBQUMsTUFBTSxDQUFDLENBQUM7Z0JBQy9CLElBQUksQ0FBQyxVQUFVLENBQUMsY0FBYyxDQUFDLFVBQVUsQ0FBQyxTQUFTLENBQUMsSUFBSSxDQUFDLENBQUM7YUFDM0Q7U0FDRjtJQUNILENBQUM7SUFFRCxhQUFhLENBQUMsS0FBZTtRQUMzQixJQUFJLENBQUMsSUFBSSxDQUFDLE9BQU87WUFBRSxPQUFPO1FBQzFCLE1BQU0sTUFBTSxHQUFHLEtBQUssQ0FBQyxZQUFZLFNBQUMsa0JBQVEsRUFBRyxDQUFDO1FBQzlDLElBQUksTUFBTSxFQUFFO1lBQ1YsSUFBSSxDQUFDLFlBQVksR0FBRyxJQUFJLENBQUMsWUFBWSxDQUFDLE1BQU0sQ0FBQyxDQUFDLElBQUksRUFBRSxFQUFFLENBQUMsSUFBSSxJQUFJLE1BQU0sQ0FBQyxDQUFDO1lBQ3ZFLElBQUksSUFBSSxDQUFDLFlBQVksQ0FBQyxNQUFNLElBQUksQ0FBQyxFQUFFO2dCQUNqQyxJQUFJLENBQUMsVUFBVSxDQUFDLGNBQWMsQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLEtBQUssQ0FBQyxDQUFDO2FBQzVEO1NBQ0Y7SUFDSCxDQUFDO0NBQ0Y7QUFyRUQsd0JBcUVDIn0=\",\"assetPath\":\"Assets/Scripts/Mafia/Mafia.ts\",\"manifest\":{\"properties\":[{\"assembly\":\"mscorlib\",\"name\":\"sessionId\",\"type\":\"System.String\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"mscorlib\",\"name\":\"isLocal\",\"type\":\"System.Boolean\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]}],\"name\":\"Mafia\",\"description\":\"\"},\"isCompiled\":true}"
+  typescriptHash: 31ad7d830b0f4baf6184c88a1f99f797
   onlyWriteTrigger: 0

@@ -8,7 +8,13 @@ import {
   Vector3,
 } from "UnityEngine";
 import { UnityAction$1, UnityEvent$1 } from "UnityEngine.Events";
-import { ZepetoPlayer, ZepetoPlayers } from "ZEPETO.Character.Controller";
+import {
+  SpawnInfo,
+  ZepetoCharacter,
+  ZepetoCharacterCreator,
+  ZepetoPlayer,
+  ZepetoPlayers,
+} from "ZEPETO.Character.Controller";
 import { Room, RoomData } from "ZEPETO.Multiplay";
 import { Player, State } from "ZEPETO.Multiplay.Schema";
 import { ZepetoScriptBehaviour } from "ZEPETO.Script";
@@ -16,6 +22,7 @@ import ClientStarter from "../ClientStarter";
 import Citizen from "./Citizen";
 import Mafia from "./Mafia";
 import MafiaGameUiController from "./MafiaUiController";
+import PlayerId from "./PlayerId";
 
 export enum MafiaPlayerState {
   None = -1,
@@ -101,13 +108,48 @@ export default class MafiaGameManager extends ZepetoScriptBehaviour {
         this.StartCoroutine(this._mafiaGameUIController.GameStartCount(count));
       });
 
+    ClientStarter.instance
+      .GetRoom()
+      .AddMessageHandler("onKill", (message: any) => {
+        console.log(message);
+        console.log(message.mafia);
+        console.log(message.killed);
+
+        const mafia = ZepetoPlayers.instance.GetPlayer(message.mafia);
+        const killed = ZepetoPlayers.instance.GetPlayer(message.killed);
+
+        if (killed.isLocalPlayer) {
+          ZepetoPlayers.instance.LocalPlayer.zepetoCamera.camera.cullingMask =
+            ~0;
+        }
+        killed.character.GetComponent<PlayerId>().isDead = true;
+
+        mafia.character.Teleport(
+          killed.character.gameObject.transform.position,
+          killed.character.gameObject.transform.rotation
+        );
+
+        this.ChangeLayersRecursively(killed.character.transform, "Ghost");
+        // killed.setState
+        const spawnInfo = new SpawnInfo();
+        spawnInfo.position = killed.character.transform.position;
+        spawnInfo.rotation = killed.character.transform.rotation;
+        ZepetoCharacterCreator.CreateByUserId(
+          killed.userId,
+          spawnInfo,
+          (model: ZepetoCharacter) => {
+            console.log(model, " 생성됨");
+          }
+        );
+      });
+
     this._mafiaGameUIController.UpdatePlayerCount(state.readyPlayerCount);
   }
 
   // 로컬
-  private SendState(state: number) {
+  private SendInGameState(state: InGameState) {
     const data = new RoomData();
-    data.Add("state", state);
+    data.Add("inGameState", state);
     ClientStarter.instance
       .GetRoom()
       .Send("onMafiaChangedState", data.GetObject());
@@ -166,13 +208,16 @@ export default class MafiaGameManager extends ZepetoScriptBehaviour {
     this.state.players.ForEach((sessionId: string, player: Player) => {
       const character = ZepetoPlayers.instance.GetPlayer(sessionId);
 
-      this.ChangeLayersRecursively(character.character.transform, "Ghost");
+      this.ChangeLayersRecursively(character.character.transform, "Live");
+      const playerId = character.character.gameObject.AddComponent<PlayerId>();
+      playerId.sessionId = character.id;
       if (player.jobState == JobState.Mafia) {
         const mafia = character.character.gameObject.AddComponent<Mafia>();
         mafia.Initialize(
           this.mafiaUiPrefab,
           this.canvasRoot,
-          character.isLocalPlayer
+          character.isLocalPlayer,
+          character.id
         );
       } else if (player.jobState == JobState.Citizen) {
         const citizen = character.character.gameObject.AddComponent<Citizen>();
@@ -180,10 +225,13 @@ export default class MafiaGameManager extends ZepetoScriptBehaviour {
         citizen.Initialize(
           this.citizenUiPrefab,
           this.canvasRoot,
-          character.isLocalPlayer
+          character.isLocalPlayer,
+          character.id
         );
       }
     });
+
+    // 여기도 서버에서 보내고 각 클라이언트에서 직접 보내
 
     // 플레이어 직업 할당, 미션 할당, State 할당
     // player.player

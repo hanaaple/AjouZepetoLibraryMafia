@@ -1,0 +1,27 @@
+fileFormatVersion: 2
+guid: 359f5ffdcf4360346a317edc0f6290ed
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nclass
+    PlayerId extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    constructor()
+    {\r\n        super(...arguments);\r\n        this.isDead = false;\r\n    }\r\n}\r\nexports.default
+    = PlayerId;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUGxheWVySWQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJQbGF5ZXJJZC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLGlEQUFzRDtBQUV0RCxNQUFxQixRQUFTLFNBQVEscUNBQXFCO0lBQTNEOztRQUVTLFdBQU0sR0FBWSxLQUFLLENBQUM7SUFDakMsQ0FBQztDQUFBO0FBSEQsMkJBR0MifQ==","assetPath":"Assets/Scripts/Mafia/PlayerId.ts","manifest":{"properties":[{"assembly":"mscorlib","name":"sessionId","type":"System.String","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"mscorlib","name":"isDead","type":"System.Boolean","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"PlayerId","description":""},"isCompiled":true}'
+  typescriptHash: fe62620fe05e32cd0ff3a438dd7dff87
+  onlyWriteTrigger: 0

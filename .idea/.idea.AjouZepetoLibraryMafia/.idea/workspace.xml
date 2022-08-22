@@ -5,16 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AjouZepetoLibraryMafia/.idea/runConfigurations/Zepeto_Multiplay_Script.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AjouZepetoLibraryMafia/.idea/runConfigurations/Zepeto_Multiplay_Script.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AjouZepetoLibraryMafia/.idea/runConfigurations/Zepeto_Script.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AjouZepetoLibraryMafia/.idea/runConfigurations/Zepeto_Script.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.vscode/launch.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/launch.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ClientStarter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ClientStarter.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ClientStarter.ts.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ClientStarter.ts.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Mafia/Citizen.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Mafia/Citizen.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Mafia/Citizen.ts.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Mafia/Citizen.ts.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Mafia/Mafia.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Mafia/Mafia.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Mafia/Mafia.ts.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Mafia/Mafia.ts.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Mafia/MafiaGameManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Mafia/MafiaGameManager.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Mafia/MafiaGameManager.ts.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Mafia/MafiaGameManager.ts.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Ultimate 10 Plus Shaders/Materials/Unique/Force Field.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Ultimate 10 Plus Shaders/Materials/Unique/Force Field.mat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +59,7 @@
       <updated>1660582112326</updated>
       <workItem from="1660582139494" duration="13000" />
       <workItem from="1660582181981" duration="5000" />
+      <workItem from="1660667888536" duration="753000" />
     </task>
     <servers />
   </component>

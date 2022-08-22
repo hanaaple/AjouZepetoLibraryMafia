@@ -5,7 +5,7 @@ import {
   Transform,
   Vector3,
 } from "UnityEngine";
-import { ZepetoPlayers } from "ZEPETO.Character.Controller";
+import { ZepetoCharacter, ZepetoPlayers } from "ZEPETO.Character.Controller";
 import { ZepetoScriptBehaviour } from "ZEPETO.Script";
 import InteractUI from "./InteractUI";
 
@@ -13,15 +13,19 @@ export default class MafiaPlayer extends ZepetoScriptBehaviour {
   //   public jobState: JobState;
   protected interactUI: InteractUI;
 
+  public sessionId: string;
+
   public isLocal: boolean;
 
   public Initialize(
     uiPrefab: GameObject,
     parentCanvas: Transform,
-    isLocal: boolean
+    isLocal: boolean,
+    sessionId: string
   ) {
     this.isLocal = isLocal;
 
+    this.sessionId = sessionId;
     if (isLocal) {
       const collider =
         ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.gameObject.AddComponent<SphereCollider>();

@@ -22,7 +22,6 @@ import {
   Time,
   Transform,
   Vector3,
-  WaitForSeconds,
 } from "UnityEngine";
 import WaitForSecondsCash from "./WaitForSecondsCash";
 
@@ -106,10 +105,6 @@ export default class ClientStarter extends ZepetoScriptBehaviour {
           console.log("로컬 State 변경", cur, next);
           this.SendState(next);
         });
-        this.ChangeLayersRecursively(
-          myPlayer.character.transform,
-          "LocalPlayer"
-        );
         // myPlayer.character.gameObject.layer =
         //   LayerMask.NameToLayer("LocalPlayer");
 
@@ -131,6 +126,7 @@ export default class ClientStarter extends ZepetoScriptBehaviour {
     }
   }
   public AddMaterial(trans: Transform) {
+    if (!this.material) return;
     const mesh = trans.GetComponentsInChildren<SkinnedMeshRenderer>();
     mesh.forEach((item: SkinnedMeshRenderer) => {
       console.log(item.materials.length);
@@ -149,12 +145,6 @@ export default class ClientStarter extends ZepetoScriptBehaviour {
       mats[mats.length - 1] = this.material;
       item.materials = mats;
     });
-  }
-  public ChangeLayersRecursively(trans: Transform, name: string) {
-    trans.gameObject.layer = LayerMask.NameToLayer(name);
-    for (var i = 0; i < trans.childCount; i++) {
-      this.ChangeLayersRecursively(trans.GetChild(i), name);
-    }
   }
 
   private OnJoinPlayer(sessionId: string, player: Player) {
