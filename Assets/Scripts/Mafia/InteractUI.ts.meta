@@ -20,7 +20,7 @@ ScriptedImporter:
   wrapperOutputDirectory: Generated
   compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
     { value: true });\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nclass
-    InteractUI extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    Start() { }\r\n}\r\nexports.default
-    = InteractUI;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiSW50ZXJhY3RVSS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIkludGVyYWN0VUkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFDQSxpREFBc0Q7QUFFdEQsTUFBcUIsVUFBVyxTQUFRLHFDQUFxQjtJQUUzRCxLQUFLLEtBQUksQ0FBQztDQUNYO0FBSEQsNkJBR0MifQ==","assetPath":"Assets/Scripts/Mafia/InteractUI.ts","manifest":{"properties":[{"assembly":"UnityEngine.UI","name":"interactButton","type":"UnityEngine.UI.Button","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"InteractUI","description":""},"isCompiled":true}'
-  typescriptHash: e2665f6d4bec87eaadd72d4533f497b4
+    InteractUI extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n}\r\nexports.default
+    = InteractUI;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiSW50ZXJhY3RVSS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIkludGVyYWN0VUkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFFQSxpREFBc0Q7QUFFdEQsTUFBcUIsVUFBVyxTQUFRLHFDQUFxQjtDQUU1RDtBQUZELDZCQUVDIn0=","assetPath":"Assets/Scripts/Mafia/InteractUI.ts","manifest":{"properties":[{"assembly":"UnityEngine.UI","name":"interactButton","type":"UnityEngine.UI.Button","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"InteractUI","description":""},"isCompiled":true}'
+  typescriptHash: 5607c0b9026530546795cfb57aa96815
   onlyWriteTrigger: 0

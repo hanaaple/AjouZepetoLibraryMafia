@@ -63,6 +63,12 @@ export default class extends Sandbox {
       console.log(this.state.readyPlayerCount);
       this.broadcast("UpdateReadyMafiaPlayer", this.state.readyPlayerCount);
       if (this.state.readyPlayerCount == 1) {
+        let Idx: number = Math.floor(Math.random() * 8);
+        this.state.players.forEach((player: Player) => {
+          player.order = Idx;
+          Idx++;
+          Idx %= 8;
+        });
         (async () => {
           const gameCount = 5000;
           this.broadcast("GameStartCount", gameCount / 1000);
@@ -85,17 +91,56 @@ export default class extends Sandbox {
       player.InGamePlayerState = 2; // GHOST
       this.broadcast("onKill", message);
     });
+
+    this.onMessage("onReport", (client, message) => {
+      console.log(message.reporter);
+      console.log(message.corpse);
+      // 소환 위치는 고정
+      this.broadcast("onReport", message);
+    });
+
+    this.onMessage("onVote", (client, message) => {
+      // 해당 플레이어 투표 표시
+      this.broadcast("onVote", message);
+    });
+
+    this.onMessage("onVoteResult", (client, message) => {
+      // 모든 플레이어에서 투표 합산
+
+      this.broadcast("onVoteResult", message);
+
+      // if (this.state.readyPlayerCount == 1) {
+      //   (async () => {
+      //     const gameCount = 5000;
+      //     this.broadcast("NextDayCount", gameCount / 1000);
+      //     const wait = (timeToDelay: number) =>
+      //       new Promise((resolve) => setTimeout(resolve, timeToDelay)); //이와 같이 선언 후
+      //     await wait(gameCount - 1000);
+      //     this.onNextDay();
+      //   })();
+      // }
+    });
+  }
+
+  onNextDay() {
+    (async () => {
+      const gameCount = 1000;
+      const wait = (timeToDelay: number) =>
+        new Promise((resolve) => setTimeout(resolve, timeToDelay)); //이와 같이 선언 후
+      await wait(gameCount);
+      this.broadcast("GameStart", "");
+    })();
   }
 
   onStartGame() {
-    const playerCount = this.state.players.size;
+    // const playerCount = this.state.players.size;
 
-    console.log(playerCount);
-    console.log("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
-    for (var i = 0; i < 100; i++) {
-      console.log(Math.floor(Math.random() * playerCount));
-    }
-    console.log("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+    // console.log(playerCount);
+    // console.log("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+    // for (var i = 0; i < 100; i++) {
+    //   console.log(Math.floor(Math.random() * playerCount));
+    // }
+    // console.log("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
     // const ran = Math.floor(Math.random() * playerCount);
     const ran = 0;
     // console.log("랜덤" + ran.toString());

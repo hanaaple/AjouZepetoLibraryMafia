@@ -36,3 +36,4 @@ Material:
     m_Colors:
     - _Color: {r: 38.937145, g: 0.6115782, b: 0, a: 1}
     - _MovementDirection: {r: 0, g: -0.1, b: 0, a: 1}
+  m_BuildTextureStacks: []

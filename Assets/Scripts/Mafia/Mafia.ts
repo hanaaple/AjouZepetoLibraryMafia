@@ -1,36 +1,47 @@
-import { Collider, GameObject, Transform, Vector3 } from "UnityEngine";
-import {
-  ZepetoCharacter,
-  ZepetoPlayer,
-  ZepetoPlayers,
-} from "ZEPETO.Character.Controller";
+import { GameObject, Sprite, Transform, Vector3 } from "UnityEngine";
+import { ZepetoPlayers } from "ZEPETO.Character.Controller";
 import { RoomData } from "ZEPETO.Multiplay";
 import ClientStarter from "../ClientStarter";
-import Citizen from "./Citizen";
+import { InGameInteractState, JobState } from "../Constants/Enum";
 import MafiaPlayer from "./MafiaPlayer";
 import PlayerId from "./PlayerId";
 
 export default class Mafia extends MafiaPlayer {
-  // 가장 가까운 플레이어를 잡아야되니까
-  private citizenArray: PlayerId[];
-
   Start() {
-    this.citizenArray = new Array<PlayerId>();
+    super.Start();
   }
   public Initialize(
     uiPrefab: GameObject,
     parentCanvas: Transform,
     isLocal: boolean,
-    sessionId: string
+    jobState: JobState,
+    sessionId: string,
+    killButton: Sprite,
+    reportButton: Sprite,
+    workButton: Sprite
   ) {
-    super.Initialize(uiPrefab, parentCanvas, isLocal, sessionId);
+    super.Initialize(
+      uiPrefab,
+      parentCanvas,
+      isLocal,
+      jobState,
+      sessionId,
+      killButton,
+      reportButton,
+      workButton
+    );
 
     if (isLocal) {
       this.interactUI.interactButton.onClick.AddListener(() => {
-        this.Attack();
+        if (this.interactState == InGameInteractState.ALIVE) {
+          this.Attack();
+        } else if (this.interactState == InGameInteractState.CORPSE) {
+          this.Report();
+        }
       });
     }
   }
+
   public Attack() {
     console.log("공격!");
     ClientStarter.instance.Debug("공격!");
@@ -53,30 +64,25 @@ export default class Mafia extends MafiaPlayer {
       this.interactUI.interactButton.gameObject.SetActive(false);
     }
   }
-
-  OnTriggerEnter(other: Collider) {
-    if (!this.isLocal) return;
-
-    const player: PlayerId = other.GetComponent<PlayerId>();
-    if (player && player.sessionId != this.sessionId && !player.isDead) {
-      const hasplayer = this.citizenArray.find((item) => {
-        return item == player;
-      });
-      if (!hasplayer && player.sessionId != this.sessionId) {
-        this.citizenArray.push(player);
-        this.interactUI.interactButton.gameObject.SetActive(true);
-      }
+  // 도중에 다른 마피아가 죽이면 array 줄여야됨
+  Update() {
+    if (this.citizenArray.length == 0) {
+      return;
     }
-  }
+    const position = this.transform.position;
+    const nearPlayer = this.citizenArray.reduce(
+      (prev: PlayerId, cur: PlayerId) =>
+        Vector3.Distance(position, prev.transform.position) >
+        Vector3.Distance(position, cur.transform.position)
+          ? cur
+          : prev
+    );
 
-  OnTriggerExit(other: Collider) {
-    if (!this.isLocal) return;
-    const player = other.GetComponent<PlayerId>();
-    if (player) {
-      this.citizenArray = this.citizenArray.filter((item) => item != player);
-      if (this.citizenArray.length == 0) {
-        this.interactUI.interactButton.gameObject.SetActive(false);
-      }
+    this.interactState = nearPlayer.state;
+    if (nearPlayer.state == InGameInteractState.CORPSE) {
+      this.interactUI.interactButton.image.sprite = this.reportButton;
+    } else if (nearPlayer.state == InGameInteractState.ALIVE) {
+      this.interactUI.interactButton.image.sprite = this.killButton;
     }
   }
 }

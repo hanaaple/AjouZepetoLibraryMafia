@@ -1,19 +1,23 @@
 import {
+  Collider,
   GameObject,
   LayerMask,
   Material,
   SkinnedMeshRenderer,
+  Sprite,
   Transform,
+  Vector3,
 } from "UnityEngine";
 import { ZepetoPlayers } from "ZEPETO.Character.Controller";
 import { RoomData } from "ZEPETO.Multiplay";
 import ClientStarter from "../ClientStarter";
+import { InGameInteractState, JobState } from "../Constants/Enum";
 import InteractUI from "./InteractUI";
 import MafiaPlayer from "./MafiaPlayer";
+import PlayerId from "./PlayerId";
 
 export default class Citizen extends MafiaPlayer {
   // 가장 가까운 플레이어를 잡아야되니까
-  private citizenArray: MafiaPlayer[];
 
   // private interactUI: InteractUI;
 
@@ -21,47 +25,57 @@ export default class Citizen extends MafiaPlayer {
     uiPrefab: GameObject,
     parentCanvas: Transform,
     isLocal: boolean,
-    sessionId: string
+    jobState: JobState,
+    sessionId: string,
+    killButton: Sprite,
+    reportButton: Sprite,
+    workButton: Sprite
   ) {
-    super.Initialize(uiPrefab, parentCanvas, isLocal, sessionId);
+    super.Initialize(
+      uiPrefab,
+      parentCanvas,
+      isLocal,
+      jobState,
+      sessionId,
+      killButton,
+      reportButton,
+      workButton
+    );
 
     if (isLocal) {
       this.interactUI.interactButton.onClick.AddListener(() => {
         this.Interact();
+        if (this.interactState == InGameInteractState.MISSION) {
+          this.Interact();
+        } else if (this.interactState == InGameInteractState.CORPSE) {
+          this.Report();
+        }
       });
     }
-  }
-  public OnAttack(sessionId: string) {
-    ClientStarter.instance.Debug("내가 공격받음");
-    // const roomData = new RoomData();
-    // roomData.Add("", "value");
-    // ClientStarter.instance.GetRoom().Send("asd", roomData);
-    // localPlayer.setShader - 자기 쉐이더 변경
-    const player = ZepetoPlayers.instance.GetPlayer(sessionId);
-
-    this.ChangeLayersRecursively(player.character.transform, "Ghost");
-  }
-  public ChangeLayersRecursively(trans: Transform, name: string) {
-    trans.gameObject.layer = LayerMask.NameToLayer(name);
-    for (var i = 0; i < trans.childCount; i++) {
-      this.ChangeLayersRecursively(trans.GetChild(i), name);
-    }
-  }
-
-  public AddMaterial(trans: Transform, material: Material) {
-    const mesh = trans.GetComponentsInChildren<SkinnedMeshRenderer>();
-    mesh.forEach((item: SkinnedMeshRenderer) => {
-      item.materials.push(material);
-    });
-  }
-
-  public OnDied(sessionId: string) {
-    ZepetoPlayers.instance.GetPlayer(sessionId).character.gameObject.layer =
-      LayerMask.NameToLayer("Ghost");
   }
 
   private Interact() {
     console.log("Interact");
     ClientStarter.instance.Debug("인터랙트");
+  }
+  Update() {
+    if (this.citizenArray.length == 0) {
+      return;
+    }
+    const position = this.transform.position;
+    const nearPlayer = this.citizenArray.reduce(
+      (prev: PlayerId, cur: PlayerId) =>
+        Vector3.Distance(position, prev.transform.position) >
+        Vector3.Distance(position, cur.transform.position)
+          ? cur
+          : prev
+    );
+
+    this.interactState = nearPlayer.state;
+    if (nearPlayer.state == InGameInteractState.CORPSE) {
+      this.interactUI.interactButton.image.sprite = this.reportButton;
+    } else if (nearPlayer.state == InGameInteractState.MISSION) {
+      this.interactUI.interactButton.image.sprite = this.missionButton;
+    }
   }
 }

@@ -15,10 +15,7 @@ import { ZepetoWorldMultiplay } from "ZEPETO.World";
 import {
   AudioListener,
   GameObject,
-  LayerMask,
-  Material,
   Quaternion,
-  SkinnedMeshRenderer,
   Time,
   Transform,
   Vector3,
@@ -27,8 +24,6 @@ import WaitForSecondsCash from "./WaitForSecondsCash";
 
 export default class ClientStarter extends ZepetoScriptBehaviour {
   public multiplay: ZepetoWorldMultiplay;
-
-  public material: Material;
 
   @SerializeField()
   private spawnPoint: Transform;
@@ -100,7 +95,6 @@ export default class ClientStarter extends ZepetoScriptBehaviour {
 
         const myPlayer = ZepetoPlayers.instance.LocalPlayer.zepetoPlayer;
         myPlayer.character.gameObject.AddComponent<AudioListener>();
-        this.AddMaterial(myPlayer.character.transform);
         myPlayer.character.OnChangedState.AddListener((next, cur) => {
           console.log("로컬 State 변경", cur, next);
           this.SendState(next);
@@ -124,27 +118,6 @@ export default class ClientStarter extends ZepetoScriptBehaviour {
         }
       });
     }
-  }
-  public AddMaterial(trans: Transform) {
-    if (!this.material) return;
-    const mesh = trans.GetComponentsInChildren<SkinnedMeshRenderer>();
-    mesh.forEach((item: SkinnedMeshRenderer) => {
-      console.log(item.materials.length);
-      // console.log(item.materials);
-      // console.log(item.materials[0])
-
-      // for (let idx = 0; idx < item.materials.length; idx++) {
-      //   console.log(item.materials.get_Item(idx));
-      // }
-
-      let mats: Material[] = new Array<Material>(item.materials.length + 1);
-      for (let idx = 0; idx < item.materials.length; idx++) {
-        console.log(item.materials.get_Item(idx));
-        mats[idx] = item.materials.get_Item(idx);
-      }
-      mats[mats.length - 1] = this.material;
-      item.materials = mats;
-    });
   }
 
   private OnJoinPlayer(sessionId: string, player: Player) {

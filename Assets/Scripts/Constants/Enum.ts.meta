@@ -1,0 +1,37 @@
+fileFormatVersion: 2
+guid: cd5d1d5cd5988b242a91b66a37b7c3fa
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nexports.InGameInteractState = exports.JobState = exports.MafiaPlayerState
+    = void 0;\r\nvar MafiaPlayerState;\r\n(function (MafiaPlayerState) {\r\n    MafiaPlayerState[MafiaPlayerState[\"None\"]
+    = -1] = \"None\";\r\n    MafiaPlayerState[MafiaPlayerState[\"Ready\"] = 1] =
+    \"Ready\";\r\n    MafiaPlayerState[MafiaPlayerState[\"Play\"] = 2] = \"Play\";\r\n})(MafiaPlayerState
+    = exports.MafiaPlayerState || (exports.MafiaPlayerState = {}));\r\nvar JobState;\r\n(function
+    (JobState) {\r\n    JobState[JobState[\"None\"] = -2] = \"None\";\r\n    JobState[JobState[\"Citizen\"]
+    = 1] = \"Citizen\";\r\n    JobState[JobState[\"Mafia\"] = 2] = \"Mafia\";\r\n})(JobState
+    = exports.JobState || (exports.JobState = {}));\r\nvar InGameInteractState;\r\n(function
+    (InGameInteractState) {\r\n    InGameInteractState[InGameInteractState[\"ALIVE\"]
+    = 1] = \"ALIVE\";\r\n    InGameInteractState[InGameInteractState[\"GHOST\"] =
+    2] = \"GHOST\";\r\n    InGameInteractState[InGameInteractState[\"CORPSE\"] =
+    3] = \"CORPSE\";\r\n    InGameInteractState[InGameInteractState[\"MISSION\"]
+    = 4] = \"MISSION\";\r\n})(InGameInteractState = exports.InGameInteractState ||
+    (exports.InGameInteractState = {}));\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRW51bS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIkVudW0udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7O0FBQUEsSUFBWSxnQkFJWDtBQUpELFdBQVksZ0JBQWdCO0lBQzFCLHdEQUFTLENBQUE7SUFDVCx5REFBUyxDQUFBO0lBQ1QsdURBQVEsQ0FBQTtBQUNWLENBQUMsRUFKVyxnQkFBZ0IsR0FBaEIsd0JBQWdCLEtBQWhCLHdCQUFnQixRQUkzQjtBQUVELElBQVksUUFJWDtBQUpELFdBQVksUUFBUTtJQUNsQix3Q0FBUyxDQUFBO0lBQ1QsNkNBQVcsQ0FBQTtJQUNYLHlDQUFTLENBQUE7QUFDWCxDQUFDLEVBSlcsUUFBUSxHQUFSLGdCQUFRLEtBQVIsZ0JBQVEsUUFJbkI7QUFFRCxJQUFZLG1CQUtYO0FBTEQsV0FBWSxtQkFBbUI7SUFDN0IsK0RBQVMsQ0FBQTtJQUNULCtEQUFTLENBQUE7SUFDVCxpRUFBVSxDQUFBO0lBQ1YsbUVBQVcsQ0FBQTtBQUNiLENBQUMsRUFMVyxtQkFBbUIsR0FBbkIsMkJBQW1CLEtBQW5CLDJCQUFtQixRQUs5QiJ9","assetPath":"Assets/Scripts/Constants/Enum.ts","manifest":{"properties":[],"name":"Enum","description":""},"isCompiled":true}'
+  typescriptHash: 8ad1d987f8cbc566cb80e368d95802e0
+  onlyWriteTrigger: 0

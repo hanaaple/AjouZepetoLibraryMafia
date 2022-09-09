@@ -1,7 +1,8 @@
 import { GameObject, Time } from "UnityEngine";
 import { Button, Text } from "UnityEngine.UI";
 import { ZepetoScriptBehaviour } from "ZEPETO.Script";
-import MafiaGameManager, { MafiaPlayerState } from "./MafiaGameManager";
+import { MafiaPlayerState } from "../Constants/Enum";
+import MafiaGameManager from "./MafiaGameManager";
 
 export default class MafiaGameUiController extends ZepetoScriptBehaviour {
   public gameManager: GameObject;

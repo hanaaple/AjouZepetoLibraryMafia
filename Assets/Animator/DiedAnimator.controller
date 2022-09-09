@@ -5791,7 +5791,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ZepetoAnimatorV2
+  m_Name: DiedAnimator
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: State
@@ -5799,67 +5799,67 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 30
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: MoveState
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: JumpState
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: LandingState
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: MotionSpeed
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: FallSpeed
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Acceleration
     m_Type: 1
     m_DefaultFloat: 1
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isJumpMirror
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isMoveMirror
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isTurnMirror
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: MoveProgress
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base
@@ -6309,9 +6309,9 @@ AnimatorStateMachine:
   - {fileID: 4603022593326778424}
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: 8688209884254525148}
-    second: []
   - first: {fileID: 7959996966450159816}
+    second: []
+  - first: {fileID: 8688209884254525148}
     second: []
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: -1010, y: 120, z: 0}
@@ -10332,10 +10332,7 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 7
-    m_ConditionEvent: State
-    m_EventTreshold: 30
+  m_Conditions: []
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -11191,18 +11188,18 @@ AnimatorStateMachine:
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: -6620546924693697817}
-    second:
-    - {fileID: 4745173617431671832}
-  - first: {fileID: 2286282013846975913}
-    second:
-    - {fileID: -9067869474991488270}
-  - first: {fileID: 130446595212528997}
-    second:
-    - {fileID: 4949585298395536997}
   - first: {fileID: -7193589139484206752}
     second:
     - {fileID: -781718939700027290}
+  - first: {fileID: -6620546924693697817}
+    second:
+    - {fileID: 4745173617431671832}
+  - first: {fileID: 130446595212528997}
+    second:
+    - {fileID: 4949585298395536997}
+  - first: {fileID: 2286282013846975913}
+    second:
+    - {fileID: -9067869474991488270}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 960, y: 200, z: 0}
   m_EntryPosition: {x: 940, y: 390, z: 0}
