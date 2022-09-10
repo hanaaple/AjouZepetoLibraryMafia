@@ -157,6 +157,24 @@ export default class extends Sandbox {
       } else {
         player.jobState = 1; // Citizen
       }
+      const selectCount = 3;
+      const totalCount = 5;
+      let randomIndexArray = []
+      for (let i=0; i<selectCount; i++) {
+        let randomNum = Math.floor(Math.random() * totalCount)
+        if (randomIndexArray.indexOf(randomNum) === -1) {
+          randomIndexArray.push(randomNum)
+        } else {
+          i--
+        }
+      }
+
+      randomIndexArray.sort((a: number, b: number): number => {
+        return a - b;
+      });
+      console.log(randomIndexArray)
+      console.log(randomIndexArray.toString())
+      player.missionList = randomIndexArray.toString()
       num++;
 
       console.log(
@@ -168,7 +186,7 @@ export default class extends Sandbox {
           player.InGamePlayerState
       );
     });
-    console.log("브로드캐스트");
+    
     (async () => {
       const gameCount = 1000;
       const wait = (timeToDelay: number) =>

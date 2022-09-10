@@ -315,6 +315,7 @@ export default class MafiaGameManager extends ZepetoScriptBehaviour {
     this.state.players.ForEach((sessionId: string, player: Player) => {
       const character = ZepetoPlayers.instance.GetPlayer(sessionId);
 
+      console.log(player.missionList)
       this.ChangeLayersRecursively(character.character.transform, "Live");
       const playerId = character.character.gameObject.AddComponent<PlayerId>();
       playerId.order = player.order;

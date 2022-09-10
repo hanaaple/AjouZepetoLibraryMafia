@@ -18,6 +18,7 @@ declare module "ZEPETO.Multiplay.Schema" {
 		jobState: number;
 		InGamePlayerState: number;
 		order: number;
+		missionList: string;
 	}
 	class Transform extends Schema {
 		position: Vector3;
