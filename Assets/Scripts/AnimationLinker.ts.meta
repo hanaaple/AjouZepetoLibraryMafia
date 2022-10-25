@@ -1,0 +1,72 @@
+fileFormatVersion: 2
+guid: 471a1457b02f87e4ea46dae6d2dff812
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
+    \\\"__esModule\\\", { value: true });\\r\\nconst UnityEngine_1 = require(\\\"UnityEngine\\\");\\r\\nconst
+    ZEPETO_Script_1 = require(\\\"ZEPETO.Script\\\");\\r\\nconst ZEPETO_Character_Controller_1
+    = require(\\\"ZEPETO.Character.Controller\\\");\\r\\nconst ClientStarter_1 =
+    require(\\\"./ClientStarter\\\");\\r\\nconst WaitForSecondsCash_1 = require(\\\"./WaitForSecondsCash\\\");\\r\\nclass
+    AnimationLinker extends ZEPETO_Script_1.ZepetoScriptBehaviour {\\r\\n    static
+    get instance() {\\r\\n        return this._instance;\\r\\n    }\\r\\n    Awake()
+    {\\r\\n        UnityEngine_1.GameObject.DontDestroyOnLoad(this.gameObject);\\r\\n       
+    this.playingGesture = new Map();\\r\\n        AnimationLinker._instance = this;\\r\\n   
+    }\\r\\n    //Local\uC5D0\uC11C \uC81C\uC2A4\uCC98 \uC2E4\uD589\uD558\uB294 \uD568\uC218\\r\\n   
+    PlayGesture(targetClip, isInfinite = false) {\\r\\n        //\uC2E4\uD589\uD55C
+    \uC0C1\uD0DC\uC5D0\uC11C \uB2E4\uC2DC \uC2E4\uD589\uD558\uB294 \uACBD\uC6B0\uC5D0\uB294
+    ???\\r\\n        console.log(\\\"\uD558\uC774111111\\\");\\r\\n        const
+    player = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer;\\r\\n       
+    console.log(\\\"\uD558\uC7742222222\\\");\\r\\n        this.GestureHandler(player,
+    targetClip, isInfinite);\\r\\n        console.log(\\\"\uD558\uC7743333333\\\");\\r\\n       
+    ClientStarter_1.default.instance.SendGesture(targetClip);\\r\\n        console.log(\\\"\uD558\uC7744444444\\\");\\r\\n   
+    }\\r\\n    GestureHandler(player, targetClip, isInfinite = false) {\\r\\n       
+    ClientStarter_1.default.instance.Debug(`\uC81C\uC2A4\uCC98 \uC2E4\uD589 \uC5EC\uBD80
+    - ${this.GetIsGesturing(player.id)}`);\\r\\n        // if(this.GetIsGesturing(player.id))
+    return\\r\\n        ClientStarter_1.default.instance.Debug(`${player.character.gameObject}\uAC00
+    \uC81C\uC2A4\uCC98 \uC2E4\uD589 - ${targetClip}, ${isInfinite ? \\\"\uBB34\uD55C\\\"
+    : \\\"1\uD68C\uC131\\\"}`);\\r\\n        const clip = this.GetPlayerGesture(targetClip);\\r\\n       
+    console.log(clip);\\r\\n        if (clip == undefined || clip == null) {\\r\\n           
+    this.StopGesture(player);\\r\\n            return;\\r\\n        }\\r\\n       
+    this.SetisGesture(player.id, clip);\\r\\n        // this.StopCoroutine(this.GestureStop(player.character,
+    clip.length))\\r\\n        // \uC4F0\uC74D \uC2E4\uD589 \uC911\uC778 \uD50C\uB808\uC774\uC5B4\uB9CC
+    \uBA48\uCD94\uB824\uBA74 StopAllCorutine \uC4F0\uBA74 \uC548\uB418\uB294\uB370\\r\\n       
+    // \uB2E4\uB978\uB370\uB791 \uACB9\uCE5C\uB2E4 Client\uC5D0\uC11C isGesturing()
+    \uCCB4\uD06C\uD558\uB294 \uBD80\uBD84 \uB2E4\uC2DC \uC0DD\uAC01\uD558\uB3C4\uB85D\\r\\n       
+    player.character.SetGesture(clip);\\r\\n        this.StopAllCoroutines();\\r\\n       
+    if (!isInfinite) {\\r\\n            this.StartCoroutine(this.GestureStopCoroutine(player,
+    clip.length));\\r\\n        }\\r\\n    }\\r\\n    *GestureStopCoroutine(player,
+    clipTime) {\\r\\n        yield WaitForSecondsCash_1.default.instance.WaitForSeconds(clipTime);\\r\\n       
+    this.StopGesture(player);\\r\\n        ClientStarter_1.default.instance.SendGesture(\\\"\\\");\\r\\n   
+    }\\r\\n    StopGesture(player) {\\r\\n        if (this.playingGesture.has(player.id))
+    {\\r\\n            this.playingGesture.delete(player.id);\\r\\n        }\\r\\n       
+    player.character.CancelGesture();\\r\\n    }\\r\\n    OnRemovePlayer(sessionId)
+    {\\r\\n        if (this.playingGesture.has(sessionId))\\r\\n            this.playingGesture.delete(sessionId);\\r\\n       
+    //\uC544\uC774\uD15C\uC744 \uAC16\uACE0 \uC788\uC744 \uACBD\uC6B0 \uC544\uC774\uD15C
+    \uC0AD\uC81C\\r\\n    }\\r\\n    GetPlayerGesture(gestureName) {\\r\\n       
+    var clip = this.gestures.find((item) => {\\r\\n            return item.name ==
+    gestureName;\\r\\n        });\\r\\n        return clip;\\r\\n    }\\r\\n    GetPlayingGesture(sessionId)
+    {\\r\\n        return this.playingGesture.get(sessionId);\\r\\n    }\\r\\n   
+    GetIsGesturing(sessionId) {\\r\\n        var isGesture = this.playingGesture.has(sessionId);\\r\\n       
+    return isGesture;\\r\\n    }\\r\\n    SetisGesture(sessionId, gesture) {\\r\\n       
+    if (this.playingGesture.has(sessionId)) {\\r\\n            ClientStarter_1.default.instance.Debug(\\\"\uC774\uBBF8
+    \uAC16\uACE0 \uC788\uC2B5\uB2C8\uB2E4.\\\");\\r\\n        }\\r\\n        this.playingGesture.set(sessionId,
+    gesture);\\r\\n    }\\r\\n}\\r\\nexports.default = AnimationLinker;\\r\\n//#
+    sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQW5pbWF0aW9uTGlua2VyLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiQW5pbWF0aW9uTGlua2VyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsNkNBQW1FO0FBQ25FLGlEQUFzRDtBQUN0RCw2RUFBMEU7QUFDMUUsbURBQTRDO0FBQzVDLDZEQUFzRDtBQUV0RCxNQUFxQixlQUFnQixTQUFRLHFDQUFxQjtJQU96RCxNQUFNLEtBQUssUUFBUTtRQUN4QixPQUFPLElBQUksQ0FBQyxTQUFTLENBQUM7SUFDeEIsQ0FBQztJQUVELEtBQUs7UUFDSCx3QkFBVSxDQUFDLGlCQUFpQixDQUFDLElBQUksQ0FBQyxVQUFVLENBQUMsQ0FBQztRQUM5QyxJQUFJLENBQUMsY0FBYyxHQUFHLElBQUksR0FBRyxFQUF5QixDQUFDO1FBQ3ZELGVBQWUsQ0FBQyxTQUFTLEdBQUcsSUFBSSxDQUFDO0lBQ25DLENBQUM7SUFFRCxxQkFBcUI7SUFDckIsV0FBVyxDQUFDLFVBQWtCLEVBQUUsYUFBc0IsS0FBSztRQUN6RCwyQkFBMkI7UUFDM0IsT0FBTyxDQUFDLEdBQUcsQ0FBQyxVQUFVLENBQUMsQ0FBQztRQUN4QixNQUFNLE1BQU0sR0FBRywyQ0FBYSxDQUFDLFFBQVEsQ0FBQyxXQUFXLENBQUMsWUFBWSxDQUFDO1FBQy9ELE9BQU8sQ0FBQyxHQUFHLENBQUMsV0FBVyxDQUFDLENBQUM7UUFDekIsSUFBSSxDQUFDLGNBQWMsQ0FBQyxNQUFNLEVBQUUsVUFBVSxFQUFFLFVBQVUsQ0FBQyxDQUFDO1FBQ3BELE9BQU8sQ0FBQyxHQUFHLENBQUMsV0FBVyxDQUFDLENBQUM7UUFDekIsdUJBQWEsQ0FBQyxRQUFRLENBQUMsV0FBVyxDQUFDLFVBQVUsQ0FBQyxDQUFDO1FBQy9DLE9BQU8sQ0FBQyxHQUFHLENBQUMsV0FBVyxDQUFDLENBQUM7SUFDM0IsQ0FBQztJQUVELGNBQWMsQ0FDWixNQUFvQixFQUNwQixVQUFrQixFQUNsQixhQUFzQixLQUFLO1FBRTNCLHVC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\",\"assetPath\":\"Assets/Scripts/AnimationLinker.ts\",\"manifest\":{\"properties\":[{\"assembly\":\"UnityEngine.AnimationModule\",\"name\":\"gestures\",\"type\":\"UnityEngine.AnimationClip[]\",\"isArray\":true,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]}],\"name\":\"AnimationLinker\",\"description\":\"\"},\"isCompiled\":true}"
+  typescriptHash: 2ffae2eeccad1afae64fa1ed3dcd038f
+  onlyWriteTrigger: 0

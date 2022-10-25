@@ -1,55 +1,24 @@
-import {
-  Collider,
-  GameObject,
-  LayerMask,
-  Material,
-  SkinnedMeshRenderer,
-  Sprite,
-  Transform,
-  Vector3,
-} from "UnityEngine";
-import { ZepetoPlayers } from "ZEPETO.Character.Controller";
-import { RoomData } from "ZEPETO.Multiplay";
+import { GameObject, Transform } from "UnityEngine";
 import ClientStarter from "../ClientStarter";
-import { InGameInteractState, JobState } from "../Constants/Enum";
-import InteractUI from "./InteractUI";
+import { JobState } from "../Constants/Enum";
 import MafiaPlayer from "./MafiaPlayer";
-import PlayerId from "./PlayerId";
 
 export default class Citizen extends MafiaPlayer {
-  // 가장 가까운 플레이어를 잡아야되니까
-
-  // private interactUI: InteractUI;
-
   public Initialize(
-    uiPrefab: GameObject,
-    parentCanvas: Transform,
+    mafiaUI: GameObject,
     isLocal: boolean,
     jobState: JobState,
-    sessionId: string,
-    killButton: Sprite,
-    reportButton: Sprite,
-    workButton: Sprite
+    sessionId: string
   ) {
-    super.Initialize(
-      uiPrefab,
-      parentCanvas,
-      isLocal,
-      jobState,
-      sessionId,
-      killButton,
-      reportButton,
-      workButton
-    );
+    super.Initialize(mafiaUI, isLocal, jobState, sessionId);
 
     if (isLocal) {
-      this.interactUI.interactButton.onClick.AddListener(() => {
+      this.interactUI.reportButton.onClick.AddListener(() => {
+        this.Report();
+      });
+
+      this.interactUI.missionButton.onClick.AddListener(() => {
         this.Interact();
-        if (this.interactState == InGameInteractState.MISSION) {
-          this.Interact();
-        } else if (this.interactState == InGameInteractState.CORPSE) {
-          this.Report();
-        }
       });
     }
   }
@@ -57,25 +26,6 @@ export default class Citizen extends MafiaPlayer {
   private Interact() {
     console.log("Interact");
     ClientStarter.instance.Debug("인터랙트");
-  }
-  Update() {
-    if (this.citizenArray.length == 0) {
-      return;
-    }
-    const position = this.transform.position;
-    const nearPlayer = this.citizenArray.reduce(
-      (prev: PlayerId, cur: PlayerId) =>
-        Vector3.Distance(position, prev.transform.position) >
-        Vector3.Distance(position, cur.transform.position)
-          ? cur
-          : prev
-    );
-
-    this.interactState = nearPlayer.state;
-    if (nearPlayer.state == InGameInteractState.CORPSE) {
-      this.interactUI.interactButton.image.sprite = this.reportButton;
-    } else if (nearPlayer.state == InGameInteractState.MISSION) {
-      this.interactUI.interactButton.image.sprite = this.missionButton;
-    }
+    this.missionInteractor.Interact();
   }
 }

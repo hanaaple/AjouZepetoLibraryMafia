@@ -19,8 +19,23 @@ ScriptedImporter:
   WrapperFilters: []
   wrapperOutputDirectory: Generated
   compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
-    { value: true });\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nclass
-    InteractUI extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n}\r\nexports.default
-    = InteractUI;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiSW50ZXJhY3RVSS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIkludGVyYWN0VUkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFFQSxpREFBc0Q7QUFFdEQsTUFBcUIsVUFBVyxTQUFRLHFDQUFxQjtDQUU1RDtBQUZELDZCQUVDIn0=","assetPath":"Assets/Scripts/Mafia/InteractUI.ts","manifest":{"properties":[{"assembly":"UnityEngine.UI","name":"interactButton","type":"UnityEngine.UI.Button","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"InteractUI","description":""},"isCompiled":true}'
-  typescriptHash: 5607c0b9026530546795cfb57aa96815
+    { value: true });\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nconst
+    Enum_1 = require(\"../Constants/Enum\");\r\nclass InteractUI extends ZEPETO_Script_1.ZepetoScriptBehaviour
+    {\r\n    Init(jobState) {\r\n        this.gameObject.SetActive(true);\r\n       
+    if (jobState == Enum_1.JobState.Mafia) {\r\n            this.killButton.gameObject.SetActive(true);\r\n           
+    this.reportButton.gameObject.SetActive(true);\r\n            this.missionButton.gameObject.SetActive(true);\r\n       
+    }\r\n        else if (jobState == Enum_1.JobState.Citizen) {\r\n            this.killButton.gameObject.SetActive(false);\r\n           
+    this.reportButton.gameObject.SetActive(true);\r\n            this.missionButton.gameObject.SetActive(true);\r\n       
+    }\r\n        this.ActiveButton(Enum_1.ButtonType.KILL, false);\r\n        this.ActiveButton(Enum_1.ButtonType.REPORT,
+    false);\r\n        this.ActiveButton(Enum_1.ButtonType.MISSION, false);\r\n   
+    }\r\n    ActiveButton(type, isActive) {\r\n        let button;\r\n        switch
+    (type) {\r\n            case Enum_1.ButtonType.MISSION: {\r\n               
+    button = this.missionButton;\r\n                break;\r\n            }\r\n           
+    case Enum_1.ButtonType.REPORT: {\r\n                button = this.reportButton;\r\n               
+    break;\r\n            }\r\n            case Enum_1.ButtonType.KILL: {\r\n               
+    button = this.killButton;\r\n                break;\r\n            }\r\n           
+    default: {\r\n                button = null;\r\n                break;\r\n           
+    }\r\n        }\r\n        button.interactable = isActive;\r\n    }\r\n}\r\nexports.default
+    = InteractUI;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiSW50ZXJhY3RVSS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIkludGVyYWN0VUkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFDQSxpREFBc0Q7QUFDdEQsNENBQXlEO0FBRXpELE1BQXFCLFVBQVcsU0FBUSxxQ0FBcUI7SUFLcEQsSUFBSSxDQUFDLFFBQWtCO1FBQzVCLElBQUksQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLElBQUksQ0FBQyxDQUFDO1FBQ2hDLElBQUksUUFBUSxJQUFJLGVBQVEsQ0FBQyxLQUFLLEVBQUU7WUFDOUIsSUFBSSxDQUFDLFVBQVUsQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLElBQUksQ0FBQyxDQUFDO1lBQzNDLElBQUksQ0FBQyxZQUFZLENBQUMsVUFBVSxDQUFDLFNBQVMsQ0FBQyxJQUFJLENBQUMsQ0FBQztZQUM3QyxJQUFJLENBQUMsYUFBYSxDQUFDLFVBQVUsQ0FBQyxTQUFTLENBQUMsSUFBSSxDQUFDLENBQUM7U0FDL0M7YUFBTSxJQUFJLFFBQVEsSUFBSSxlQUFRLENBQUMsT0FBTyxFQUFFO1lBQ3ZDLElBQUksQ0FBQyxVQUFVLENBQUMsVUFBVSxDQUFDLFNBQVMsQ0FBQyxLQUFLLENBQUMsQ0FBQztZQUM1QyxJQUFJLENBQUMsWUFBWSxDQUFDLFVBQVUsQ0FBQyxTQUFTLENBQUMsSUFBSSxDQUFDLENBQUM7WUFDN0MsSUFBSSxDQUFDLGFBQWEsQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLElBQUksQ0FBQyxDQUFDO1NBQy9DO1FBRUQsSUFBSSxDQUFDLFlBQVksQ0FBQyxpQkFBVSxDQUFDLElBQUksRUFBRSxLQUFLLENBQUMsQ0FBQztRQUMxQyxJQUFJLENBQUMsWUFBWSxDQUFDLGlCQUFVLENBQUMsTUFBTSxFQUFFLEtBQUssQ0FBQyxDQUFDO1FBQzVDLElBQUksQ0FBQyxZQUFZLENBQUMsaUJBQVUsQ0FBQyxPQUFPLEVBQUUsS0FBSyxDQUFDLENBQUM7SUFDL0MsQ0FBQztJQUNNLFlBQVksQ0FBQyxJQUFnQixFQUFFLFFBQWlCO1FBQ3JELElBQUksTUFBYyxDQUFDO1FBQ25CLFFBQVEsSUFBSSxFQUFFO1lBQ1osS0FBSyxpQkFBVSxDQUFDLE9BQU8sQ0FBQyxDQUFDO2dCQUN2QixNQUFNLEdBQUcsSUFBSSxDQUFDLGFBQWEsQ0FBQztnQkFDNUIsTUFBTTthQUNQO1lBQ0QsS0FBSyxpQkFBVSxDQUFDLE1BQU0sQ0FBQyxDQUFDO2dCQUN0QixNQUFNLEdBQUcsSUFBSSxDQUFDLFlBQVksQ0FBQztnQkFDM0IsTUFBTTthQUNQO1lBQ0QsS0FBSyxpQkFBVSxDQUFDLElBQUksQ0FBQyxDQUFDO2dCQUNwQixNQUFNLEdBQUcsSUFBSSxDQUFDLFVBQVUsQ0FBQztnQkFDekIsTUFBTTthQUNQO1lBQ0QsT0FBTyxDQUFDLENBQUM7Z0JBQ1AsTUFBTSxHQUFHLElBQUksQ0FBQztnQkFDZCxNQUFNO2FBQ1A7U0FDRjtRQUNELE1BQU0sQ0FBQyxZQUFZLEdBQUcsUUFBUSxDQUFDO0lBQ2pDLENBQUM7Q0FDRjtBQTNDRCw2QkEyQ0MifQ==","assetPath":"Assets/Scripts/Mafia/InteractUI.ts","manifest":{"properties":[{"assembly":"UnityEngine.UI","name":"reportButton","type":"UnityEngine.UI.Button","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.UI","name":"missionButton","type":"UnityEngine.UI.Button","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]},{"assembly":"UnityEngine.UI","name":"killButton","type":"UnityEngine.UI.Button","isArray":false,"initValue":[],"enumKeys":[],"enumValues":[],"attributes":[]}],"name":"InteractUI","description":""},"isCompiled":true}'
+  typescriptHash: 3421ecd031430aaf6831d0cd0094ea7d
   onlyWriteTrigger: 0

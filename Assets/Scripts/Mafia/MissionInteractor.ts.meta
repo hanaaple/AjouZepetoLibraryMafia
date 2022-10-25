@@ -1,0 +1,57 @@
+fileFormatVersion: 2
+guid: 4074fc6d0b42d18419aeefd371c9ab23
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
+    \\\"__esModule\\\", { value: true });\\r\\nconst UnityEngine_1 = require(\\\"UnityEngine\\\");\\r\\nconst
+    ZEPETO_Character_Controller_1 = require(\\\"ZEPETO.Character.Controller\\\");\\r\\nconst
+    ZEPETO_Script_1 = require(\\\"ZEPETO.Script\\\");\\r\\nconst AnimationLinker_1
+    = require(\\\"../AnimationLinker\\\");\\r\\nconst MafiaMissionList_1 = require(\\\"./MafiaMissionList\\\");\\r\\nclass
+    MissionInteractor extends ZEPETO_Script_1.ZepetoScriptBehaviour {\\r\\n    Start()
+    {\\r\\n        this.isSuccess = false;\\r\\n        if (this.animationSec ==
+    0) {\\r\\n            this.animationSec = 5;\\r\\n        }\\r\\n    }\\r\\n   
+    Interact() {\\r\\n        if (this.isSuccess) {\\r\\n            console.log(\\\"\uC798\uBABB\uD568\uC798\uBABB\uD568\uC798\uBABB\uD568\uC798\uBABB\uD568\uC798\uBABB\uD568\uC798\uBABB\uD568\uC798\uBABB\uD568\uC798\uBABB\uD568\\\");\\r\\n       
+    }\\r\\n        console.log(\\\"\uC778\uD130\uB799\uD2B8 \uC2DC\uC791\\\");\\r\\n       
+    this.SetObjs(true);\\r\\n        const player = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer;\\r\\n       
+    if (!AnimationLinker_1.default.instance.GetIsGesturing(player.id)) {\\r\\n           
+    AnimationLinker_1.default.instance.PlayGesture(this.animationClip.name);\\r\\n           
+    this.StartCoroutine(this.WaitForMove());\\r\\n        }\\r\\n        this.StartCoroutine(this.Interacting());\\r\\n   
+    }\\r\\n    *Interacting() {\\r\\n        console.log(\\\"\uC778\uD130\uB799\uD2B8
+    \uC911\\\");\\r\\n        this.StartCoroutine(this.WaitForMove());\\r\\n       
+    const slide = MafiaMissionList_1.default.instance.slide;\\r\\n        console.log(this.animationSec);\\r\\n       
+    let t = 0;\\r\\n        while (t <= this.animationSec) {\\r\\n            t +=
+    UnityEngine_1.Time.deltaTime;\\r\\n            slide.value = t / this.animationSec;\\r\\n           
+    console.log(slide.value);\\r\\n            yield null;\\r\\n        }\\r\\n       
+    this.OnComplete();\\r\\n    }\\r\\n    OnComplete() {\\r\\n        console.log(\\\"\uC131\uACF5\\\");\\r\\n       
+    this.SetObjs(false);\\r\\n        this.StopAllCoroutines();\\r\\n        this.isSuccess
+    = true;\\r\\n        AnimationLinker_1.default.instance.StopGesture(ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer);\\r\\n       
+    MafiaMissionList_1.default.instance.Complete(this);\\r\\n    }\\r\\n    SetObjs(isOn)
+    {\\r\\n        const slide = MafiaMissionList_1.default.instance.slide;\\r\\n       
+    if (isOn) {\\r\\n            // missionPanel.SetActive(true);\\r\\n           
+    slide.gameObject.SetActive(true);\\r\\n            slide.value = 0;\\r\\n       
+    }\\r\\n        else {\\r\\n            slide.gameObject.SetActive(false);\\r\\n           
+    // missionPanel.SetActive(false);\\r\\n        }\\r\\n    }\\r\\n    *WaitForMove()
+    {\\r\\n        yield new UnityEngine_1.WaitUntil(() => {\\r\\n            return
+    (ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.tryMove
+    ||\\r\\n                ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.tryJump);\\r\\n       
+    });\\r\\n        AnimationLinker_1.default.instance.StopGesture(ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer);\\r\\n       
+    this.SetObjs(false);\\r\\n        this.StopAllCoroutines();\\r\\n    }\\r\\n}\\r\\nexports.default
+    = MissionInteractor;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTWlzc2lvbkludGVyYWN0b3IuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJNaXNzaW9uSW50ZXJhY3Rvci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLDZDQUE2RDtBQUM3RCw2RUFBNEQ7QUFDNUQsaURBQXNEO0FBQ3RELHdEQUFpRDtBQUNqRCx5REFBa0Q7QUFFbEQsTUFBcUIsaUJBQWtCLFNBQVEscUNBQXFCO0lBZWxFLEtBQUs7UUFDSCxJQUFJLENBQUMsU0FBUyxHQUFHLEtBQUssQ0FBQztRQUN2QixJQUFJLElBQUksQ0FBQyxZQUFZLElBQUksQ0FBQyxFQUFFO1lBQzFCLElBQUksQ0FBQyxZQUFZLEdBQUcsQ0FBQyxDQUFDO1NBQ3ZCO0lBQ0gsQ0FBQztJQUNNLFFBQVE7UUFDYixJQUFJLElBQUksQ0FBQyxTQUFTLEVBQUU7WUFDbEIsT0FBTyxDQUFDLEdBQUcsQ0FBQywwQkFBMEIsQ0FBQyxDQUFDO1NBQ3pDO1FBQ0QsT0FBTyxDQUFDLEdBQUcsQ0FBQyxTQUFTLENBQUMsQ0FBQztRQUN2QixJQUFJLENBQUMsT0FBTyxDQUFDLElBQUksQ0FBQyxDQUFDO1FBQ25CLE1BQU0sTUFBTSxHQUFHLDJDQUFhLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBQyxZQUFZLENBQUM7UUFDL0QsSUFBSSxDQUFDLHlCQUFlLENBQUMsUUFBUSxDQUFDLGNBQWMsQ0FBQyxNQUFNLENBQUMsRUFBRSxDQUFDLEVBQUU7WUFDdkQseUJBQWUsQ0FBQyxRQUFRLENBQUMsV0FBVyxDQUFDLElBQUksQ0FBQyxhQUFhLENBQUMsSUFBSSxDQUFDLENBQUM7WUFDOUQsSUFBSSxDQUFDLGNBQWMsQ0FBQyxJQUFJLENBQUMsV0FBVyxFQUFFLENBQUMsQ0FBQztTQUN6QztRQUVELElBQUksQ0FBQyxjQUFjLENBQUMsSUFBSSxDQUFDLFdBQVcsRUFBRSxDQUFDLENBQUM7SUFDMUMsQ0FBQztJQUVELENBQUMsV0FBVztRQUNWLE9BQU8sQ0FBQyxHQUFHLENBQUMsUUFBUSxDQUFDLENBQUM7UUFDdEIsSUFBSSxDQUFDLGNBQWMsQ0FBQyxJQUFJLENBQUMsV0FBVyxFQUFFLENBQUMsQ0FBQztRQUV4QyxNQUFNLEtBQUssR0FBRywwQkFBZ0IsQ0FBQyxRQUFRLENBQUMsS0FBSyxDQUFDO1FBQzlDLE9BQU8sQ0FBQyxHQUFHLENBQUMsSUFBSSxDQUFDLFlBQVksQ0FBQyxDQUFDO1FBQy9CLElBQUksQ0FBQyxHQUFXLENBQUMsQ0FBQztRQUNsQixPQUFPLENBQUMsSUFBSSxJQUFJLENBQUMsWUFBWSxFQUFFO1lBQzdCLENBQUMsSUFBSSxrQkFBSSxDQUFDLFNBQVMsQ0FBQztZQUNwQixLQUFLLENBQUMsS0FBSyxHQUFHLENBQUMsR0FBRyxJQUFJLENBQUMsWUFBWSxDQUFDO1lBQ3BDLE9BQU8sQ0FBQyxHQUFHLENBQUMsS0FBSyxDQUFDLEtBQUssQ0FBQyxDQUFDO1lBQ3pCLE1BQU0sSUFBSSxDQUFDO1NBQ1o7UUFDRCxJQUFJLENBQUMsVUFBVSxFQUFFLENBQUM7SUFDcEIsQ0FBQztJQUVPLFVBQVU7UUFDaEIsT0FBTyxDQUFDLEdBQUcsQ0FBQyxJQUFJLENBQUMsQ0FBQztRQUNsQixJQUFJLENBQUMsT0FBTyxDQUFDLEtBQUssQ0FBQyxDQUFDO1FBQ3BCLElBQUksQ0FBQyxpQkFBaUIsRUFBRSxDQUFDO1FBQ3pCLElBQUksQ0FBQyxTQUFTLEdBQUcsSUFBSSxDQUFDO1FBRXRCLHlCQUFlLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FDbEMsMkNBQWEsQ0FBQyxRQUFRLENBQUMsV0FBVyxDQUFDLFlBQVksQ0FDaEQsQ0FBQztRQUVGLDBCQUFnQixDQUFDLFFBQVEsQ0FBQyxRQUFRLENBQUMsSUFBSSxDQUFDLENBQUM7SUFDM0MsQ0FBQztJQUVPLE9BQU8sQ0FBQyxJQUFhO1FBQzNCLE1BQU0sS0FBSyxHQUFHLDBCQUFnQixDQUFDLFFBQVEsQ0FBQyxLQUFLLENBQUM7UUFFOUMsSUFBSSxJQUFJLEVBQUU7WUFDUixnQ0FBZ0M7WUFDaEMsS0FBSyxDQUFDLFVBQVUsQ0FBQyxTQUFTLENBQUMsSUFBSSxDQUFDLENBQUM7WUFDakMsS0FBSyxDQUFDLEtBQUssR0FBRyxDQUFDLENBQUM7U0FDakI7YUFBTTtZQUNMLEtBQUssQ0FBQyxVQUFVLENBQUMsU0FBUyxDQUFDLEtBQUssQ0FBQyxDQUFDO1lBQ2xDLGlDQUFpQztTQUNsQztJQUNILENBQUM7SUFFRCxDQUFDLFdBQVc7UUFDVixNQUFNLElBQUksdUJBQVMsQ0FBQyxHQUFHLEVBQUU7WUFDdkIsT0FBTyxDQUNMLDJDQUFhLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBQyxZQUFZLENBQUMsU0FBUyxDQUFDLE9BQU87Z0JBQ2pFLDJDQUFhLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBQyxZQUFZLENBQUMsU0FBUyxDQUFDLE9BQU8sQ0FDbEUsQ0FBQztRQUNKLENBQUMsQ0FBQyxDQUFDO1FBQ0gseUJBQWUsQ0FBQyxRQUFRLENBQUMsV0FBVyxDQUNsQywyQ0FBYSxDQUFDLFFBQVEsQ0FBQyxXQUFXLENBQUMsWUFBWSxDQUNoRCxDQUFDO1FBRUYsSUFBSSxDQUFDLE9BQU8sQ0FBQyxLQUFLLENBQUMsQ0FBQztRQUNwQixJQUFJLENBQUMsaUJBQWlCLEVBQUUsQ0FBQztJQUMzQixDQUFDO0NBQ0Y7QUE1RkQsb0NBNEZDIn0=\",\"assetPath\":\"Assets/Scripts/Mafia/MissionInteractor.ts\",\"manifest\":{\"properties\":[{\"assembly\":\"UnityEngine.AnimationModule\",\"name\":\"animationClip\",\"type\":\"UnityEngine.AnimationClip\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"mscorlib\",\"name\":\"animationSec\",\"type\":\"System.Single\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"mscorlib\",\"name\":\"isSuccess\",\"type\":\"System.Boolean\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"mscorlib\",\"name\":\"context\",\"type\":\"System.String\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]}],\"name\":\"MissionInteractor\",\"description\":\"\"},\"isCompiled\":true}"
+  typescriptHash: f53edb7438dd5c93532d5c8035e1dd9a
+  onlyWriteTrigger: 0

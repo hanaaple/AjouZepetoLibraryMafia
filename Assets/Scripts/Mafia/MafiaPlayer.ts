@@ -2,7 +2,6 @@ import {
   Collider,
   GameObject,
   SphereCollider,
-  Sprite,
   Transform,
   Vector3,
 } from "UnityEngine";
@@ -10,67 +9,65 @@ import { ZepetoPlayers } from "ZEPETO.Character.Controller";
 import { RoomData } from "ZEPETO.Multiplay";
 import { ZepetoScriptBehaviour } from "ZEPETO.Script";
 import ClientStarter from "../ClientStarter";
-import { InGameInteractState, JobState } from "../Constants/Enum";
+import { ButtonType, InGameInteractState, JobState } from "../Constants/Enum";
 import InteractUI from "./InteractUI";
+
+import MissionInteractor from "./MissionInteractor";
 import PlayerId from "./PlayerId";
 
 export default class MafiaPlayer extends ZepetoScriptBehaviour {
-  protected interactUI: InteractUI;
+  public interactUI: InteractUI;
 
   public sessionId: string;
 
-  public playerJobState: JobState;
+  public jobState: JobState;
 
   protected interactState: InGameInteractState;
 
   public isLocal: boolean;
 
-  protected killButton: Sprite;
-  protected reportButton: Sprite;
-  protected missionButton: Sprite;
+  protected alivePlayer: PlayerId[];
+  protected corpsePlayer: PlayerId[];
 
-  protected citizenArray: PlayerId[];
+  protected missionInteractor: MissionInteractor;
 
-  protected defaultButton: Sprite;
+  private isEnable: boolean;
 
-  Start() {
-    this.citizenArray = new Array<PlayerId>();
+  public SetEnable(isEnable: boolean) {
+    console.log("1");
+    this.isEnable = isEnable;
+    this.enabled = isEnable;
   }
   public Initialize(
-    uiPrefab: GameObject,
-    parentCanvas: Transform,
+    mafiaUI: GameObject,
     isLocal: boolean,
     jobState: JobState,
-    sessionId: string,
-    killButton: Sprite,
-    reportButton: Sprite,
-    missionButton: Sprite
+    sessionId: string
   ) {
+    this.alivePlayer = new Array<PlayerId>();
+    this.corpsePlayer = new Array<PlayerId>();
+    this.enabled = true;
+    this.isEnable = true;
     this.isLocal = isLocal;
-    this.playerJobState = jobState;
+    this.jobState = jobState;
     this.sessionId = sessionId;
     if (isLocal) {
-      this.killButton = killButton;
-      this.reportButton = reportButton;
-      this.missionButton = missionButton;
+      console.log("1");
+      this.interactUI = mafiaUI.GetComponent<InteractUI>();
 
-      if (jobState == JobState.Citizen) {
-        this.defaultButton = missionButton;
-      } else if (jobState == JobState.Mafia) {
-        this.defaultButton = killButton;
-      }
+      console.log("2");
+      this.interactUI.Init(jobState);
+
+      console.log("3");
+      this.interactUI.reportButton.onClick.RemoveAllListeners();
+      this.interactUI.killButton.onClick.RemoveAllListeners();
+      this.interactUI.missionButton.onClick.RemoveAllListeners();
+
       const collider =
         ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.gameObject.AddComponent<SphereCollider>();
       collider.isTrigger = true;
       collider.center = new Vector3(0, 0.6, 0);
       collider.radius = 2;
-
-      this.interactUI = GameObject.Instantiate<GameObject>(
-        uiPrefab,
-        parentCanvas
-      ).GetComponent<InteractUI>();
-
-      this.interactUI.interactButton.gameObject.SetActive(false);
 
       ClientStarter.instance
         .GetRoom()
@@ -78,75 +75,115 @@ export default class MafiaPlayer extends ZepetoScriptBehaviour {
           const mafia = ZepetoPlayers.instance.GetPlayer(message.mafia);
           const killed = ZepetoPlayers.instance.GetPlayer(message.killed);
 
-          this.citizenArray = this.citizenArray.filter(
+          this.alivePlayer = this.alivePlayer.filter(
             (item) => item != killed.character.GetComponent<PlayerId>()
           );
-          if (this.citizenArray.length == 0) {
-            this.interactUI.interactButton.gameObject.SetActive(false);
+          if (this.alivePlayer.length == 0) {
+            this.interactUI.ActiveButton(ButtonType.KILL, false);
           }
         });
+    }
+  }
+
+  ActiveInteractUi(buttonType: ButtonType, isActive: bool) {
+    this.interactUI.ActiveButton(buttonType, isActive);
+    if (!isActive && buttonType == ButtonType.MISSION) {
+      this.missionInteractor = null;
     }
   }
 
   public Report() {
     console.log("신고!");
-    ClientStarter.instance.Debug("신고!");
     const position = this.transform.position;
 
-    const nearCorpse = this.citizenArray.filter(
-      (item) => item.state == InGameInteractState.CORPSE
+    const nearPlayer = this.corpsePlayer.reduce(
+      (prev: PlayerId, cur: PlayerId) =>
+        Vector3.Distance(position, prev.transform.position) >
+        Vector3.Distance(position, cur.transform.position)
+          ? cur
+          : prev
     );
-
-    const nearPlayer = nearCorpse.reduce((prev: PlayerId, cur: PlayerId) =>
-      Vector3.Distance(position, prev.transform.position) >
-      Vector3.Distance(position, cur.transform.position)
-        ? cur
-        : prev
-    );
+    if (nearPlayer.sessionId == this.sessionId) {
+      console.log("오류오류오류오류오류오류오류오류오류");
+      const nearPlayer = this.corpsePlayer.forEach((item) => {
+        console.log(item);
+        console.log(item.sessionId);
+      });
+    }
     const roomData = new RoomData();
     roomData.Add("reporter", this.sessionId);
     roomData.Add("corpse", nearPlayer.sessionId);
     ClientStarter.instance.GetRoom().Send("onReport", roomData.GetObject());
-    this.interactUI.interactButton.gameObject.SetActive(false);
+    this.interactUI.ActiveButton(ButtonType.REPORT, false);
   }
   OnTriggerEnter(other: Collider) {
-    console.log(other);
+    if (!this.isEnable) return;
     const player: PlayerId = other.GetComponent<PlayerId>();
-    console.log(player);
-    if (!this.isLocal || player.sessionId == this.sessionId) return;
+    const missionInteractor = other.GetComponent<MissionInteractor>();
+    this.missionInteractor = missionInteractor;
+    if (!this.isLocal) return;
 
-    if (player) {
+    if (
+      ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.GetComponent<PlayerId>()
+        .state == InGameInteractState.CORPSE
+    ) {
+      return;
+    }
+    if (player && player.sessionId != this.sessionId) {
       if (player.state == InGameInteractState.ALIVE) {
-        const hasplayer = this.citizenArray.find((item) => {
+        const hasPlayer = this.alivePlayer.find((item) => {
           return item == player;
         });
-        if (!hasplayer) {
-          this.citizenArray.push(player);
-          if (this.playerJobState == JobState.Mafia) {
-            this.interactUI.interactButton.gameObject.SetActive(true);
+
+        if (!hasPlayer) {
+          console.log("플레이어 추가");
+          this.alivePlayer.push(player);
+          if (this.jobState == JobState.Mafia) {
+            this.interactUI.ActiveButton(ButtonType.KILL, true);
           }
         }
       } else if (player.state == InGameInteractState.CORPSE) {
-        const hasplayer = this.citizenArray.find((item) => {
+        const hasPlayer = this.corpsePlayer.find((item) => {
           return item == player;
         });
-        if (!hasplayer) {
-          this.citizenArray.push(player);
-          this.interactUI.interactButton.gameObject.SetActive(true);
+        if (!hasPlayer) {
+          this.corpsePlayer.push(player);
+          this.interactUI.ActiveButton(ButtonType.REPORT, true);
         }
       }
-    } else {
+    }
+
+    if (
+      missionInteractor &&
+      missionInteractor.enabled &&
+      !missionInteractor.isSuccess
+    ) {
+      this.interactUI.ActiveButton(ButtonType.MISSION, true);
     }
   }
 
   OnTriggerExit(other: Collider) {
+    if (!this.isEnable) return;
     if (!this.isLocal) return;
     const player = other.GetComponent<PlayerId>();
+    const missionInteractor: MissionInteractor =
+      other.GetComponent<MissionInteractor>();
     if (player) {
-      this.citizenArray = this.citizenArray.filter((item) => item != player);
-      if (this.citizenArray.length == 0) {
-        this.interactUI.interactButton.gameObject.SetActive(false);
+      this.alivePlayer = this.alivePlayer.filter((item) => item != player);
+      if (this.alivePlayer.length == 0) {
+        this.ActiveInteractUi(ButtonType.KILL, false);
       }
+      this.corpsePlayer = this.corpsePlayer.filter((item) => item != player);
+      if (this.corpsePlayer.length == 0) {
+        this.ActiveInteractUi(ButtonType.REPORT, false);
+      }
+    }
+    if (
+      missionInteractor &&
+      missionInteractor.enabled &&
+      !missionInteractor.isSuccess
+    ) {
+      this.ActiveInteractUi(ButtonType.MISSION, false);
     }
   }
 }

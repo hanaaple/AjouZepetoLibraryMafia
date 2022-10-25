@@ -21,12 +21,12 @@ import {
   Vector3,
 } from "UnityEngine";
 import WaitForSecondsCash from "./WaitForSecondsCash";
+import AnimationLinker from "./AnimationLinker";
 
 export default class ClientStarter extends ZepetoScriptBehaviour {
   public multiplay: ZepetoWorldMultiplay;
 
-  @SerializeField()
-  private spawnPoint: Transform;
+  public spawnPoint: Transform;
 
   private room: Room;
   private static _instance: ClientStarter;
@@ -96,7 +96,7 @@ export default class ClientStarter extends ZepetoScriptBehaviour {
         const myPlayer = ZepetoPlayers.instance.LocalPlayer.zepetoPlayer;
         myPlayer.character.gameObject.AddComponent<AudioListener>();
         myPlayer.character.OnChangedState.AddListener((next, cur) => {
-          console.log("로컬 State 변경", cur, next);
+          // console.log("로컬 State 변경", cur, next);
           this.SendState(next);
         });
         // myPlayer.character.gameObject.layer =
@@ -113,8 +113,9 @@ export default class ClientStarter extends ZepetoScriptBehaviour {
 
         if (!isLocal) {
           this.Debug(`[온라인 플레이어 생성] player  ${sessionId}`);
-          player.OnChange += (changeValues) =>
+          player.OnChange += (changeValues) => {
             this.OnUpdateMultiPlayer(sessionId, player);
+          };
         }
       });
     }
@@ -126,15 +127,8 @@ export default class ClientStarter extends ZepetoScriptBehaviour {
     );
     const spawnInfo = new SpawnInfo();
 
-    if (this.IsZeroPosition(player.transform.position)) {
-      spawnInfo.position = this.spawnPoint.position;
-      spawnInfo.rotation = this.spawnPoint.rotation;
-    } else {
-      const position = this.ParseVector3(player.transform.position);
-      const rotation = this.ParseVector3(player.transform.rotation);
-      spawnInfo.position = position;
-      spawnInfo.rotation = Quaternion.Euler(rotation);
-    }
+    spawnInfo.position = this.spawnPoint.position;
+    spawnInfo.rotation = this.spawnPoint.rotation;
 
     console.log(
       spawnInfo.position.x,
@@ -154,6 +148,7 @@ export default class ClientStarter extends ZepetoScriptBehaviour {
   private OnLeavePlayer(sessionId: string, player: Player) {
     console.log(`[OnRemove] players - sessionId : ${sessionId}`);
     ZepetoPlayers.instance.RemovePlayer(sessionId);
+    AnimationLinker.instance.OnRemovePlayer(sessionId);
   }
 
   private OnUpdateMultiPlayer(sessionId: string, player: Player) {
@@ -188,21 +183,69 @@ export default class ClientStarter extends ZepetoScriptBehaviour {
         zepetoPlayer.character.DoubleJump();
       }
     }
+
+    if (player.state == CharacterState.Gesture) {
+      if (!AnimationLinker.instance.GetIsGesturing(sessionId)) {
+        console.log("서버 - 제스처 세팅", player.state);
+        AnimationLinker.instance.GestureHandler(zepetoPlayer, player.gesture);
+        zepetoPlayer.character.transform.position = position;
+        zepetoPlayer.character.transform.eulerAngles = this.ParseVector3(
+          player.transform.rotation
+        );
+      } else if (
+        AnimationLinker.instance.GetPlayingGesture(sessionId).name !=
+        player.gesture
+      ) {
+        console.log("서버 - 제스처 세팅", player.state);
+        zepetoPlayer.character.transform.position = position;
+        zepetoPlayer.character.transform.eulerAngles = this.ParseVector3(
+          player.transform.rotation
+        );
+        AnimationLinker.instance.GestureHandler(zepetoPlayer, player.gesture);
+      }
+    } else if (
+      player.state != CharacterState.Gesture &&
+      AnimationLinker.instance.GetIsGesturing(sessionId)
+    ) {
+      AnimationLinker.instance.GestureHandler(zepetoPlayer, "");
+    }
+  }
+
+  public Teleport(transform: Transform) {
+    this.StartCoroutine(this.TeleportCoroutine(transform));
+  }
+
+  private *TeleportCoroutine(transform: Transform) {
+    yield WaitForSecondsCash.instance.WaitForSeconds(0.1);
+    const data = new RoomData();
+
+    const pos = new RoomData();
+    pos.Add("x", transform.position.x);
+    pos.Add("y", transform.position.y);
+    pos.Add("z", transform.position.z);
+    data.Add("position", pos.GetObject());
+
+    const rot = new RoomData();
+    rot.Add("x", transform.eulerAngles.x);
+    rot.Add("y", transform.eulerAngles.y);
+    rot.Add("z", transform.eulerAngles.z);
+    data.Add("rotation", rot.GetObject());
+    this.room.Send("onChangedTransform", data.GetObject());
   }
 
   public SendTransform(transform: Transform) {
     const data = new RoomData();
 
     const pos = new RoomData();
-    pos.Add("x", transform.localPosition.x);
-    pos.Add("y", transform.localPosition.y);
-    pos.Add("z", transform.localPosition.z);
+    pos.Add("x", transform.position.x);
+    pos.Add("y", transform.position.y);
+    pos.Add("z", transform.position.z);
     data.Add("position", pos.GetObject());
 
     const rot = new RoomData();
-    rot.Add("x", transform.localEulerAngles.x);
-    rot.Add("y", transform.localEulerAngles.y);
-    rot.Add("z", transform.localEulerAngles.z);
+    rot.Add("x", transform.eulerAngles.x);
+    rot.Add("y", transform.eulerAngles.y);
+    rot.Add("z", transform.eulerAngles.z);
     data.Add("rotation", rot.GetObject());
     this.room.Send("onChangedTransform", data.GetObject());
   }
@@ -218,6 +261,12 @@ export default class ClientStarter extends ZepetoScriptBehaviour {
       );
     }
     this.room.Send("onChangedState", data.GetObject());
+  }
+
+  SendGesture(gestureName: string) {
+    const data = new RoomData();
+    data.Add("gesture", gestureName);
+    this.room.Send("onChangedGesture", data.GetObject());
   }
 
   public Debug(obj: any) {
