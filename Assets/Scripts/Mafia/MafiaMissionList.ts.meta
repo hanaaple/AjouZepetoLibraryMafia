@@ -1,0 +1,72 @@
+fileFormatVersion: 2
+guid: f7185f5bcef93b04a925372be0f9a50c
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
+    \\\"__esModule\\\", { value: true });\\r\\nconst UnityEngine_1 = require(\\\"UnityEngine\\\");\\r\\nconst
+    ZEPETO_Character_Controller_1 = require(\\\"ZEPETO.Character.Controller\\\");\\r\\nconst
+    ZEPETO_Multiplay_1 = require(\\\"ZEPETO.Multiplay\\\");\\r\\nconst ZEPETO_Script_1
+    = require(\\\"ZEPETO.Script\\\");\\r\\nconst ClientStarter_1 = require(\\\"../ClientStarter\\\");\\r\\nconst
+    Enum_1 = require(\\\"../Constants/Enum\\\");\\r\\nconst Citizen_1 = require(\\\"./Citizen\\\");\\r\\nconst
+    Mafia_1 = require(\\\"./Mafia\\\");\\r\\nconst MissionInteractor_1 = require(\\\"./MissionInteractor\\\");\\r\\nconst
+    PlayerId_1 = require(\\\"./PlayerId\\\");\\r\\nclass MafiaMissionList extends
+    ZEPETO_Script_1.ZepetoScriptBehaviour {\\r\\n    Start() {\\r\\n        console.log(\\\"1\\\");\\r\\n       
+    this._missionInteractors = new Array();\\r\\n        console.log(\\\"2\\\");\\r\\n       
+    this.selectedMissionInteractors = new Array();\\r\\n        console.log(\\\"3\\\");\\r\\n       
+    this.missionInteractors.forEach((item, index) => {\\r\\n            const interactor
+    = item.GetComponent($typeof(MissionInteractor_1.default));\\r\\n            //
+    interactor.Initialize(\\r\\n            //   this.missionProgressBar,\\r\\n           
+    //   this.missionLists[index],\\r\\n            //   this.Complete\\r\\n           
+    // );\\r\\n            this._missionInteractors.push(interactor);\\r\\n           
+    interactor.enabled = false;\\r\\n        });\\r\\n        console.log(\\\"4\\\");\\r\\n       
+    ZEPETO_Character_Controller_1.ZepetoPlayers.instance.OnAddedLocalPlayer.AddListener(()
+    => {\\r\\n            ClientStarter_1.default.instance\\r\\n                .GetRoom()\\r\\n               
+    .AddMessageHandler(\\\"UpdateMissionBar\\\", (message) => {\\r\\n               
+    let percantage = parseFloat(message);\\r\\n                this.missionBarImage.fillAmount
+    = percantage;\\r\\n            });\\r\\n        });\\r\\n    }\\r\\n    Initialize(missionListIdx)
+    {\\r\\n        console.log(\\\"\uBBF8\uC158 \uCD08\uAE30\uD654\\\");\\r\\n       
+    const idxs = missionListIdx.split(\\\",\\\");\\r\\n        idxs.forEach((item,
+    idx) => {\\r\\n            this._missionInteractors[item].Initialize(this.missionProgressBar,
+    this.missionLists[idx], this.Complete);\\r\\n            this._missionInteractors[item].enabled
+    = true;\\r\\n            this.selectedMissionInteractors.push(this._missionInteractors[item]);\\r\\n           
+    console.log(\\\"idx: \\\" +\\r\\n                item +\\r\\n               
+    \\\", \\\" +\\r\\n                idx +\\r\\n                \\\" \\\" +\\r\\n               
+    this._missionInteractors[item].context);\\r\\n            this._missionInteractors[item].index
+    = idx;\\r\\n            this._missionInteractors[item].missionIndex = parseInt(item);\\r\\n           
+    this.missionLists[idx].text = this._missionInteractors[item].context;\\r\\n           
+    this.missionLists[idx].enabled = true;\\r\\n        });\\r\\n        this.missionBarImage.fillAmount
+    = 0;\\r\\n    }\\r\\n    Complete(mission, text) {\\r\\n        console.log(this);\\r\\n       
+    console.log(mission);\\r\\n        console.log(mission.index);\\r\\n        console.log(this.missionLists);\\r\\n       
+    console.log(text);\\r\\n        if (this.missionLists) {\\r\\n            this.missionLists[mission.index].text
+    =\\r\\n                \\\"(\uC644\uB8CC)\\\" + this.missionLists[mission.index].text;\\r\\n       
+    }\\r\\n        else if (text) {\\r\\n            text.text = \\\"(\uC644\uB8CC)\\\"
+    + text.text;\\r\\n        }\\r\\n        //\uD574\uB2F9 \uBBF8\uC158 \uCCB4\uD06C,
+    \uC2AC\uB77C\uC774\uB4DC\\r\\n        const playerId = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.GetComponent($typeof(PlayerId_1.default));\\r\\n       
+    let player = null;\\r\\n        if (playerId.jobState == Enum_1.JobState.Mafia)
+    {\\r\\n            player = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.GetComponent($typeof(Mafia_1.default));\\r\\n       
+    }\\r\\n        else if (playerId.jobState == Enum_1.JobState.Citizen) {\\r\\n           
+    player = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.GetComponent($typeof(Citizen_1.default));\\r\\n       
+    }\\r\\n        console.log(player);\\r\\n        if (player) {\\r\\n           
+    player.ActiveInteractUi(Enum_1.ButtonType.MISSION, false);\\r\\n        }\\r\\n       
+    const data = new ZEPETO_Multiplay_1.RoomData();\\r\\n        data.Add(\\\"missionIndex\\\",
+    mission.missionIndex);\\r\\n        ClientStarter_1.default.instance\\r\\n           
+    .GetRoom()\\r\\n            .Send(\\\"onCompleteMission\\\", data.GetObject());\\r\\n   
+    }\\r\\n}\\r\\nexports.default = MafiaMissionList;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiTWFmaWFNaXNzaW9uTGlzdC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIk1hZmlhTWlzc2lvbkxpc3QudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSw2Q0FBeUM7QUFFekMsNkVBQTREO0FBQzVELHVEQUE0QztBQUM1QyxpREFBc0Q7QUFDdEQsb0RBQTZDO0FBQzdDLDRDQUF5RDtBQUN6RCx1Q0FBZ0M7QUFDaEMsbUNBQTRCO0FBQzVCLDJEQUFvRDtBQUNwRCx5Q0FBa0M7QUFFbEMsTUFBcUIsZ0JBQWlCLFNBQVEscUNBQXFCO0lBWWpFLEtBQUs7UUFDSCxPQUFPLENBQUMsR0FBRyxDQUFDLEdBQUcsQ0FBQyxDQUFDO1FBQ2pCLElBQUksQ0FBQyxtQkFBbUIsR0FBRyxJQUFJLEtBQUssRUFBcUIsQ0FBQztRQUUxRCxPQUFPLENBQUMsR0FBRyxDQUFDLEdBQUcsQ0FBQyxDQUFDO1FBQ2pCLElBQUksQ0FBQywwQkFBMEIsR0FBRyxJQUFJLEtBQUssRUFBcUIsQ0FBQztRQUVqRSxPQUFPLENBQUMsR0FBRyxDQUFDLEdBQUcsQ0FBQyxDQUFDO1FBQ2pCLElBQUksQ0FBQyxrQkFBa0IsQ0FBQyxPQUFPLENBQUMsQ0FBQyxJQUFJLEVBQUUsS0FBSyxFQUFFLEVBQUU7WUFDOUMsTUFBTSxVQUFVLEdBQUcsSUFBSSxDQUFDLFlBQVksU0FBQywyQkFBaUIsRUFBRyxDQUFDO1lBQzFELHlCQUF5QjtZQUN6Qiw2QkFBNkI7WUFDN0IsOEJBQThCO1lBQzlCLGtCQUFrQjtZQUNsQixLQUFLO1lBQ0wsSUFBSSxDQUFDLG1CQUFtQixDQUFDLElBQUksQ0FBQyxVQUFVLENBQUMsQ0FBQztZQUMxQyxVQUFVLENBQUMsT0FBTyxHQUFHLEtBQUssQ0FBQztRQUM3QixDQUFDLENBQUMsQ0FBQztRQUNILE9BQU8sQ0FBQyxHQUFHLENBQUMsR0FBRyxDQUFDLENBQUM7UUFDakIsMkNBQWEsQ0FBQyxRQUFRLENBQUMsa0JBQWtCLENBQUMsV0FBVyxDQUFDLEdBQUcs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\",\"assetPath\":\"Assets/Scripts/Mafia/MafiaMissionList.ts\",\"manifest\":{\"properties\":[{\"assembly\":\"UnityEngine.UI\",\"name\":\"missionBarImage\",\"type\":\"UnityEngine.UI.Image\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"missionInteractors\",\"type\":\"UnityEngine.GameObject[]\",\"isArray\":true,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.UI\",\"name\":\"missionLists\",\"type\":\"UnityEngine.UI.Text[]\",\"isArray\":true,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]},{\"assembly\":\"UnityEngine.UI\",\"name\":\"missionProgressBar\",\"type\":\"UnityEngine.UI.Image\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[]}],\"name\":\"MafiaMissionList\",\"description\":\"\"},\"isCompiled\":true}"
+  typescriptHash: 50fce5cc6781604f5163321691528946
+  onlyWriteTrigger: 0

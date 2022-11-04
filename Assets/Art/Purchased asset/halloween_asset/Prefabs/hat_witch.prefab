@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4139133110492786}
   - component: {fileID: 33830229470861212}
   - component: {fileID: 23995809929873084}
-  - component: {fileID: 95234195948844136}
   m_Layer: 0
   m_Name: hat_witch
   m_TagString: Untagged
@@ -49,8 +48,8 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1188922537129644}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -82,25 +81,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &95234195948844136
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1188922537129644}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 9dace86888afacc4189849e4a59b19c9, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1206421060201596
 GameObject:
   m_ObjectHideFlags: 0

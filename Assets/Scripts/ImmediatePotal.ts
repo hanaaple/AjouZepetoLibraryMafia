@@ -7,6 +7,8 @@ import {
 } from "UnityEngine";
 import { ZepetoCharacter, ZepetoPlayers } from "ZEPETO.Character.Controller";
 import { ZepetoScriptBehaviour } from "ZEPETO.Script";
+import { JobState } from "./Constants/Enum";
+import PlayerId from "./Mafia/PlayerId";
 
 export default class ImmediatePotal extends ZepetoScriptBehaviour {
   @SerializeField()
@@ -24,18 +26,17 @@ export default class ImmediatePotal extends ZepetoScriptBehaviour {
   }
 
   OnTriggerEnter(col: Collider) {
-    const zepetoCharacter = col.GetComponent<ZepetoCharacter>();
-    if (
-      ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character ==
-      zepetoCharacter
-    ) {
+    const playerId = col.GetComponent<PlayerId>();
+    if (playerId && playerId.jobState != JobState.None) {
       if (this.audioManger != null && this.audioClip != null) {
         this.audioManger.PlayOneShot(this.audioClip);
       }
-      zepetoCharacter.Teleport(
-        this._connectedPotal.loadPos.position,
-        this._connectedPotal.loadPos.rotation
-      );
+      playerId
+        .GetComponent<ZepetoCharacter>()
+        .Teleport(
+          this._connectedPotal.loadPos.position,
+          this._connectedPotal.loadPos.rotation
+        );
     }
   }
 }

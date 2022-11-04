@@ -1,0 +1,41 @@
+fileFormatVersion: 2
+guid: 19497521eb13aed4b90528986c581e51
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
+    \\\"__esModule\\\", { value: true });\\r\\nconst UnityEngine_1 = require(\\\"UnityEngine\\\");\\r\\nconst
+    ZEPETO_Character_Controller_1 = require(\\\"ZEPETO.Character.Controller\\\");\\r\\nconst
+    ZEPETO_Script_1 = require(\\\"ZEPETO.Script\\\");\\r\\nclass UIRatioFixer extends
+    ZEPETO_Script_1.ZepetoScriptBehaviour {\\r\\n    Start() {\\r\\n        UnityEngine_1.Camera.onPreCull
+    = () => {\\r\\n            UnityEngine_1.GL.Clear(true, true, UnityEngine_1.Color.black);\\r\\n       
+    };\\r\\n        ZEPETO_Character_Controller_1.ZepetoPlayers.instance.OnAddedLocalPlayer.AddListener(()
+    => {\\r\\n            this.SetLetterBox(ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoCamera.camera);\\r\\n       
+    });\\r\\n    }\\r\\n    SetLetterBox(camera) {\\r\\n        var rect = camera.rect;\\r\\n       
+    console.log(UnityEngine_1.Screen.width);\\r\\n        console.log(UnityEngine_1.Screen.height);\\r\\n       
+    console.log(UnityEngine_1.Screen.width / UnityEngine_1.Screen.height, 16.0 /
+    9.0);\\r\\n        var scaleheight = UnityEngine_1.Screen.width / UnityEngine_1.Screen.height
+    / (16.0 / 9.0); // (\uAC00\uB85C / \uC138\uB85C)\\r\\n        var scalewidth
+    = 1.0 / scaleheight;\\r\\n        if (scaleheight < 1) {\\r\\n            rect.height
+    = scaleheight;\\r\\n            rect.y = (1.0 - scaleheight) / 2.0;\\r\\n       
+    }\\r\\n        else {\\r\\n            rect.width = scalewidth;\\r\\n           
+    rect.x = (1.0 - scalewidth) / 2.0;\\r\\n        }\\r\\n        console.log(rect.x);\\r\\n       
+    console.log(rect.y);\\r\\n        camera.rect = rect;\\r\\n    }\\r\\n}\\r\\nexports.default
+    = UIRatioFixer;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVUlSYXRpb0ZpeGVyLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiVUlSYXRpb0ZpeGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsNkNBQTJFO0FBQzNFLDZFQUE0RDtBQUM1RCxpREFBc0Q7QUFFdEQsTUFBcUIsWUFBYSxTQUFRLHFDQUFxQjtJQUM3RCxLQUFLO1FBQ0gsb0JBQU0sQ0FBQyxTQUFTLEdBQUcsR0FBRyxFQUFFO1lBQ3RCLGdCQUFFLENBQUMsS0FBSyxDQUFDLElBQUksRUFBRSxJQUFJLEVBQUUsbUJBQUssQ0FBQyxLQUFLLENBQUMsQ0FBQztRQUNwQyxDQUFDLENBQUM7UUFDRiwyQ0FBYSxDQUFDLFFBQVEsQ0FBQyxrQkFBa0IsQ0FBQyxXQUFXLENBQUMsR0FBRyxFQUFFO1lBQ3pELElBQUksQ0FBQyxZQUFZLENBQ2YsMkNBQWEsQ0FBQyxRQUFRLENBQUMsV0FBVyxDQUFDLFlBQVksQ0FBQyxNQUFNLENBQ3ZELENBQUM7UUFDSixDQUFDLENBQUMsQ0FBQztJQUNMLENBQUM7SUFFRCxZQUFZLENBQUMsTUFBYztRQUN6QixJQUFJLElBQUksR0FBUyxNQUFNLENBQUMsSUFBSSxDQUFDO1FBQzdCLE9BQU8sQ0FBQyxHQUFHLENBQUMsb0JBQU0sQ0FBQyxLQUFLLENBQUMsQ0FBQztRQUMxQixPQUFPLENBQUMsR0FBRyxDQUFDLG9CQUFNLENBQUMsTUFBTSxDQUFDLENBQUM7UUFDM0IsT0FBTyxDQUFDLEdBQUcsQ0FBQyxvQkFBTSxDQUFDLEtBQUssR0FBRyxvQkFBTSxDQUFDLE1BQU0sRUFBRSxJQUFJLEdBQUcsR0FBRyxDQUFDLENBQUM7UUFDdEQsSUFBSSxXQUFXLEdBQUcsb0JBQU0sQ0FBQyxLQUFLLEdBQUcsb0JBQU0sQ0FBQyxNQUFNLEdBQUcsQ0FBQyxJQUFJLEdBQUcsR0FBRyxDQUFDLENBQUMsQ0FBQyxZQUFZO1FBQzNFLElBQUksVUFBVSxHQUFHLEdBQUcsR0FBRyxXQUFXLENBQUM7UUFDbkMsSUFBSSxXQUFXLEdBQUcsQ0FBQyxFQUFFO1lBQ25CLElBQUksQ0FBQyxNQUFNLEdBQUcsV0FBVyxDQUFDO1lBQzFCLElBQUksQ0FBQyxDQUFDLEdBQUcsQ0FBQyxHQUFHLEdBQUcsV0FBVyxDQUFDLEdBQUcsR0FBRyxDQUFDO1NBQ3BDO2FBQU07WUFDTCxJQUFJLENBQUMsS0FBSyxHQUFHLFVBQVUsQ0FBQztZQUN4QixJQUFJLENBQUMsQ0FBQyxHQUFHLENBQUMsR0FBRyxHQUFHLFVBQVUsQ0FBQyxHQUFHLEdBQUcsQ0FBQztTQUNuQztRQUNELE9BQU8sQ0FBQyxHQUFHLENBQUMsSUFBSSxDQUFDLENBQUMsQ0FBQyxDQUFDO1FBQ3BCLE9BQU8sQ0FBQyxHQUFHLENBQUMsSUFBSSxDQUFDLENBQUMsQ0FBQyxDQUFDO1FBQ3BCLE1BQU0sQ0FBQyxJQUFJLEdBQUcsSUFBSSxDQUFDO0lBQ3JCLENBQUM7Q0FDRjtBQTlCRCwrQkE4QkMifQ==\",\"assetPath\":\"Assets/Scripts/UIRatioFixer.ts\",\"manifest\":{\"properties\":[],\"name\":\"UIRatioFixer\",\"description\":\"\"},\"isCompiled\":true}"
+  typescriptHash: 911238b06a50f2b6d8500d5e39aec137
+  onlyWriteTrigger: 0

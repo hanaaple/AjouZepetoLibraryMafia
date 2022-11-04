@@ -6,6 +6,10 @@ declare module "ZEPETO.Multiplay.Schema" {
 	interface State extends Schema {
 		players: MapSchema<Player>;
 		readyPlayerCount: number;
+		mafiaPlayers: MapSchema<Player>;
+		voteCount: number;
+		abstentionCount: number;
+		gameState: number;
 	}
 	class Player extends Schema {
 		sessionId: string;
@@ -14,9 +18,13 @@ declare module "ZEPETO.Multiplay.Schema" {
 		transform: Transform;
 		state: number;
 		subState: number;
-		GamePlayerState: number;
 		jobState: number;
 		InGamePlayerState: number;
+		order: number;
+		gesture: string;
+		missionList: string;
+		completeMissionList: string;
+		votedCount: number;
 	}
 	class Transform extends Schema {
 		position: Vector3;
