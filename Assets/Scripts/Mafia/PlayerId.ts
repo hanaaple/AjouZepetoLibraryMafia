@@ -1,6 +1,24 @@
+import { GameObject } from "UnityEngine";
+import { Button, Image } from "UnityEngine.UI";
 import { ZepetoScriptBehaviour } from "ZEPETO.Script";
+import { InGameInteractState, JobState } from "../Constants/Enum";
 
 export default class PlayerId extends ZepetoScriptBehaviour {
   public sessionId: string;
-  public isDead: boolean = false;
+
+  public order: number;
+
+  public jobState: JobState;
+
+  public state: InGameInteractState;
+
+  public readyImage: Image;
+
+  public voteButton: Button;
+
+  public reporterUi: GameObject;
+
+  public votedCheckUI: GameObject;
+
+  public voteTargetUI: GameObject[];
 }

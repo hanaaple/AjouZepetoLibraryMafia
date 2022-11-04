@@ -1,0 +1,252 @@
+fileFormatVersion: 2
+guid: f6b0ace2c00b661488f87229b4ac7d1a
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
+    \\\"__esModule\\\", { value: true });\\r\\nconst UnityEngine_1 = require(\\\"UnityEngine\\\");\\r\\nconst
+    UnityEngine_UI_1 = require(\\\"UnityEngine.UI\\\");\\r\\nconst ZEPETO_Character_Controller_1
+    = require(\\\"ZEPETO.Character.Controller\\\");\\r\\nconst ZEPETO_Multiplay_1
+    = require(\\\"ZEPETO.Multiplay\\\");\\r\\nconst ZEPETO_Script_1 = require(\\\"ZEPETO.Script\\\");\\r\\nconst
+    ClientStarter_1 = require(\\\"../ClientStarter\\\");\\r\\nconst Enum_1 = require(\\\"../Constants/Enum\\\");\\r\\nconst
+    WaitForSecondsCash_1 = require(\\\"../WaitForSecondsCash\\\");\\r\\nconst PlayerId_1
+    = require(\\\"./PlayerId\\\");\\r\\nclass VoteManager extends ZEPETO_Script_1.ZepetoScriptBehaviour
+    {\\r\\n    constructor() {\\r\\n        super(...arguments);\\r\\n        this.isVoting
+    = false;\\r\\n    }\\r\\n    Start() {\\r\\n        ClientStarter_1.default.instance.multiplay.add_RoomJoined((room)
+    => {\\r\\n            room.add_OnStateChange((state, isFirst) => {\\r\\n               
+    if (!isFirst)\\r\\n                    return;\\r\\n                state.mafiaPlayers.add_OnRemove((player,
+    sessionId) => this.OnLeavePlayer(sessionId, player));\\r\\n            });\\r\\n           
+    ClientStarter_1.default.instance\\r\\n                .GetRoom()\\r\\n               
+    .AddMessageHandler(\\\"onReset\\\", (message) => {\\r\\n                this.Reset();\\r\\n           
+    });\\r\\n            ClientStarter_1.default.instance\\r\\n                .GetRoom()\\r\\n               
+    .AddMessageHandler(\\\"onReport\\\", (message) => {\\r\\n                if (!ClientStarter_1.default.instance\\r\\n                   
+    .GetRoom()\\r\\n                    .State.mafiaPlayers.ContainsKey(ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id))
+    {\\r\\n                    return;\\r\\n                }\\r\\n               
+    console.log(message.reporter);\\r\\n                console.log(message.corpse);\\r\\n               
+    // schema\uC5D0 \uBC88\uD638 \uBD80\uC5EC\\r\\n                // ui \uBC0F \uC560\uB2C8\uBA54\uC774\uC158
+    \uB300\uAE30 \uD6C4 \uC2E4\uD589\\r\\n                this.ReadyVote(message.reporter,
+    message.corpse);\\r\\n            });\\r\\n            ClientStarter_1.default.instance\\r\\n               
+    .GetRoom()\\r\\n                .AddMessageHandler(\\\"onVoteStart\\\", (message)
+    => {\\r\\n                if (!ClientStarter_1.default.instance\\r\\n                   
+    .GetRoom()\\r\\n                    .State.mafiaPlayers.ContainsKey(ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id))
+    {\\r\\n                    return;\\r\\n                }\\r\\n               
+    this.StartVote(message.reporter, message.corpse);\\r\\n                this.VoteCountUpdate(0,
+    0);\\r\\n            });\\r\\n            ClientStarter_1.default.instance\\r\\n               
+    .GetRoom()\\r\\n                .AddMessageHandler(\\\"onAbstain\\\", (message)
+    => {\\r\\n                if (!ClientStarter_1.default.instance\\r\\n                   
+    .GetRoom()\\r\\n                    .State.mafiaPlayers.ContainsKey(ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id))
+    {\\r\\n                    return;\\r\\n                }\\r\\n               
+    // \uBB54\uAC00\uB97C \uB744\uC6B4\uB2E4\\r\\n                // \uBA38\uB9AC
+    \uC704 \uCE74\uC6B4\uD2B8\uAC00 123 \uB298\uC5B4\uB098\uACE0 \uCE74\uBA54\uB77C\uAC00
+    \uC800\uAE30\uB85C \uC774\uB3D9\uB418\uB3C4\uB85D\\r\\n                // \uADC0\uCC2E\uB124\\r\\n               
+    // \uBAA8\uB4E0 ui \uC0AD\uC81C\\r\\n                const player = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.GetPlayer(message.playerId);\\r\\n               
+    const playerId = player.character.gameObject.GetComponent($typeof(PlayerId_1.default));\\r\\n               
+    this.OnVoteUpdate(playerId, message.voteCount, message.abstentionCount);\\r\\n           
+    });\\r\\n            ClientStarter_1.default.instance\\r\\n                .GetRoom()\\r\\n               
+    .AddMessageHandler(\\\"onVote\\\", (message) => {\\r\\n                if (!ClientStarter_1.default.instance\\r\\n                   
+    .GetRoom()\\r\\n                    .State.mafiaPlayers.ContainsKey(ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id))
+    {\\r\\n                    return;\\r\\n                }\\r\\n               
+    // \uBB54\uAC00\uB97C \uB744\uC6B4\uB2E4\\r\\n                // \uBA38\uB9AC
+    \uC704 \uCE74\uC6B4\uD2B8\uAC00 123 \uB298\uC5B4\uB098\uACE0 \uCE74\uBA54\uB77C\uAC00
+    \uC800\uAE30\uB85C \uC774\uB3D9\uB418\uB3C4\uB85D\\r\\n                // \uADC0\uCC2E\uB124\\r\\n               
+    // \uBAA8\uB4E0 ui \uC0AD\uC81C\\r\\n                const player = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.GetPlayer(message.playerId);\\r\\n               
+    const playerId = player.character.gameObject.GetComponent($typeof(PlayerId_1.default));\\r\\n               
+    const targetPlayer = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.GetPlayer(message.targetPlayerId);\\r\\n               
+    this.OnVoteUpdate(playerId, message.voteCount, message.abstentionCount);\\r\\n           
+    });\\r\\n            ClientStarter_1.default.instance\\r\\n                .GetRoom()\\r\\n               
+    .AddMessageHandler(\\\"onVoteResult\\\", (message) => {\\r\\n               
+    if (!ClientStarter_1.default.instance\\r\\n                    .GetRoom()\\r\\n                   
+    .State.mafiaPlayers.ContainsKey(ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id))
+    {\\r\\n                    return;\\r\\n                }\\r\\n               
+    this.StartCoroutine(this.EndVote());\\r\\n            });\\r\\n            this.skipButton.onClick.AddListener(()
+    => {\\r\\n                this.Abstain();\\r\\n            });\\r\\n        });\\r\\n   
+    }\\r\\n    ReadyVote(reporterId, corpseId) {\\r\\n        if (ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.GetComponent($typeof(PlayerId_1.default)).state
+    != Enum_1.InGameInteractState.ALIVE) {\\r\\n            return;\\r\\n       
+    }\\r\\n        console.log(\\\"\uD22C\uD45C \uC2DC\uC791\\\");\\r\\n        this.isVoting
+    = true;\\r\\n        const reporter = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.GetPlayer(reporterId);\\r\\n       
+    this.reporterProps = reporter.character.GetComponent($typeof(PlayerId_1.default));\\r\\n       
+    // \uC2DC\uCCB4\uB294 \uC5EC\uB7EC\uAC1C\uAC00 \uAC00\uB2A5\uD558\uB2E4. \uB2E8,
+    \uC2E0\uACE0\uD55C \uC2DC\uCCB4\uC758 id\\r\\n        // const corpse = ZepetoPlayers.instance.GetPlayer(corpseId);\\r\\n       
+    this.playerIdArray = new Array();\\r\\n        const mafiaPlayers = ClientStarter_1.default.instance.GetRoom().State.mafiaPlayers;\\r\\n       
+    mafiaPlayers.ForEach((sessionId, player) => {\\r\\n            console.log(\\\"\uD50C\uB808\uC774\uC5B4: 
+    \\\" + sessionId);\\r\\n        });\\r\\n        const mafiaPlayerCount = mafiaPlayers.Count;\\r\\n       
+    for (let count = 0, idx = 0; count < mafiaPlayerCount; idx++) {\\r\\n           
+    const t = mafiaPlayers.GetByIndex(idx);\\r\\n            if (t != null) {\\r\\n               
+    count++;\\r\\n                console.log(t + \\\", \\\" + idx + \\\"\uBC88\uC9F8\\\");\\r\\n               
+    console.log(t.sessionId);\\r\\n            }\\r\\n        }\\r\\n        mafiaPlayers.ForEach((sessionId,
+    player) => {\\r\\n            console.log(\\\"\uD50C\uB808\uC774\uC5B4 \uCD94\uAC00\\\");\\r\\n           
+    const character = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.GetPlayer(sessionId).character;\\r\\n           
+    const playerId = character.gameObject.GetComponent($typeof(PlayerId_1.default));\\r\\n           
+    if (playerId.state == Enum_1.InGameInteractState.ALIVE) {\\r\\n               
+    this.playerIdArray.push(playerId);\\r\\n                const voteTransform =
+    this.votePoints[playerId.order];\\r\\n                character.transform.position
+    = voteTransform.position;\\r\\n                character.transform.rotation =
+    voteTransform.rotation;\\r\\n            }\\r\\n        });\\r\\n        ClientStarter_1.default.instance.Teleport(ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.transform);\\r\\n       
+    console.log(this.playerIdArray.length);\\r\\n        this.SetUI(true);\\r\\n       
+    this.SetMove(false);\\r\\n        // \uC0AC\uB78C\uB4E4 \uBA38\uB9AC \uC704\uC5D0
+    ui\\r\\n        // ui\uB97C \uB204\uB974\uBA74 \uD22C\uD45C\\r\\n        // \uC790\uAE30
+    \uD22C\uD45C\uB294 \uC606\uC5D0 \uBC84\uD2BC\\r\\n        // \uC548\uB204\uB974\uBA74
+    \uAE30\uAD8C\\r\\n    }\\r\\n    StartVote(reporterId, corpseId) {\\r\\n       
+    if (ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.GetComponent($typeof(PlayerId_1.default)).state
+    != Enum_1.InGameInteractState.ALIVE) {\\r\\n            return;\\r\\n       
+    }\\r\\n        this.skipButton.gameObject.SetActive(true);\\r\\n        this.playerIdArray.forEach((item)
+    => {\\r\\n            item.voteButton.gameObject.SetActive(true);\\r\\n           
+    item.votedCheckUI.SetActive(true);\\r\\n        });\\r\\n    }\\r\\n    SetMove(isMovable)
+    {\\r\\n        if (isMovable) {\\r\\n            ZEPETO_Character_Controller_1.ZepetoPlayers.instance.characterData.walkSpeed
+    = this.walkSpeed;\\r\\n            ZEPETO_Character_Controller_1.ZepetoPlayers.instance.characterData.runSpeed
+    = this.runSpeed;\\r\\n        }\\r\\n        else {\\r\\n            this.walkSpeed
+    = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.characterData.walkSpeed;\\r\\n           
+    this.runSpeed = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.characterData.runSpeed;\\r\\n           
+    ZEPETO_Character_Controller_1.ZepetoPlayers.instance.characterData.walkSpeed
+    = 0;\\r\\n            ZEPETO_Character_Controller_1.ZepetoPlayers.instance.characterData.runSpeed
+    = 0;\\r\\n        }\\r\\n    }\\r\\n    Vote(targetSessionId) {\\r\\n       
+    // \uBAA8\uB4E0 \uBC84\uD2BC \uC5C6\uC560\uAE30\\r\\n        this.playerIdArray.forEach((item)
+    => {\\r\\n            if (item.voteButton) {\\r\\n                item.voteButton.gameObject.SetActive(false);\\r\\n           
+    }\\r\\n        });\\r\\n        this.skipButton.gameObject.SetActive(false);\\r\\n       
+    // onVote\\r\\n        const data = new ZEPETO_Multiplay_1.RoomData();\\r\\n       
+    data.Add(\\\"playerId\\\", ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id);\\r\\n       
+    data.Add(\\\"targetPlayerId\\\", targetSessionId);\\r\\n        data.Add(\\\"voteCount\\\",
+    -1);\\r\\n        data.Add(\\\"abstentionCount\\\", -1);\\r\\n        ClientStarter_1.default.instance.GetRoom().Send(\\\"onVote\\\",
+    data.GetObject());\\r\\n    }\\r\\n    Abstain() {\\r\\n        this.playerIdArray.forEach((item)
+    => {\\r\\n            if (item.voteButton) {\\r\\n                item.voteButton.gameObject.SetActive(false);\\r\\n           
+    }\\r\\n        });\\r\\n        this.skipButton.gameObject.SetActive(false);\\r\\n       
+    const data = new ZEPETO_Multiplay_1.RoomData();\\r\\n        data.Add(\\\"playerId\\\",
+    ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id);\\r\\n       
+    data.Add(\\\"voteCount\\\", -1);\\r\\n        data.Add(\\\"abstentionCount\\\",
+    -1);\\r\\n        console.log(\\\"\uAE30\uAD8C\\\");\\r\\n        ClientStarter_1.default.instance.GetRoom().Send(\\\"onAbstain\\\",
+    data.GetObject());\\r\\n    }\\r\\n    // message\uC5D0 \uC758\uD55C \uD22C\uD45C
+    \uC2DC \uC2E4\uD589\\r\\n    OnVoteUpdate(playerId, voteCount, abstentionCount)
+    {\\r\\n        if (ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.GetComponent($typeof(PlayerId_1.default)).state
+    == Enum_1.InGameInteractState.ALIVE) {\\r\\n            playerId.votedCheckUI.GetComponent($typeof(UnityEngine_UI_1.Image)).sprite
+    = this.voteCheckSprite;\\r\\n            this.VoteCountUpdate(voteCount, abstentionCount);\\r\\n       
+    }\\r\\n    }\\r\\n    VoteCountUpdate(voteCount, abstentionCount) {\\r\\n       
+    console.log(\\\"\uD22C\uD45C \uC218: \\\" + voteCount + \\\" \\\" + abstentionCount);\\r\\n       
+    this.skipText.text = abstentionCount.toString();\\r\\n        this.voteText.text
+    = (voteCount - abstentionCount).toString();\\r\\n        // \uD22C\uD45C\uD55C
+    \uD50C\uB808\uC774\uC5B4 \uCCB4\uD06C \uD45C\uC2DC\\r\\n    }\\r\\n    *EndVote()
+    {\\r\\n        // \uBB54\uAC00\uB97C \uB744\uC6B4\uB2E4\\r\\n        // \uBA38\uB9AC
+    \uC704 \uCE74\uC6B4\uD2B8\uAC00 123 \uB298\uC5B4\uB098\uACE0 \uCE74\uBA54\uB77C\uAC00
+    \uC800\uAE30\uB85C \uC774\uB3D9\uB418\uB3C4\uB85D\\r\\n        // \uADC0\uCC2E\uB124\\r\\n       
+    // \uBAA8\uB4E0 ui \uC0AD\uC81C\\r\\n        if (ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.GetComponent($typeof(PlayerId_1.default)).state
+    != Enum_1.InGameInteractState.ALIVE) {\\r\\n            return;\\r\\n       
+    }\\r\\n        console.log(\\\"\uD22C\uD45C \uB05D\\\");\\r\\n        // \uD22C\uD45C
+    \uC218 \uC9D1\uACC4\\r\\n        const state = ClientStarter_1.default.instance.GetRoom().State;\\r\\n       
+    let index = 0;\\r\\n        // 0 ~ 3\uAE4C\uC9C0 4\uBC88\\r\\n        while (true)
+    {\\r\\n            let isContinue = false;\\r\\n            console.log(\\\"\uC778\uB371\uC2A4:
+    \\\" + index);\\r\\n            this.playerIdArray.forEach((playerId) => {\\r\\n               
+    const player = state.mafiaPlayers.get_Item(playerId.sessionId);\\r\\n               
+    if (playerId.state != Enum_1.InGameInteractState.ALIVE) {\\r\\n                   
+    return;\\r\\n                }\\r\\n                console.log(playerId.sessionId
+    + \\\" \uD50C\uB808\uC774\uC5B4\uAC00 \uD22C\uD45C \uB2F9\uD55C \uC218: \\\"
+    + player.votedCount);\\r\\n                if (index < player.votedCount) {\\r\\n                   
+    isContinue = true;\\r\\n                    // \uC5C5\uB370\uC774\uD2B8\\r\\n                   
+    console.log(playerId.sessionId + \\\" \uD50C\uB808\uC774\uC5B4\uAC00 \\\" + index
+    + \\\"\uBC88 \uC9C0\uBAA9\uB2F9\uD568\\\");\\r\\n                    console.log(playerId.voteTargetUI.length);\\r\\n                   
+    console.log(playerId.voteTargetUI[index]);\\r\\n                    playerId.voteTargetUI[index].SetActive(true);\\r\\n               
+    }\\r\\n            });\\r\\n            console.log(\\\"\uAE30\uAD8C \uC218:
+    \\\" + state.abstentionCount);\\r\\n            if (index < state.abstentionCount)
+    {\\r\\n                // isContinue = true;\\r\\n                // \uC5C5\uB370\uC774\uD2B8\\r\\n           
+    }\\r\\n            yield yield WaitForSecondsCash_1.default.instance.WaitForSeconds(0.5);\\r\\n           
+    if (!isContinue) {\\r\\n                break;\\r\\n            }\\r\\n           
+    index++;\\r\\n        }\\r\\n        yield WaitForSecondsCash_1.default.instance.WaitForSeconds(1);\\r\\n       
+    this.isVoting = false;\\r\\n        this.SetMove(true);\\r\\n        this.SetUI(false);\\r\\n   
+    }\\r\\n    SetUI(isOn) {\\r\\n        if (!this.playerIdArray) {\\r\\n           
+    return;\\r\\n        }\\r\\n        // this.votePanel.gameObject.SetActive(isOn);\\r\\n       
+    console.log(\\\"ui \uC138\uD305\\\");\\r\\n        console.log(this.playerIdArray);\\r\\n       
+    console.log(this.playerIdArray.length);\\r\\n        if (isOn) {\\r\\n           
+    this.playerIdArray.forEach((item) => {\\r\\n                console.log(item.sessionId);\\r\\n               
+    if (item.state != Enum_1.InGameInteractState.ALIVE) {\\r\\n                   
+    console.log(\\\"\uC624\uB958\uC624\uB958\uC624\uB958\\\");\\r\\n               
+    }\\r\\n                // if (!zepetoPlayer.isLocalPlayer) {\\r\\n               
+    // const playerId = corpse.character.GetComponent<PlayerId>();\\r\\n               
+    const voteButton = UnityEngine_1.GameObject.Instantiate(this.reportButtonPrefab,
+    this.tempVotePanel);\\r\\n                item.voteButton = voteButton.GetComponent($typeof(UnityEngine_UI_1.Button));\\r\\n               
+    item.voteButton.onClick.AddListener(() => {\\r\\n                    this.Vote(item.sessionId);\\r\\n               
+    });\\r\\n                item.votedCheckUI = UnityEngine_1.GameObject.Instantiate(this.voteCheckUIPrefab,
+    this.tempVotePanel);\\r\\n                item.voteTargetUI = new Array();\\r\\n               
+    console.log(this.playerIdArray.length + \\\"\uAC1C \uB123\uAE30\\\");\\r\\n               
+    for (let i = 0; i < this.playerIdArray.length; i++) {\\r\\n                   
+    item.voteTargetUI.push(UnityEngine_1.GameObject.Instantiate(this.voteTargetUIPrefab,
+    this.tempVotePanel));\\r\\n                }\\r\\n                item.voteButton.gameObject.SetActive(false);\\r\\n               
+    this.skipButton.gameObject.SetActive(false);\\r\\n                item.voteTargetUI.forEach((voteTarget)
+    => {\\r\\n                    voteTarget.gameObject.SetActive(false);\\r\\n               
+    });\\r\\n                item.votedCheckUI.SetActive(false);\\r\\n           
+    });\\r\\n            this.reporterProps.reporterUi = UnityEngine_1.GameObject.Instantiate(this.reporterUiPrefab,
+    this.tempVotePanel);\\r\\n        }\\r\\n        else {\\r\\n            this.playerIdArray.forEach((item)
+    => {\\r\\n                if (item.voteTargetUI) {\\r\\n                    item.voteTargetUI.forEach((voteTarget)
+    => {\\r\\n                        UnityEngine_1.GameObject.Destroy(voteTarget);\\r\\n                   
+    });\\r\\n                    item.voteTargetUI = null;\\r\\n                }\\r\\n               
+    if (item.voteButton) {\\r\\n                    UnityEngine_1.GameObject.Destroy(item.voteButton.gameObject);\\r\\n                   
+    item.voteButton = null;\\r\\n                }\\r\\n                if (item.votedCheckUI)
+    {\\r\\n                    UnityEngine_1.GameObject.Destroy(item.votedCheckUI);\\r\\n                   
+    item.votedCheckUI = null;\\r\\n                }\\r\\n            });\\r\\n           
+    this.skipButton.gameObject.SetActive(false);\\r\\n            if (this.reporterProps)
+    {\\r\\n                if (this.reporterProps.reporterUi) {\\r\\n                   
+    UnityEngine_1.GameObject.Destroy(this.reporterProps.reporterUi);\\r\\n                   
+    this.reporterProps.reporterUi = null;\\r\\n                }\\r\\n               
+    this.reporterProps = null;\\r\\n            }\\r\\n            this.playerIdArray
+    = new Array();\\r\\n        }\\r\\n    }\\r\\n    Update() {\\r\\n        if
+    (!this.isVoting) {\\r\\n            return;\\r\\n        }\\r\\n        const
+    camera = ZEPETO_Character_Controller_1.ZepetoPlayers.instance.ZepetoCamera.camera;\\r\\n       
+    this.playerIdArray.forEach((item) => {\\r\\n            if (!item.voteButton)
+    {\\r\\n                console.log(\\\"\uB9AC\uD3EC\uD2B8 \uBC84\uD2BC \uC5C6\uC74C
+    \uC774\uC0C1\uD568 \uC624\uB958\\\");\\r\\n                return;\\r\\n           
+    }\\r\\n            item.voteButton.transform.position = camera.WorldToScreenPoint(UnityEngine_1.Vector3.op_Addition(item.transform.position,
+    UnityEngine_1.Vector3.op_Addition(UnityEngine_1.Vector3.op_Addition(UnityEngine_1.Vector3.op_Multiply(this.voteButtonOffset.x,
+    item.transform.right), UnityEngine_1.Vector3.op_Multiply(this.voteButtonOffset.y,
+    item.transform.up)), UnityEngine_1.Vector3.op_Multiply(this.voteButtonOffset.z,
+    item.transform.forward))));\\r\\n            item.votedCheckUI.transform.position
+    = camera.WorldToScreenPoint(UnityEngine_1.Vector3.op_Addition(item.transform.position,
+    UnityEngine_1.Vector3.op_Addition(UnityEngine_1.Vector3.op_Addition(UnityEngine_1.Vector3.op_Multiply(this.voteCheckOffset.x,
+    item.transform.right), UnityEngine_1.Vector3.op_Multiply(this.voteCheckOffset.y,
+    item.transform.up)), UnityEngine_1.Vector3.op_Multiply(this.voteCheckOffset.z,
+    item.transform.forward))));\\r\\n            if (item.voteTargetUI) {\\r\\n               
+    item.voteTargetUI.forEach((voteTargetUI, idx) => {\\r\\n                    if
+    (voteTargetUI && voteTargetUI.activeSelf) {\\r\\n                        voteTargetUI.transform.position
+    = camera.WorldToScreenPoint(UnityEngine_1.Vector3.op_Addition(item.transform.position,
+    UnityEngine_1.Vector3.op_Addition(UnityEngine_1.Vector3.op_Addition(UnityEngine_1.Vector3.op_Addition(UnityEngine_1.Vector3.op_Multiply(this.voteTargetUIOffset.x,
+    item.transform.right), UnityEngine_1.Vector3.op_Multiply(this.voteTargetUIOffset.y,
+    item.transform.up)), UnityEngine_1.Vector3.op_Multiply(this.voteTargetUIOffset.z,
+    item.transform.forward)), UnityEngine_1.Vector3.op_Addition(UnityEngine_1.Vector3.op_Addition(UnityEngine_1.Vector3.op_Multiply(idx,
+    UnityEngine_1.Vector3.op_Multiply(this.voteTargetUIHorOffset.x, item.transform.right)),
+    UnityEngine_1.Vector3.op_Multiply(idx, UnityEngine_1.Vector3.op_Multiply(this.voteTargetUIHorOffset.y,
+    item.transform.up))), UnityEngine_1.Vector3.op_Multiply(idx, UnityEngine_1.Vector3.op_Multiply(this.voteTargetUIHorOffset.z,
+    item.transform.forward))))));\\r\\n                    }\\r\\n               
+    });\\r\\n            }\\r\\n        });\\r\\n        if (this.reporterProps.reporterUi)
+    {\\r\\n            this.reporterProps.reporterUi.transform.position =\\r\\n               
+    camera.WorldToScreenPoint(UnityEngine_1.Vector3.op_Addition(this.reporterProps.transform.position,
+    UnityEngine_1.Vector3.op_Addition(UnityEngine_1.Vector3.op_Addition(UnityEngine_1.Vector3.op_Multiply(this.reporterOffset.x,
+    this.reporterProps.transform.right), UnityEngine_1.Vector3.op_Multiply(this.reporterOffset.y,
+    this.reporterProps.transform.up)), UnityEngine_1.Vector3.op_Multiply(this.reporterOffset.z,
+    this.reporterProps.transform.forward))));\\r\\n        }\\r\\n    }\\r\\n   
+    OnLeavePlayer(sessionId, player) {\\r\\n        const mafiaPlayerId = ZEPETO_Character_Controller_1.ZepetoPlayers.instance\\r\\n           
+    .GetPlayer(sessionId)\\r\\n            .character.GetComponent($typeof(PlayerId_1.default));\\r\\n       
+    if (mafiaPlayerId) {\\r\\n            if (mafiaPlayerId.voteButton) {\\r\\n               
+    UnityEngine_1.GameObject.Destroy(mafiaPlayerId.voteButton.gameObject);\\r\\n               
+    mafiaPlayerId.voteButton = null;\\r\\n            }\\r\\n            if (mafiaPlayerId.votedCheckUI)
+    {\\r\\n                UnityEngine_1.GameObject.Destroy(mafiaPlayerId.votedCheckUI);\\r\\n               
+    mafiaPlayerId.votedCheckUI = null;\\r\\n            }\\r\\n        }\\r\\n       
+    if (this.reporterProps) {\\r\\n            if (this.reporterProps.sessionId ==
+    sessionId) {\\r\\n                if (this.reporterProps.reporterUi) {\\r\\n                   
+    UnityEngine_1.GameObject.Destroy(this.reporterProps.reporterUi);\\r\\n                   
+    this.reporterProps.reporterUi = null;\\r\\n                }\\r\\n               
+    this.reporterProps = null;\\r\\n            }\\r\\n        }\\r\\n    }\\r\\n   
+    Reset() {\\r\\n        this.SetUI(false);\\r\\n    }\\r\\n}\\r\\nexports.default
+    = VoteManager;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVm90ZU1hbmFnZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJWb3RlTWFuYWdlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLDZDQUFxRTtBQUNyRSxtREFBcUQ7QUFDckQsNkVBQTREO0FBQzVELHVEQUFrRDtBQUVsRCxpREFBc0Q7QUFDdEQsb0RBQTZDO0FBQzdDLDRDQUF3RDtBQUN4RCw4REFBdUQ7QUFDdkQseUNBQWtDO0FBRWxDLE1BQXFCLFdBQVksU0FBUSxxQ0FBcUI7SUFBOUQ7O1FBZ0RVLGFBQVEsR0FBWSxLQUFLLENBQUM7SUE2aUJwQyxDQUFDO0lBeGlCQyxLQUFLO1FBQ0gsdUJBQWEsQ0FBQyxRQUFRLENBQUMsU0FBUyxnQkFBZSxDQUFDLElBQVUsRUFBRSxFQUFFO1lBQzVELElBQUksbUJBQWtCLENBQUMsS0FBWSxFQUFFLE9BQWdCLEVBQUUsRUFBRTtnQkFDdkQsSUFBSSxDQUFDLE9BQU87b0JBQUUsT0FBTztnQkFFckIsS0FBSyxDQUFDLFlBQVksY0FBYSxDQUFDLE1BQWMsRUFBRSxTQUFpQixFQUFFLEVBQUUsQ0FDbkUsSUFBSSxDQUFDLGFBQWEsQ0FBQyxTQUFTLEVBQUUsTUFBTSxDQUFDLEVBQUM7WUFDMUMsQ0FBQyxFQUFDO1lBRUYsdUJBQWEsQ0FBQyxRQUFRO2lCQUNuQixPQUFPLEVBQUU7aUJBQ1QsaUJBQWlCLENBQUMsU0FBUyxFQUFFLENBQUMsT0FBWSxFQUFFLEVBQUU7Z0JBQzdDLElBQUksQ0FBQyxLQUFLLEVBQUUsQ0FBQztZQUNmLENBQUMsQ0FBQyxDQUFDO1lBQ0wsdUJBQWEsQ0FBQyxRQUFRO2lCQUNuQixPQUFPLEVBQUU7aUJBQ1QsaUJBQWlCLENBQUMsVUFBVSxFQUFFLENBQUMsT0FBWSxFQUFFLEVBQUU7Z0JBQzlDLElBQ0UsQ0FBQyx1QkFBYSxDQUFDLFFBQVE7cUJBQ3BCLE9BQU8sRUFBRTtxQkFDVCxLQUFLLENBQUMsWUFBWSxDQUFDLFdBQVcsQ0FDN0IsMkNBQWEsQ0FBQyxRQUFR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\",\"assetPath\":\"Assets/Scripts/Mafia/VoteManager.ts\",\"manifest\":{\"properties\":[{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"votePoints\",\"type\":\"UnityEngine.Transform[]\",\"isArray\":true,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[{\"name\":\"SerializeField\",\"args\":[]}]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"votePanel\",\"type\":\"UnityEngine.Transform\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[{\"name\":\"SerializeField\",\"args\":[]}]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"tempVotePanel\",\"type\":\"UnityEngine.Transform\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[{\"name\":\"SerializeField\",\"args\":[]}]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"reportButtonPrefab\",\"type\":\"UnityEngine.GameObject\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[{\"name\":\"SerializeField\",\"args\":[]}]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"reporterUiPrefab\",\"type\":\"UnityEngine.GameObject\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[{\"name\":\"SerializeField\",\"args\":[]}]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"voteCheckUIPrefab\",\"type\":\"UnityEngine.GameObject\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[{\"name\":\"SerializeField\",\"args\":[]}]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"voteTargetUIPrefab\",\"type\":\"UnityEngine.GameObject\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[{\"name\":\"SerializeField\",\"args\":[]}]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"voteUnCheckSprite\",\"type\":\"UnityEngine.Sprite\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[{\"name\":\"SerializeField\",\"args\":[]}]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"voteCheckSprite\",\"type\":\"UnityEngine.Sprite\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[{\"name\":\"SerializeField\",\"args\":[]}]},{\"assembly\":\"UnityEngine.UI\",\"name\":\"voteText\",\"type\":\"UnityEngine.UI.Text\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[{\"name\":\"SerializeField\",\"args\":[]}]},{\"assembly\":\"UnityEngine.UI\",\"name\":\"skipText\",\"type\":\"UnityEngine.UI.Text\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[{\"name\":\"SerializeField\",\"args\":[]}]},{\"assembly\":\"UnityEngine.UI\",\"name\":\"skipButton\",\"type\":\"UnityEngine.UI.Button\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[{\"name\":\"SerializeField\",\"args\":[]}]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"voteCheckOffset\",\"type\":\"UnityEngine.Vector3\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[{\"name\":\"SerializeField\",\"args\":[]}]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"voteButtonOffset\",\"type\":\"UnityEngine.Vector3\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[{\"name\":\"SerializeField\",\"args\":[]}]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"voteTargetUIHorOffset\",\"type\":\"UnityEngine.Vector3\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[{\"name\":\"SerializeField\",\"args\":[]}]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"voteTargetUIOffset\",\"type\":\"UnityEngine.Vector3\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[{\"name\":\"SerializeField\",\"args\":[]}]},{\"assembly\":\"UnityEngine.CoreModule\",\"name\":\"reporterOffset\",\"type\":\"UnityEngine.Vector3\",\"isArray\":false,\"initValue\":[],\"enumKeys\":[],\"enumValues\":[],\"attributes\":[{\"name\":\"SerializeField\",\"args\":[]}]}],\"name\":\"VoteManager\",\"description\":\"\"},\"isCompiled\":true}"
+  typescriptHash: bda224fd678b5580bc7e87b4ceb6a8e5
+  onlyWriteTrigger: 0

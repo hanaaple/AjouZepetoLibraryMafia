@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4818769624211104}
   - component: {fileID: 33360843588569024}
   - component: {fileID: 23888965598182324}
-  - component: {fileID: 95773186166916612}
+  - component: {fileID: 1514585871696042074}
   m_Layer: 0
   m_Name: metal_fence_broken01
   m_TagString: Untagged
@@ -49,9 +49,9 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1551747197020394}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -82,25 +82,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &95773186166916612
-Animator:
-  serializedVersion: 3
+--- !u!65 &1514585871696042074
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1551747197020394}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 5ea289d208d6b134d8442b6f6268202c, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  serializedVersion: 2
+  m_Size: {x: 1.9508667, y: 1.7196637, z: 0.4078894}
+  m_Center: {x: 0.0096717775, y: 0.7247866, z: -0.009777874}
 --- !u!1 &1566264691576832
 GameObject:
   m_ObjectHideFlags: 0

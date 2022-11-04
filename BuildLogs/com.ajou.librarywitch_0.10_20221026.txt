@@ -1,0 +1,877 @@
+[World Settings]
+world id             com.ajou.librarywitch
+version              0.10                
+max clients          8                   
+orientation          horizontal          
+disable invite       false               
+disable room list    false               
+disable private room true                
+
+[Build Manifest]
+[scenes]
+339 kb               assets/scenes/buildscene.unity
+[assets]
+3 kb                 assets/art/prefabs/map/1f/toilet_board_woman.prefab
+123 kb               assets/art/purchased asset/halloween_asset/meshes/tree.fbx
+271 kb               assets/art/modelings/1f/newbookarchive_chair1.fbx
+2 kb                 assets/art/materials/info_3f_1.mat
+35 kb                assets/art/purchased asset/halloween_asset/meshes/hat_witch.fbx
+4 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/coffin_base_02.prefab
+35 kb                packages/zepeto.character.controller/runtime/_resources/inputactions/zepetoinputcontrol.inputactions
+3 kb                 assets/art/prefabs/map/info/floor_info_3_4.prefab
+3 kb                 assets/art/prefabs/map/1f/multimedia_wheelchair.prefab
+43 kb                assets/art/ui/mafia/지도/맵_바깥.png
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/lantern_candles_albedo.mat
+22 kb                assets/art/purchased asset/halloween_asset/meshes/stone03.fbx
+793 kb               assets/art/modelings/center_terrass_chair.fbx
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/grass_mesh_01.prefab
+2 kb                 assets/art/prefabs/map/rooftop/beer1.prefab
+2 kb                 assets/art/materials/blinn1.mat
+16 kb                assets/art/purchased asset/coreywilton/halloweenprops/meshes/sm_gravestoneslab_02.fbx
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/pumpkin04.prefab
+48 kb                assets/art/purchased asset/coreywilton/halloweenprops/meshes/sm_gravestonecross_02.fbx
+100 kb               assets/art/purchased asset/bird flocks/roaming bats/models/bat mdl @batsoar.fbx
+281 kb               assets/art/modelings/1f/newbookarchive_wheelchair.fbx
+1 mb                 packages/zepeto.character.controller/runtime/_resources/animations/base/walk.anim
+29 kb                assets/art/purchased asset/halloween_asset/meshes/coffin_open.fbx
+3 kb                 assets/art/prefabs/map/1f/hall_bench.prefab
+5 kb                 assets/art/prefabs/map/cafe/window_table.prefab
+2 kb                 assets/art/prefabs/map/info/info_3f_2.prefab
+2 kb                 assets/art/materials/rock_texture.mat
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/potion04.prefab
+768 kb               assets/art/purchased asset/coreywilton/halloweenprops/textures/t_candle_08_albedotransparency.tga
+4 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/gravestone_04.prefab
+8 kb                 assets/art/purchased asset/3d lowpoly tree pack/prefabs/tree03.prefab
+306 kb               assets/animator/zepetoanimatorv2.controller
+1 mb                 assets/art/modelings/234f/small_sofa3.fbx
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/coffin.prefab
+22 kb                assets/art/purchased asset/coreywilton/halloweenprops/meshes/sm_gravestonecross_01.fbx
+14 kb                assets/art/ui/mafia/게임준비/직업_시민.png
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/pounder.prefab
+278 kb               assets/art/modelings/1f/revolving_door.fbx
+258 kb               assets/art/modelings/1f/multimedia_dvd_speaker.fbx
+12 mb                assets/art/purchased asset/coreywilton/halloweenprops/textures/t_carvedpumpkin_02_albedotransparency.tga
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/scarecrow_albedo.mat
+2 mb                 assets/art/purchased asset/3d lowpoly tree pack/texture/tree05_trunk.png
+34 kb                assets/art/modelings/rooftop/beanpack4.fbx
+4 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/gravestonecross_01.prefab
+22 kb                assets/art/purchased asset/halloween_asset/meshes/stone_round.fbx
+25 kb                assets/art/purchased asset/coreywilton/halloweenprops/meshes/sm_candle_05.fbx
+2 kb                 assets/art/prefabs/map/rooftop/tent.prefab
+27 kb                packages/zepeto.character.controller/runtime/_resources/prefabs/uicontroller_touchpad_horizontal.prefab
+5 kb                 assets/art/prefabs/map/cafe/cafetable_small.prefab
+574 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/v2/landingroll.anim
+2 kb                 assets/art/purchased asset/3d lowpoly tree pack/texture/materials/tree02_trunk.mat
+137 kb               assets/art/purchased asset/halloween_asset/textures/pumpkin_01_albedo.png
+2 kb                 assets/art/prefabs/map/rooftop/chair1.prefab
+2 kb                 assets/art/materials/rooftop_terrass_ver2.mat
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/pumpkin_01_albedo.mat
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/stones_albedo.mat
+2 kb                 assets/art/ui/mafia/투표/투표_신고자표시.png
+27 kb                packages/zepeto.character.controller/runtime/_resources/prefabs/uicontroller_touchpad_vertical.prefab
+3 kb                 assets/art/prefabs/map/234f/newbookarchive_chair.prefab
+465 kb               assets/art/textures/cafe_interior_ver1.png
+7 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/candle_08_purple.prefab
+2 kb                 assets/art/prefabs/map/rooftop/table_big.prefab
+1 kb                 packages/com.unity.inputsystem/inputsystem/editor/icons/inputsystemuiinputmodule@64.png
+10 kb                assets/art/ui/mafia/미션, 마피아 기본버튼/미션버튼.png
+2 kb                 assets/art/prefabs/map/234f/cnlounge_hallwall.prefab
+768 kb               assets/art/purchased asset/coreywilton/halloweenprops/textures/t_candle_01_albedotransparency.tga
+3 mb                 assets/art/purchased asset/little_ghost_hq/textures/ghost_male/skin_03/littleghost_for substance v2_ghost1_albedotransparency.png
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/lantern.prefab
+495 kb               assets/art/modelings/cafe/cafetable_big.fbx
+1 mb                 assets/art/modelings/234f/datapc_desk.fbx
+54 kb                assets/art/purchased asset/3d lowpoly tree pack/model/tree04_leaves.fbx
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/candy09.prefab
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/mashroom02.prefab
+3 kb                 assets/art/prefabs/map/1f/cnlounge_cleanwall.prefab
+286 kb               assets/art/modelings/1f/multimedia_wheelchair.fbx
+12 mb                assets/art/purchased asset/coreywilton/halloweenprops/textures/t_gravestone_04_albedotransparency.tga
+51 kb                assets/art/textures/texture_etc.png
+2 kb                 assets/art/purchased asset/coreywilton/halloweenprops/materials/m_gravestone_01.mat
+1 mb                 assets/art/modelings/1f/cnlounge_desk_person.fbx
+10 kb                assets/art/ui/mafia/투표/투표시간.png
+114 kb               assets/art/purchased asset/halloween_asset/textures/cauldron_albedo.png
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/grass_mesh_05.prefab
+2 kb                 assets/art/prefabs/map/1f/multimedia_computer_set.prefab
+268 kb               assets/art/purchased asset/halloween_asset/textures/bonfire_albedo.png
+5 kb                 assets/art/prefabs/map/cafe/kiosk.prefab
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/potion01.prefab
+6 kb                 assets/art/ui/mafia/게임준비/플레이어수.png
+3 kb                 assets/art/ui/mafia/지도/2층버튼.png
+12 mb                assets/art/purchased asset/coreywilton/halloweenprops/textures/t_coffin_lid_03_albedotransparency.tga
+168 kb               assets/art/purchased asset/halloween_asset/textures/coffin_albedo.png
+62 kb                packages/zepeto.character.controller/runtime/_resources/animations/base/gesture.anim
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/grave01_albedo.mat
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/stone_rune01.prefab
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/pumpkin03_emmisive.prefab
+31 kb                assets/art/purchased asset/halloween_asset/meshes/lantern.fbx
+2 kb                 assets/art/purchased asset/coreywilton/halloweenprops/materials/m_gravestone_03.mat
+3 kb                 assets/art/prefabs/map/234f/magazine_bookself1.prefab
+54 kb                assets/art/textures/ari.png
+2 kb                 assets/art/purchased asset/coreywilton/halloweenprops/materials/m_candle_08.mat
+187 kb               assets/art/purchased asset/halloween_asset/textures/grave_soil_albedo.png
+28 kb                assets/art/purchased asset/halloween_asset/meshes/candy02.fbx
+2 kb                 assets/art/prefabs/game/votetargetuiprefab.prefab
+25 kb                assets/art/purchased asset/halloween_asset/meshes/grass_mesh_02.fbx
+2 kb                 assets/art/purchased asset/coreywilton/halloweenprops/materials/m_candle_07.mat
+3 kb                 assets/art/prefabs/map/1f/hall_sofa2.prefab
+3 kb                 assets/art/prefabs/map/info/loan_info1.prefab
+560 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/idle.anim
+8 kb                 assets/art/purchased asset/3d lowpoly tree pack/prefabs/tree01.prefab
+69 kb                assets/art/purchased asset/halloween_asset/meshes/skeleton_pile.fbx
+25 kb                assets/art/purchased asset/halloween_asset/meshes/potion03.fbx
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/bonfire.prefab
+33 kb                assets/art/purchased asset/3d lowpoly tree pack/model/tree04_trunk.fbx
+7 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/carvedpumpkin_02_g.prefab
+4 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/gravestoneslab_02.prefab
+768 kb               assets/art/purchased asset/coreywilton/halloweenprops/textures/t_candle_06_albedotransparency.tga
+147 kb               assets/art/purchased asset/halloween_asset/textures/metal_fence_albedo.png
+18 kb                assets/art/ui/mafia/지도/맵_2층.png
+2 mb                 assets/art/purchased asset/bird flocks/roaming bats/textures/bat tex.png
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/grass_mesh_albedo.mat
+28 kb                assets/art/purchased asset/halloween_asset/meshes/signpost.fbx
+720 kb               assets/art/purchased asset/halloween_asset/textures/tree_albedo.png
+27 kb                assets/art/purchased asset/halloween_asset/meshes/candy08.fbx
+1 mb                 assets/art/modelings/3floor.fbx
+1 mb                 assets/animator/animation/typing.fbx
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/grass_mesh_o_albedo.mat
+1 kb                 assets/audio/mixer/audiomixer.mixer
+17 kb                assets/art/purchased asset/coreywilton/halloweenprops/meshes/sm_gravestone_04.fbx
+257 kb               assets/art/modelings/1f/toilet_board_man.fbx
+828 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/v2/moveturn.anim
+24 kb                assets/art/purchased asset/halloween_asset/meshes/bench.fbx
+7 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/carvedpumpkin_02_y 1.prefab
+132 kb               assets/art/purchased asset/halloween_asset/textures/grass_mesh_albedo.png
+2 kb                 assets/art/ui/mafia/지도/나가기버튼.png
+510 kb               assets/animator/animation/button pushing.fbx
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/candy07.prefab
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/grave_soil_albedo.mat
+2 kb                 assets/art/purchased asset/coreywilton/halloweenprops/materials/m_candle_06.mat
+2 kb                 assets/art/prefabs/map/rooftop/beanpack1.prefab
+2 kb                 assets/art/prefabs/map/rooftop/screen.prefab
+80 kb                assets/art/purchased asset/3d lowpoly tree pack/model/tree01_trunk.fbx
+734 kb               assets/fonts/바른공군체(내용)/rokaf sans bold.ttf
+398 kb               assets/art/modelings/234f/new folder/big_sofa2.fbx
+35 kb                assets/art/purchased asset/halloween_asset/meshes/metal_fence.fbx
+12 mb                assets/art/purchased asset/coreywilton/halloweenprops/textures/t_gravestonetall_01_albedotransparency.tga
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/pumpkin03_albedo.mat
+12 mb                assets/art/purchased asset/coreywilton/halloweenprops/textures/t_coffin_base_03_albedotransparency.tga
+1 mb                 packages/zepeto.character.controller/runtime/_resources/animations/base/jump_idle.anim
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/candy02.prefab
+2 kb                 assets/art/purchased asset/3d lowpoly tree pack/texture/materials/tree03_leaves.mat
+2 kb                 packages/zepeto.character.controller/runtime/_resources/animations/ui/controller/touchpad_handle_origin_off.anim
+1 mb                 assets/art/modelings/1f/multimedia_dvd_shelf.fbx
+2 kb                 assets/art/prefabs/map/pumpkin_light_purple.prefab
+2 kb                 assets/art/purchased asset/coreywilton/halloweenprops/materials/m_candle_04.mat
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/pumpkin01.prefab
+17 kb                assets/art/purchased asset/coreywilton/halloweenprops/meshes/sm_coffin_lid_01.fbx
+627 kb               assets/art/prefabs/map/1f.prefab
+66 kb                assets/art/ui/mafia/게임방법/게임방법_시민.png
+2 kb                 assets/art/purchased asset/coreywilton/halloweenprops/materials/m_candle_02.mat
+4 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/gravestoneslab_01.prefab
+5 kb                 packages/zepeto.character.controller/runtime/_resources/images/touchpad_handle_icon.png
+5 kb                 packages/zepeto.character.controller/runtime/_resources/images/touchpad_jump_icon.png
+4 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/coffin_base_03.prefab
+16 kb                assets/art/purchased asset/coreywilton/halloweenprops/meshes/sm_coffin_base_02.fbx
+69 kb                assets/art/modelings/info/loan_info1.fbx
+7 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/carvedpumpkin_01_g.prefab
+1 mb                 assets/art/modelings/1f/newbookarchive_exhibition.fbx
+69 kb                assets/art/modelings/info/loan_info2.fbx
+3 kb                 assets/art/prefabs/map/1f/multimedia_dvd_shelf.prefab
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/skeleton.prefab
+67 kb                assets/art/purchased asset/coreywilton/halloweenprops/meshes/sm_carvedpumpkin_01.fbx
+2 kb                 assets/art/prefabs/map/rooftop/plate.prefab
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/stump_albedo.mat
+5 kb                 assets/art/prefabs/map/rooftop/lamp_black.prefab
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/stone01.prefab
+516 kb               assets/art/textures/cafe_ver1.png
+2 kb                 assets/art/prefabs/map/cafe/cafetable_big.prefab
+3 kb                 assets/art/prefabs/map/library_common/multimedia_keyboard.prefab
+2 kb                 assets/art/modelings/materials/lambert5.mat
+306 kb               assets/animator/diedanimator.controller
+31 kb                assets/art/purchased asset/halloween_asset/meshes/crystal_ball.fbx
+2 kb                 assets/art/prefabs/map/rooftop/chair3.prefab
+3 kb                 assets/art/prefabs/game/reportbuttonprefab.prefab
+189 kb               assets/art/modelings/stairs.fbx
+258 kb               assets/art/modelings/books/whitebook.fbx
+65 kb                assets/art/modelings/library_common/multimedia_computer.fbx
+34 kb                assets/art/modelings/rooftop/beer2.fbx
+66 kb                assets/art/purchased asset/coreywilton/halloweenprops/meshes/sm_carvedpumpkin_02.fbx
+161 kb               assets/art/purchased asset/halloween_asset/textures/signpost_albedo.png
+262 kb               assets/art/modelings/1f/multimedia_partition.fbx
+7 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/candle_07.prefab
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/candy08.prefab
+1 mb                 assets/animator/animation/bake barbaeque.fbx
+3 kb                 assets/art/prefabs/map/1f/newbookarchive_chair.prefab
+32 kb                assets/art/purchased asset/halloween_asset/meshes/skeleton_skull.fbx
+35 kb                assets/art/purchased asset/halloween_asset/meshes/book_stand.fbx
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/candy05.prefab
+2 kb                 assets/art/prefabs/map/books/yellowbook.prefab
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/candy03.prefab
+2 kb                 assets/art/purchased asset/coreywilton/halloweenprops/materials/m_gravestone_04.mat
+28 kb                assets/art/purchased asset/halloween_asset/meshes/candy04.fbx
+36 kb                assets/art/modelings/rooftop/plate.fbx
+260 kb               assets/art/modelings/1f/cnlounge_lamp2.fbx
+12 mb                assets/art/purchased asset/coreywilton/halloweenprops/textures/t_gravestone_01_albedotransparency.tga
+95 kb                assets/art/modelings/library_common/printer.fbx
+2 kb                 assets/art/materials/default_material.mat
+10 kb                assets/art/purchased asset/little_ghost_hq/animation/little_ghost 2.controller
+21 kb                assets/art/purchased asset/halloween_asset/meshes/stone_rune02.fbx
+743 kb               assets/fonts/바른공군체(내용)/rokaf sans medium.ttf
+3 kb                 assets/art/prefabs/map/1f/loan_desk.prefab
+10 kb                assets/art/textures/info_3f_2.png
+3 kb                 assets/art/prefabs/map/234f/small_sofa1.prefab
+23 kb                assets/art/purchased asset/coreywilton/halloweenprops/meshes/sm_gravestone_03.fbx
+267 kb               assets/art/modelings/1f/multimedia_dvd_desk.fbx
+7 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/candle_04.prefab
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/candy11.prefab
+9 kb                 assets/art/purchased asset/little_ghost_hq/prefabs/lg_01.prefab
+23 kb                assets/art/purchased asset/halloween_asset/meshes/stone02.fbx
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/cauldron.prefab
+1 mb                 assets/art/modelings/2floor.fbx
+28 kb                assets/art/purchased asset/halloween_asset/meshes/candy10.fbx
+60 kb                assets/art/modelings/rooftop/parasol.fbx
+3 kb                 assets/art/prefabs/map/1f/cnlounge_wall.prefab
+757 kb               assets/art/purchased asset/3d lowpoly tree pack/texture/tree01_leaves.png
+7 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/carvedpumpkin_03_y.prefab
+260 kb               assets/art/modelings/1f/cnlounge_wall.fbx
+7 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/candle_01.prefab
+2 kb                 assets/art/prefabs/map/cafe/chair_white.prefab
+2 kb                 assets/art/materials/glow_portal 1.mat
+578 kb               assets/art/prefabs/map/2f.prefab
+2 kb                 assets/art/purchased asset/coreywilton/halloweenprops/materials/m_candle_05.mat
+4 kb                 assets/art/ui/mafia/지도/맵버튼.png
+64 kb                assets/art/purchased asset/halloween_asset/meshes/scarecrow.fbx
+4 kb                 assets/art/ui/mafia/지도/옥상정원버튼.png
+491 kb               assets/art/modelings/cafe/window_table.fbx
+2 kb                 assets/art/materials/white.mat
+29 kb                assets/art/purchased asset/halloween_asset/meshes/candy07.fbx
+19 kb                assets/art/purchased asset/coreywilton/halloweenprops/meshes/sm_coffin_base_04.fbx
+28 kb                assets/art/purchased asset/halloween_asset/meshes/book.fbx
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/mashroom03.prefab
+2 kb                 assets/art/purchased asset/coreywilton/halloweenprops/materials/m_candle_03.mat
+3 kb                 assets/art/prefabs/map/1f/gate.prefab
+17 kb                assets/art/purchased asset/coreywilton/halloweenprops/prefabs/candelabra_01_purple.prefab
+34 kb                assets/art/purchased asset/coreywilton/halloweenprops/meshes/sm_candlestick_01.fbx
+13 kb                assets/art/prefabs/map/rooftop/anchorage_set.prefab
+19 kb                assets/art/purchased asset/coreywilton/halloweenprops/meshes/sm_candle_07.fbx
+27 kb                assets/art/purchased asset/halloween_asset/meshes/candy09.fbx
+1 mb                 assets/art/modelings/celing_1f.fbx
+38 kb                assets/art/purchased asset/halloween_asset/meshes/pumpkin02.fbx
+460 kb               assets/art/purchased asset/3d lowpoly tree pack/texture/tree01_trunk.png
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/potions_albedo_01.mat
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/grass_mesh_04.prefab
+62 kb                packages/zepeto.character.controller/runtime/_resources/animations/base/action2.anim
+34 kb                assets/art/modelings/rooftop/table_big.fbx
+42 kb                assets/art/purchased asset/halloween_asset/meshes/bonfire.fbx
+257 kb               assets/art/modelings/1f/cnlounge_lamp4.fbx
+2 kb                 assets/art/modelings/materials/lambert3.mat
+66 kb                assets/art/purchased asset/coreywilton/halloweenprops/meshes/sm_carvedpumpkin_03.fbx
+2 kb                 assets/art/prefabs/map/rooftop/grill.prefab
+9 kb                 assets/art/ui/mafia/게임준비/게임준비_시작버튼.png
+3 kb                 assets/art/ui/mafia/투표/투표_스킵_갯수.png
+2 kb                 assets/art/purchased asset/coreywilton/halloweenprops/materials/m_candlestick_01.mat
+510 kb               assets/animator/animation/order beverage.fbx
+1 mb                 assets/art/textures/line_glow.png
+69 kb                assets/art/modelings/library_common/bookloan.fbx
+8 kb                 assets/art/ui/mafia/게임준비/게임준비_준비완료.png
+27 kb                assets/art/purchased asset/halloween_asset/meshes/candy11.fbx
+4 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/gravestonecross_02.prefab
+7 kb                 packages/zepeto.character.controller/runtime/_resources/animatorcontroller/uicontrollertouchpadhandle.controller
+70 kb                assets/art/modelings/info/floor_info_2_3.fbx
+196 kb               assets/art/purchased asset/halloween_asset/textures/stump_albedo.png
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/skeleton_skull.prefab
+7 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/candlestick_01.prefab
+3 kb                 assets/art/prefabs/map/info/loan_info2.prefab
+3 kb                 assets/art/prefabs/map/library_common/tray.prefab
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/wooden_fence_albedo.mat
+489 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/v2/movewalkfast.anim
+25 kb                assets/art/purchased asset/coreywilton/halloweenprops/meshes/sm_candle_03.fbx
+6 kb                 assets/art/textures/rooftop_terrass_ver2.png
+130 kb               assets/art/purchased asset/halloween_asset/textures/pumpkin03_albedo.png
+12 kb                packages/zepeto.character.controller/runtime/_resources/images/touchpad_jump_base.png
+3 kb                 assets/art/ui/mafia/지도/3층버튼.png
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/grass_mesh_03.prefab
+690 kb               assets/art/prefabs/map/center_library.prefab
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/mashrooms_albedo.mat
+3 kb                 assets/art/prefabs/map/234f/loan_desk_2nd.prefab
+2 kb                 assets/art/prefabs/map/info/info_3f 1.prefab
+4 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/coffin_base_01.prefab
+23 kb                assets/art/purchased asset/coreywilton/halloweenprops/meshes/sm_gravestone_01.fbx
+5 mb                 assets/art/purchased asset/little_ghost_hq/meshes/little_ghost v4.fbx
+31 kb                assets/art/purchased asset/halloween_asset/meshes/ladle.fbx
+4 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/woodencross_01.prefab
+2 kb                 assets/art/purchased asset/little_ghost_hq/material/ghost_female/ghostf_02.mat
+119 kb               assets/art/modelings/rooftop/garland.fbx
+12 mb                assets/art/purchased asset/coreywilton/halloweenprops/textures/t_gravestonecross_01_albedotransparency.tga
+1 mb                 assets/art/modelings/234f/bookself.fbx
+3 kb                 assets/art/prefabs/map/1f/loan_bookshelf.prefab
+515 kb               assets/art/purchased asset/3d lowpoly tree pack/model/tree01_leaves.fbx
+1 mb                 assets/art/modelings/234f/bookself_wood.fbx
+753 kb               assets/animator/animation/pick candy.fbx
+1 mb                 assets/art/modelings/celing_3f.fbx
+2 kb                 assets/art/prefabs/map/pumpkin_light_green.prefab
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/book_cook_albedo.mat
+140 kb               assets/art/purchased asset/halloween_asset/textures/bench_stool_albedo.png
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/stone_rune02.prefab
+2 mb                 assets/art/modelings/terrass.fbx
+972 b                assets/art/ui/mafia/미션, 마피아 기본버튼/미션완료_안쪽색.png
+72 kb                assets/art/modelings/library_common/multimedia_mouse.fbx
+2 mb                 assets/art/textures/glow_blue.png
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/metal_fence_broken01.prefab
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/pumpkin03_emmisive.mat
+2 kb                 assets/art/prefabs/map/rooftop/table_small.prefab
+3 kb                 assets/art/prefabs/map/234f/small_sofa3.prefab
+2 kb                 assets/art/prefabs/map/rooftop/pot2.prefab
+53 kb                assets/art/purchased asset/halloween_asset/meshes/honey_mushrooms.fbx
+277 kb               assets/art/modelings/1f/multimedia_door_open.fbx
+2 kb                 assets/art/prefabs/map/wall.prefab
+2 kb                 assets/art/materials/rooftop_terrass_ver1 1.mat
+1 kb                 assets/art/purchased asset/bird flocks/roaming bats/materials/bat mat.mat
+7 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/candle_02.prefab
+1 mb                 assets/art/modelings/1f/newbookarchive_chair.fbx
+22 kb                assets/art/purchased asset/little_ghost_hq/textures/ghost_female/skin_01/littleghost_for substance v2_ghost_2_albedotransparency.png
+26 kb                assets/art/purchased asset/halloween_asset/meshes/grave02.fbx
+2 kb                 assets/art/purchased asset/little_ghost_hq/material/props/props_01.mat
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/stump_emmisive.mat
+17 kb                assets/art/purchased asset/coreywilton/halloweenprops/meshes/sm_coffin_lid_03.fbx
+3 mb                 assets/art/purchased asset/coreywilton/halloweenprops/textures/t_candelabra_01_albedotransparency.tga
+3 kb                 assets/art/prefabs/map/info/multimedia_info02.prefab
+1 mb                 assets/art/purchased asset/3d lowpoly tree pack/texture/tree03_leaves.png
+680 kb               assets/art/prefabs/map/terrass 1.prefab
+176 kb               assets/art/purchased asset/halloween_asset/textures/stump_emmisive.png
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/stump_emmisive.prefab
+260 kb               assets/art/modelings/1f/gate_desk.fbx
+3 mb                 assets/art/purchased asset/3d lowpoly tree pack/texture/tree05_leaves.png
+2 kb                 assets/art/materials/lambert1.mat
+1 mb                 assets/art/modelings/celing_4f.fbx
+2 kb                 assets/art/materials/light_vfx_green.mat
+2 kb                 assets/art/materials/cafe_interior_ver1.mat
+218 kb               assets/art/purchased asset/halloween_asset/textures/mashrooms_albedo.png
+28 kb                assets/art/purchased asset/halloween_asset/meshes/coffin.fbx
+2 kb                 assets/art/purchased asset/coreywilton/halloweenprops/materials/m_gravestonecross_01.mat
+337 kb               assets/art/modelings/234f/new folder/big_sofa1.fbx
+40 kb                assets/art/modelings/rooftop/kettle.fbx
+24 kb                assets/art/purchased asset/halloween_asset/meshes/potion04.fbx
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/tree_albedo.mat
+26 kb                assets/art/textures/paver 1.jpg
+19 kb                assets/art/purchased asset/coreywilton/halloweenprops/meshes/sm_candle_04.fbx
+3 kb                 assets/art/prefabs/map/1f/multimedia_door_open.prefab
+2 kb                 assets/art/purchased asset/3d lowpoly tree pack/texture/materials/tree05_trunk.mat
+43 kb                assets/art/modelings/rooftop/box.fbx
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/tree.prefab
+3 kb                 assets/art/prefabs/map/1f/newbookarchive_chair1.prefab
+26 kb                assets/art/ui/mafia/투표/투표결과_동점스킵.png
+1 mb                 assets/art/modelings/1f/newbookarchive_bookshelf.fbx
+168 kb               assets/art/purchased asset/halloween_asset/textures/book_cook_albedo.png
+5 mb                 assets/art/purchased asset/3d lowpoly tree pack/texture/tree02_trunk.png
+263 kb               assets/art/modelings/1f/hall_chair.fbx
+2 kb                 assets/art/purchased asset/coreywilton/halloweenprops/materials/m_gravestonecross_02.mat
+259 kb               assets/art/modelings/1f/multimedia_dvd_monitor.fbx
+17 kb                assets/art/purchased asset/coreywilton/halloweenprops/prefabs/candelabra_01_green.prefab
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/skeleton_hand.prefab
+2 kb                 assets/art/prefabs/map/rooftop/kettle.prefab
+494 kb               assets/art/modelings/cafe/cafetable_small.fbx
+491 kb               assets/art/modelings/cafe/kiosk.fbx
+467 kb               assets/art/textures/block 2.png
+25 kb                assets/art/purchased asset/halloween_asset/meshes/mashroom03.fbx
+24 kb                assets/art/modelings/234f/texture_etc.png
+7 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/carvedpumpkin_01_y.prefab
+2 kb                 assets/art/prefabs/map/rooftop/beanpack4.prefab
+2 kb                 assets/art/purchased asset/coreywilton/halloweenprops/materials/m_candle_01.mat
+128 kb               assets/art/purchased asset/halloween_asset/meshes/skeleton.fbx
+35 kb                assets/art/materials/candle_light.png
+1 mb                 assets/art/modelings/1f/loan_desk.fbx
+618 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/v2/jumpidle.anim
+451 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/v2/stamp.anim
+2 kb                 assets/art/purchased asset/coreywilton/halloweenprops/materials/m_coffin_base_04.mat
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/grass_mesh_o_03.prefab
+125 kb               assets/art/modelings/rooftop/shelf_set.fbx
+87 kb                assets/art/modelings/rooftop/lamp_white.fbx
+1 mb                 assets/art/modelings/1floor.fbx
+10 kb                assets/art/purchased asset/little_ghost_hq/prefabs/lg_02.prefab
+118 kb               assets/art/prefabs/map/lights_vfx_green.prefab
+10 kb                assets/art/ui/mafia/승리 화면/승리_되돌아가기.png
+2 mb                 assets/art/purchased asset/little_ghost_hq/textures/props/skin_04/littleghost_for substance v2_props_albedotransparency.png
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/potion03.prefab
+3 kb                 assets/art/prefabs/map/1f/cnlounge_lamp1.prefab
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/candy01.prefab
+549 kb               assets/animator/animation/dying.fbx
+91 kb                assets/art/purchased asset/coreywilton/halloweenprops/meshes/sm_candelabra_01.fbx
+2 kb                 assets/art/purchased asset/3d lowpoly tree pack/texture/materials/tree01_leaves.mat
+2 kb                 assets/art/ui/mafia/게임방법/게임방법_버튼.png
+2 kb                 assets/art/materials/glow_portal.mat
+2 kb                 assets/art/materials/lambert11.mat
+1 mb                 packages/zepeto.character.controller/runtime/_resources/animations/base/v2/movewalk.anim
+40 kb                assets/art/purchased asset/halloween_asset/meshes/pumpkin03.fbx
+29 kb                assets/art/purchased asset/halloween_asset/meshes/pounder.fbx
+2 kb                 assets/art/purchased asset/little_ghost_hq/material/ghost_male/ghostm_03.mat
+2 kb                 assets/art/purchased asset/coreywilton/halloweenprops/materials/m_gravestoneslab_02.mat
+1014 kb              packages/zepeto.character.controller/runtime/_resources/animations/base/v2/idle.anim
+12 mb                assets/art/purchased asset/coreywilton/halloweenprops/textures/t_woodencross_01_albedotransparency.tga
+45 kb                assets/art/ui/mafia/event/킬.png
+1 mb                 packages/zepeto.character.controller/runtime/_resources/animations/base/fall_end.anim
+2 kb                 assets/art/purchased asset/little_ghost_hq/material/props/props_04.mat
+12 mb                assets/art/purchased asset/coreywilton/halloweenprops/textures/t_gravestoneslab_02_albedotransparency.tga
+3 kb                 assets/art/prefabs/map/1f/toilet_board_man.prefab
+3 kb                 assets/art/prefabs/map/1f/cnlounge_desk1.prefab
+2 kb                 assets/art/materials/rooftop_bottom.mat
+3 kb                 assets/art/prefabs/map/1f/multimedia_dvd_monitor.prefab
+2 kb                 assets/art/prefabs/map/books/greenbook.prefab
+118 kb               assets/art/prefabs/map/lights_vfx_purple.prefab
+768 kb               assets/art/purchased asset/coreywilton/halloweenprops/textures/t_candle_03_albedotransparency.tga
+32 kb                assets/art/purchased asset/halloween_asset/meshes/wooden_fence.fbx
+428 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/hand_idle_01.anim
+31 kb                packages/com.unity.inputsystem/inputsystem/plugins/playerinput/defaultinputactions.inputactions
+28 kb                assets/art/purchased asset/halloween_asset/meshes/candy01.fbx
+173 kb               assets/art/purchased asset/bird flocks/roaming bats/models/bat mdl @batidle.fbx
+3 kb                 assets/art/prefabs/map/1f/newbookarchive_desk.prefab
+2 kb                 assets/art/materials/rooftop_terrass_ver1.mat
+10 kb                assets/art/ui/mafia/게임준비/카운트.png
+158 kb               assets/art/purchased asset/halloween_asset/textures/potions_albedo_01.png
+35 kb                assets/art/purchased asset/coreywilton/halloweenprops/meshes/sm_woodencross_01.fbx
+3 kb                 packages/zepeto.character.controller/runtime/_resources/animations/ui/controller/touchpad_handle_origin_ziggle.anim
+2 kb                 packages/zepeto.character.controller/runtime/_resources/animations/ui/controller/touchpad_handle_off.anim
+2 kb                 assets/art/purchased asset/little_ghost_hq/material/props/props_02.mat
+2 kb                 assets/art/prefabs/map/rooftop/mugcup2.prefab
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/wooden_fence_broken02.prefab
+224 kb               assets/art/purchased asset/halloween_asset/textures/scarecrow_albedo.png
+28 kb                assets/art/purchased asset/halloween_asset/meshes/mashroom02.fbx
+26 kb                assets/art/ui/mafia/승리 화면/승리_시민.png
+12 mb                assets/art/purchased asset/coreywilton/halloweenprops/textures/t_coffin_base_01_albedotransparency.tga
+15 kb                assets/art/purchased asset/coreywilton/halloweenprops/meshes/sm_gravestoneslab_01.fbx
+2 kb                 assets/ultimate 10 plus shaders/materials/unique/force field.mat
+206 kb               assets/art/purchased asset/halloween_asset/textures/pumpkins0405_albedo.png
+151 kb               assets/art/purchased asset/3d lowpoly tree pack/model/tree05_leaves.fbx
+600 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/v2/landingslight.anim
+118 kb               assets/art/prefabs/map/lights_vfx_yellow 1.prefab
+7 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/carvedpumpkin_03_g.prefab
+10 kb                assets/art/modelings/info/info_3f 1.fbm/info_3f_1.png
+2 kb                 assets/art/materials/info_3f_1 1.mat
+3 kb                 assets/art/prefabs/map/1f/toilet_door_man.prefab
+257 kb               assets/art/modelings/1f/toilet_board_etc.fbx
+156 kb               assets/art/purchased asset/halloween_asset/textures/grave0203_albedo.png
+3 kb                 assets/art/ui/mafia/미션, 마피아 기본버튼/미션완료도_수정.png
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/candy10.prefab
+15 kb                assets/art/prefabs/map/stairs.prefab
+3 kb                 assets/art/prefabs/map/1f/hall_sofa1.prefab
+2 kb                 assets/art/prefabs/map/rooftop/chair2.prefab
+290 kb               assets/art/modelings/234f/new folder/newbookarchive_desk_6.fbx
+1 kb                 assets/art/ui/mafia/투표/투표_투표전.png
+34 kb                assets/art/modelings/rooftop/beanpack3.fbx
+4 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/gravestone_01.prefab
+2 mb                 assets/art/purchased asset/little_ghost_hq/textures/props/skin_02/littleghost_for substance v2_props_albedotransparency.png
+34 kb                assets/art/purchased asset/halloween_asset/meshes/pumpkin04.fbx
+1 kb                 assets/art/ui/quickchat/chatitem.png
+3 kb                 assets/art/prefabs/map/rooftop/parasol.prefab
+1 mb                 assets/art/modelings/234f/new folder/newbookarchive_chair.fbx
+3 kb                 assets/art/prefabs/map/library_common/multimedia_mouse.prefab
+2 kb                 assets/art/materials/ver4.mat
+3 kb                 assets/art/prefabs/map/1f/newbookarchive_sofa1.prefab
+204 kb               assets/art/modelings/ari.fbx
+2 kb                 assets/art/materials/texture_1stfloor_01.mat
+2 kb                 assets/art/purchased asset/3d lowpoly tree pack/texture/materials/tree03_trunk.mat
+36 kb                assets/art/modelings/info/info_3f 1.fbx
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/coffin_open.prefab
+25 kb                assets/art/purchased asset/halloween_asset/meshes/candy05.fbx
+1 mb                 assets/art/prefabs/map/ajou_central_library_witch.prefab
+1 mb                 packages/zepeto.character.controller/runtime/_resources/animations/base/jump_move.anim
+1 mb                 assets/art/modelings/234f/datapc_computerset.fbx
+58 kb                assets/art/ui/mafia/게임방법/게임방법_마녀.png
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/coffin_albedo.mat
+3 kb                 assets/art/prefabs/map/234f/big_sofa2.prefab
+2 kb                 assets/art/prefabs/map/234f/datapc_clearwall.prefab
+28 kb                assets/art/ui/mafia/승리 화면/승리_미션승.png
+563 kb               assets/animator/animation/organize book.fbx
+2 kb                 assets/art/purchased asset/coreywilton/halloweenprops/materials/m_coffin_base_02.mat
+36 kb                assets/art/modelings/rooftop/mugcup.fbx
+240 kb               assets/art/prefabs/map/portal.prefab
+325 kb               assets/art/modelings/1f/loan_bookshelf.fbx
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/grave01.prefab
+2 kb                 assets/art/prefabs/map/center_terrass_bottom.prefab
+9 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/candle_06.prefab
+1 mb                 assets/art/modelings/4floor.fbx
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/skeleton_pile.prefab
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/candy_albedo.mat
+53 kb                assets/art/modelings/rooftop/chair3.fbx
+97 kb                assets/art/modelings/library_common/tray.fbx
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/stones_round.prefab
+7 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/candle_07_purple.prefab
+7 kb                 assets/art/prefabs/map/ari.prefab
+2 kb                 assets/art/materials/ari.mat
+8 kb                 assets/art/ui/quickchat/chatbackground.png
+75 kb                assets/art/modelings/library_common/sterilizer.fbx
+70 kb                assets/art/modelings/info/floor_info_3_4.fbx
+291 kb               assets/art/modelings/234f/new folder/newbookarchive_desk_4.fbx
+3 kb                 assets/art/prefabs/map/1f/multimedia_dvd_desk.prefab
+65 kb                assets/art/modelings/rooftop/tarp.fbx
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/mashroom01.prefab
+2 kb                 assets/art/materials/block.mat
+2 kb                 assets/art/prefabs/game/reporteruiprefab.prefab
+192 kb               assets/art/purchased asset/halloween_asset/textures/wooden_fence_albedo.png
+423 kb               assets/art/prefabs/map/3f.prefab
+311 kb               assets/art/modelings/1f/hall_sofa2.fbx
+24 kb                assets/art/ui/mafia/지도/맵_1층.png
+2 kb                 assets/art/prefabs/map/books/graybook.prefab
+442 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/v2/jumpmove.anim
+3 kb                 assets/art/ui/mafia/지도/4층버튼.png
+2 kb                 assets/art/ui/mafia/투표/투표버튼.png
+3 kb                 assets/art/prefabs/map/1f/newbookarchive_desk_high.prefab
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/bench_stool_albedo.mat
+2 mb                 assets/art/purchased asset/little_ghost_hq/textures/ghost_female/skin_02/littleghost_for substance v2_ghost_2_albedotransparency.png
+261 kb               assets/art/modelings/1f/gate.fbx
+1 mb                 assets/art/modelings/1f/cnlounge_desk2.fbx
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/honey_mushrooms.prefab
+258 kb               assets/art/modelings/books/yellowbook.fbx
+28 kb                assets/art/prefabs/map/rooftop/shelf_set.prefab
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/grave0203_albedo.mat
+1 mb                 assets/art/modelings/234f/loan_desk_2nd.fbx
+5 kb                 assets/art/prefabs/map/cafe/cafe_desk.prefab
+1 kb                 assets/art/ui/quickchat/chatexit.png
+2 kb                 assets/art/prefabs/map/rooftop/doma.prefab
+3 kb                 assets/art/prefabs/map/234f/datapc_computerset.prefab
+7 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/carvedpumpkin_02_y.prefab
+258 kb               assets/art/modelings/books/greenbook.fbx
+3 kb                 assets/art/prefabs/map/info/bookcuration_info.prefab
+2 kb                 assets/art/purchased asset/coreywilton/halloweenprops/materials/m_coffin_lid_01.mat
+26 kb                assets/art/purchased asset/halloween_asset/meshes/potion01.fbx
+2 kb                 assets/art/materials/light_vfx_purple.mat
+2 kb                 assets/art/materials/blinn2.mat
+33 kb                assets/art/modelings/rooftop/doma.fbx
+2 kb                 assets/art/purchased asset/coreywilton/halloweenprops/materials/m_carvedpumpkin_02.mat
+25 kb                assets/art/purchased asset/halloween_asset/meshes/mashroom04.fbx
+28 kb                assets/art/purchased asset/halloween_asset/meshes/pumpkin05.fbx
+12 mb                assets/art/purchased asset/coreywilton/halloweenprops/textures/t_gravestonecross_02_albedotransparency.tga
+263 kb               assets/art/modelings/1f/endtrance_door.fbx
+10 kb                assets/art/purchased asset/little_ghost_hq/animation/little_ghost 1.controller
+2 kb                 assets/art/ui/mafia/지도/1층버튼.png
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/grass_mesh_o_05.prefab
+292 kb               assets/art/modelings/1f/toilet_door_woman.fbx
+8 kb                 assets/art/ui/mafia/미션, 마피아 기본버튼/신고버튼.png
+24 kb                assets/art/ui/mafia/지도/맵_4층.png
+1 mb                 assets/art/textures/ver4.png
+1 mb                 assets/art/modelings/1f/multimedia_computer_set.fbx
+2 kb                 assets/art/purchased asset/little_ghost_hq/material/ghost_male/ghostm_02.mat
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/hat_witch.prefab
+3 kb                 assets/art/prefabs/map/info/floor_info_2_3.prefab
+768 kb               assets/art/purchased asset/coreywilton/halloweenprops/textures/t_candle_02_albedotransparency.tga
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/grass_mesh_o_02.prefab
+3 kb                 assets/art/prefabs/map/light.prefab
+326 kb               assets/art/modelings/rooftop/screen.fbx
+3 kb                 assets/art/prefabs/map/234f/bookself_wood.prefab
+3 kb                 assets/art/prefabs/map/library_common/multimedia_computer.prefab
+374 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/v2/moverunfast.anim
+1 mb                 assets/art/modelings/1f/cnlounge_desk1.fbx
+258 kb               assets/art/modelings/1f/hall_board.fbx
+264 kb               assets/art/modelings/1f/multimedia_kiosk.fbx
+2 kb                 assets/art/purchased asset/little_ghost_hq/material/ghost_male/ghostm_01.mat
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/potion02.prefab
+76 kb                assets/art/modelings/info/info_2f.fbx
+68 kb                assets/art/modelings/1f/loan_monitor_black.fbx
+34 kb                assets/art/modelings/rooftop/beanpack1.fbx
+3 kb                 assets/art/prefabs/map/1f/newbookarchive_bookshelf.prefab
+3 kb                 assets/art/prefabs/map/1f/newbookarchive_wheelchair.prefab
+766 kb               assets/art/textures/center_terrass_texture.png
+69 kb                assets/art/modelings/info/bookcuration_info.fbx
+2 kb                 assets/art/prefabs/map/cafe/cafe_chair.prefab
+2 kb                 assets/art/prefabs/game/readyimageprefab.prefab
+49 kb                assets/art/modelings/rooftop/chair1.fbx
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/grass_mesh_o_01.prefab
+3 kb                 assets/art/prefabs/map/library_common/printer.prefab
+7 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/candle_05.prefab
+445 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/v2/moverun.anim
+3 kb                 assets/art/ui/mafia/게임준비/게임준비_상태_준비중.png
+3 kb                 assets/art/prefabs/map/1f/newbookarchive_sofa2.prefab
+50 kb                assets/art/purchased asset/halloween_asset/meshes/stump.fbx
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/mashroom04.prefab
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/hat_broom_albedo.mat
+4 mb                 assets/art/purchased asset/little_ghost_hq/textures/ghost_male/skin_02/littleghost_for substance v2_ghost1_albedotransparency.png
+28 kb                assets/art/purchased asset/halloween_asset/meshes/candy03.fbx
+26 kb                assets/art/purchased asset/halloween_asset/meshes/stones_round.fbx
+37 kb                assets/art/purchased asset/halloween_asset/meshes/pumpkin01.fbx
+7 kb                 assets/ultimate 10 plus shaders/shaders/force field.shader
+5 kb                 assets/art/prefabs/map/1f/cnlounge_lamp3.prefab
+2 kb                 assets/art/purchased asset/coreywilton/halloweenprops/materials/m_carvedpumpkin_01.mat
+14 kb                assets/art/ui/mafia/게임준비/직업_마녀.png
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/stone04.prefab
+6 kb                 assets/art/ui/mafia/투표/토론시간.png
+105 kb               assets/art/prefabs/map/terrass_halloween.prefab
+223 kb               assets/art/purchased asset/halloween_asset/textures/skeleton_albedo.png
+8 kb                 assets/art/purchased asset/3d lowpoly tree pack/prefabs/tree04.prefab
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/metal_fence_albedo.mat
+35 kb                assets/art/modelings/rooftop/pot2.fbx
+2 kb                 assets/art/ui/mafia/지도/바깥버튼.png
+3 kb                 assets/art/prefabs/map/info/floor_info_1_2.prefab
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/potion05.prefab
+43 kb                assets/art/materials/skybox_2.png
+3 kb                 assets/art/prefabs/map/1f/multimedia_dvd_speaker.prefab
+36 kb                assets/art/modelings/rooftop/pergola.fbx
+67 kb                assets/art/purchased asset/3d lowpoly tree pack/model/tree03_leaves.fbx
+1 mb                 assets/art/textures/texture_1stfloor_01.jpg
+2 kb                 assets/art/prefabs/map/books/whitebook.prefab
+12 mb                assets/art/purchased asset/coreywilton/halloweenprops/textures/t_coffin_base_02_albedotransparency.tga
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/pumpkins0405_albedo.mat
+1 kb                 packages/zepeto.character.controller/runtime/_resources/camera/zepetocamera.prefab
+2 kb                 assets/art/prefabs/map/books/redbook.prefab
+36 kb                assets/art/modelings/rooftop/mugcup2.fbx
+6 kb                 assets/art/prefabs/map/rooftop/box.prefab
+31 kb                assets/art/purchased asset/halloween_asset/meshes/grave_soil.fbx
+261 kb               assets/art/modelings/1f/cnlounge_cleanwall.fbx
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/basket.prefab
+12 mb                assets/art/purchased asset/coreywilton/halloweenprops/textures/t_gravestone_03_albedotransparency.tga
+25 kb                assets/art/purchased asset/halloween_asset/meshes/grass_mesh_03.fbx
+262 kb               assets/art/modelings/1f/newbookarchive_desk.fbx
+2 kb                 assets/art/prefabs/map/rooftop/beer2.prefab
+2 kb                 assets/art/ui/mafia/투표/투표스킵버튼.png
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/stone02.prefab
+310 kb               assets/art/modelings/1f/hall_sofa1.fbx
+768 kb               assets/art/purchased asset/coreywilton/halloweenprops/textures/t_candle_04_albedotransparency.tga
+3 kb                 assets/art/prefabs/map/1f/multimedia_partition.prefab
+3 kb                 assets/art/ui/mafia/미션, 마피아 기본버튼/미션리스트_창.png
+24 kb                assets/art/purchased asset/coreywilton/halloweenprops/meshes/sm_candle_01.fbx
+464 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/v2/jumpdouble.anim
+1 kb                 assets/art/ui/mafia/게임방법/게임방법_마피아_나가기버튼.png
+3 kb                 assets/art/prefabs/map/cafe_fence.prefab
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/spider_book_albedo.mat
+44 kb                assets/art/purchased asset/3d lowpoly tree pack/model/tree02_trunk.fbx
+247 kb               assets/art/purchased asset/halloween_asset/textures/stones_albedo.png
+2 mb                 assets/art/modelings/cafe_fence.fbx
+2 kb                 assets/art/purchased asset/little_ghost_hq/material/ghost_female/ghostf_01.mat
+5 kb                 assets/art/prefabs/map/1f/cnlounge_lamp4.prefab
+2 kb                 assets/art/materials/skybox.mat
+21 kb                assets/art/purchased asset/halloween_asset/meshes/stone_rune01.fbx
+792 kb               assets/art/modelings/center_terrass_bottom.fbx
+2 kb                 assets/art/materials/lights.mat
+2 kb                 assets/art/materials/texture_common_01.mat
+2 kb                 assets/art/prefabs/map/rooftop/beanpack3.prefab
+163 kb               assets/art/purchased asset/halloween_asset/textures/spider_book_albedo.png
+2 kb                 assets/art/ui/mafia/투표/투표_남은시간.png
+13 kb                packages/zepeto.character.controller/runtime/_resources/images/touchpad_handle_base.png
+5 mb                 assets/art/modelings/center_library.fbx
+3 mb                 assets/ultimate 10 plus shaders/materials/textures/noise1.png
+3 kb                 assets/art/prefabs/map/234f/newbookarchive_desk_4.prefab
+2 kb                 assets/art/purchased asset/3d lowpoly tree pack/texture/materials/tree06_leaves.mat
+2 kb                 assets/art/prefabs/map/rooftop/pergola.prefab
+2 kb                 assets/art/prefabs/map/rooftop/mugcup.prefab
+3 kb                 assets/art/prefabs/map/1f/loan_monitor_black.prefab
+768 kb               assets/art/purchased asset/coreywilton/halloweenprops/textures/t_candle_07_albedotransparency.tga
+142 kb               assets/art/modelings/garland_lights.fbx
+3 kb                 assets/art/prefabs/map/library_common/sterilizer.prefab
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/skeleton_albedo.mat
+2 kb                 assets/art/materials/blinn4.mat
+62 kb                packages/zepeto.character.controller/runtime/_resources/animations/base/action1.anim
+2 kb                 assets/art/prefabs/map/cafe/trash.prefab
+1 mb                 assets/art/textures/ver3.png
+1 mb                 assets/art/modelings/1f/hall_bench.fbx
+29 kb                assets/art/purchased asset/halloween_asset/meshes/stone01.fbx
+3 kb                 assets/art/prefabs/map/1f/cnlounge_desk2.prefab
+78 kb                assets/art/modelings/rooftop/grill.fbx
+2 kb                 assets/art/purchased asset/coreywilton/halloweenprops/materials/m_coffin_base_03.mat
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/grave03.prefab
+26 kb                assets/art/purchased asset/halloween_asset/meshes/potion02.fbx
+50 kb                assets/art/modelings/234f/datapc_clearwall.fbx
+3 kb                 assets/art/prefabs/map/1f/multimedia_kiosk.prefab
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/ladle.prefab
+33 kb                assets/art/purchased asset/3d lowpoly tree pack/model/tree03_trunk.fbx
+24 kb                assets/art/purchased asset/halloween_asset/meshes/grass_mesh_05.fbx
+178 kb               assets/art/purchased asset/halloween_asset/textures/grave01_albedo.png
+3 kb                 packages/zepeto.character.controller/runtime/_resources/animations/ui/controller/touchpad_handle_ziggle.anim
+2 kb                 packages/zepeto.character.controller/runtime/_resources/animations/ui/controller/touchpad_handle_on.anim
+70 kb                assets/art/modelings/library_common/multimedia_keyboard.fbx
+76 kb                assets/art/modelings/info/multimedia_info02.fbx
+1 kb                 assets/art/ui/mafia/투표/투표_선택.png
+155 kb               assets/art/textures/texture_common_01.jpg
+53 kb                assets/art/modelings/rooftop/chair2.fbx
+4 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/coffin_lid_03.prefab
+3 kb                 assets/art/prefabs/map/1f/revolving_door.prefab
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/metal_fence.prefab
+3 kb                 assets/art/prefabs/map/1f/endtrance_door.prefab
+16 kb                assets/art/purchased asset/bird flocks/roaming bats/prefabs/bat +sound.prefab
+258 kb               assets/art/modelings/books/graybook.fbx
+2 kb                 assets/art/materials/texture_etc.mat
+21 kb                assets/art/purchased asset/halloween_asset/meshes/stone04.fbx
+2 kb                 assets/art/materials/center_terrass_texture.mat
+3 kb                 assets/art/prefabs/map/1f/toilet_door_woman.prefab
+1 mb                 assets/art/modelings/1f/newbookarchive_desk_high.fbx
+2 mb                 assets/art/purchased asset/3d lowpoly tree pack/texture/tree03_trunk.png
+28 kb                assets/art/purchased asset/halloween_asset/meshes/grass_mesh_01.fbx
+2 kb                 assets/art/prefabs/map/garland_lights.prefab
+2 kb                 assets/art/purchased asset/coreywilton/halloweenprops/materials/m_carvedpumpkin_03.mat
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/crystal_ball.prefab
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/book.prefab
+7 kb                 packages/zepeto.character.controller/runtime/_resources/animatorcontroller/uicontrollertouchpadhandleorigin.controller
+3 kb                 assets/art/prefabs/map/1f/hall_chair.prefab
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/signpost_albedo.mat
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/grave_soil.prefab
+636 kb               assets/animator/animation/spawn evil.fbx
+2 kb                 assets/art/prefabs/map/rooftop/tarp.prefab
+1 mb                 assets/art/purchased asset/little_ghost_hq/textures/props/skin_01/littleghost_for substance v2_props_albedotransparency.png
+4 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/gravestone_03.prefab
+110 kb               assets/art/textures/rock_texture.jpg
+58 kb                assets/art/purchased asset/3d lowpoly tree pack/model/tree05_trunk.fbx
+151 kb               assets/art/purchased asset/halloween_asset/textures/hat_broom_albedo.png
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/signpost.prefab
+3 kb                 assets/art/prefabs/map/234f/newbookarchive_desk_6.prefab
+86 kb                assets/art/purchased asset/3d lowpoly tree pack/model/tree02_leaves.fbx
+451 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/v2/jumpdash.anim
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/stone_round.prefab
+22 kb                assets/art/purchased asset/coreywilton/halloweenprops/meshes/sm_coffin_base_01.fbx
+3 kb                 assets/art/prefabs/map/1f/cnlounge_desk_person.prefab
+12 mb                assets/art/purchased asset/coreywilton/halloweenprops/textures/t_coffin_lid_01_albedotransparency.tga
+2 kb                 assets/art/prefabs/map/rooftop/light_bulbs.prefab
+7 kb                 assets/art/ui/mafia/미션, 마피아 기본버튼/킬버튼.png
+7 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/candle_03.prefab
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/metal_fence_broken02.prefab
+3 kb                 packages/zepeto.character.controller/runtime/_resources/prefabs/shadow/charactershadow.prefab
+158 kb               assets/art/purchased asset/halloween_asset/textures/pumpkin02_albedo.png
+2 kb                 assets/art/materials/1f_uv_ver2.mat
+6 kb                 assets/art/prefabs/map/center_terrass_chair.prefab
+12 mb                assets/art/purchased asset/coreywilton/halloweenprops/textures/t_carvedpumpkin_03_albedotransparency.tga
+12 mb                assets/art/purchased asset/coreywilton/halloweenprops/textures/t_coffin_base_04_albedotransparency.tga
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/stool.prefab
+493 kb               assets/art/modelings/cafe/cafe_chair.fbx
+2 kb                 assets/art/materials/paver.mat
+19 kb                assets/art/purchased asset/coreywilton/halloweenprops/meshes/sm_candle_08.fbx
+261 kb               assets/art/modelings/1f/newbookarchive_sofa1.fbx
+34 kb                assets/art/modelings/rooftop/pot1.fbx
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/grave02.prefab
+26 kb                assets/art/purchased asset/coreywilton/halloweenprops/meshes/sm_gravestonetall_01.fbx
+2 kb                 assets/art/purchased asset/coreywilton/halloweenprops/materials/m_woodencross_01.mat
+261 kb               assets/art/modelings/1f/newbookarchive_sofa2.fbx
+151 kb               assets/art/modelings/rooftop/anchorage_set.fbx
+34 kb                assets/art/modelings/rooftop/table_small.fbx
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/scarecrow.prefab
+2 kb                 packages/zepeto.character.controller/runtime/_resources/animations/ui/controller/touchpad_handle_origin_on.anim
+35 kb                assets/art/ui/mafia/투표/투표결과_시민.png
+214 kb               assets/art/purchased asset/halloween_asset/textures/candy_albedo.png
+27 kb                assets/art/purchased asset/halloween_asset/meshes/mashroom01.fbx
+8 kb                 assets/art/purchased asset/3d lowpoly tree pack/prefabs/tree05.prefab
+31 kb                assets/art/purchased asset/halloween_asset/meshes/spider.fbx
+70 kb                assets/art/modelings/info/floor_info_1_2.fbx
+4 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/coffin_base_04.prefab
+7 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/candlestick_01_purple.prefab
+2 kb                 assets/art/purchased asset/coreywilton/halloweenprops/materials/m_gravestonetall_01.mat
+2 kb                 assets/art/prefabs/map/pumpkin_light.prefab
+28 kb                assets/art/purchased asset/halloween_asset/meshes/metal_fence_broken02.fbx
+28 kb                assets/art/purchased asset/halloween_asset/meshes/metal_fence_broken01.fbx
+2 kb                 assets/art/materials/cafe_ver1.mat
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/candy06.prefab
+3 kb                 assets/art/prefabs/map/1f/hall_board.prefab
+287 kb               assets/art/prefabs/map/4f.prefab
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/grass_mesh_02.prefab
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/cauldron_albedo.mat
+965 b                assets/art/ui/mafia/미션, 마피아 기본버튼/미션리스트_나가기.png
+26 kb                assets/art/purchased asset/halloween_asset/meshes/wooden_fence_broken02.fbx
+18 kb                assets/art/purchased asset/little_ghost_hq/textures/ghost_male/skin_01/littleghost_for substance v2_ghost1_albedotransparency.png
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/pumpkin02_albedo.mat
+7 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/candlestick_01_green.prefab
+1 mb                 assets/art/modelings/celing_2f.fbx
+21 kb                assets/art/purchased asset/coreywilton/halloweenprops/meshes/sm_coffin_base_03.fbx
+25 kb                assets/art/ui/mafia/승리 화면/승리_마녀.png
+1 kb                 packages/zepeto.character.controller/runtime/_resources/prefabs/shadow/fxt_blobshadow.png
+3 kb                 assets/art/prefabs/map/1f/gate_desk.prefab
+24 kb                assets/art/purchased asset/halloween_asset/meshes/grass_mesh_04.fbx
+2 kb                 assets/art/materials/blinn5.mat
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/grass_mesh_o_04.prefab
+7 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/carvedpumpkin_03_p.prefab
+24 kb                assets/art/purchased asset/halloween_asset/meshes/grave03.fbx
+47 kb                assets/art/ui/mafia/event/신고.png
+3 kb                 assets/art/prefabs/map/234f/bookself.prefab
+3 kb                 assets/art/prefabs/map/library_common/bookloan.prefab
+1 mb                 packages/zepeto.character.controller/runtime/_resources/animations/gesture/4_ok.anim
+2 kb                 assets/art/prefabs/map/rooftop/garland.prefab
+55 kb                assets/art/modelings/234f/cnlounge_hallwall.fbx
+2 kb                 assets/art/purchased asset/3d lowpoly tree pack/texture/materials/tree01_trunk.mat
+24 kb                assets/art/purchased asset/coreywilton/halloweenprops/meshes/sm_candle_02.fbx
+498 kb               assets/animator/animation/stir pot.fbx
+3 kb                 assets/art/prefabs/map/1f/cnlounge_lamp2.prefab
+34 kb                assets/art/purchased asset/coreywilton/halloweenprops/meshes/sm_candle_06.fbx
+12 mb                assets/art/purchased asset/coreywilton/halloweenprops/textures/t_carvedpumpkin_01_albedotransparency.tga
+1 mb                 assets/animator/animation/put in pot.fbx
+1 mb                 packages/zepeto.character.controller/runtime/_resources/animations/base/v2/landingdeep.anim
+4 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/coffin_lid_01.prefab
+257 kb               assets/art/modelings/1f/toilet_board_woman.fbx
+29 kb                assets/art/purchased asset/halloween_asset/meshes/broom_witch.fbx
+13 kb                assets/art/prefabs/map/ari_witch.prefab
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/candy04.prefab
+3 kb                 assets/art/prefabs/map/234f/datapc_desk.prefab
+258 kb               assets/art/modelings/books/redbook.fbx
+2 kb                 assets/art/purchased asset/coreywilton/halloweenprops/materials/m_gravestoneslab_01.mat
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/stone03.prefab
+2 kb                 assets/art/purchased asset/coreywilton/halloweenprops/materials/m_candelabra_01.mat
+14 kb                assets/art/ui/mafia/지도/맵_옥상정원.png
+499 kb               assets/art/modelings/cafe/trash.fbx
+33 kb                assets/art/purchased asset/halloween_asset/meshes/skeleton_hand.fbx
+3 kb                 assets/art/prefabs/map/1f/toilet_board_etc.prefab
+26 kb                assets/art/purchased asset/halloween_asset/meshes/grave01.fbx
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/pumpkin05.prefab
+7 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/carvedpumpkin_01_p.prefab
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/book_stand.prefab
+3 kb                 assets/art/ui/mafia/게임준비/게임준비_상태_준비완료.png
+176 kb               assets/art/purchased asset/halloween_asset/textures/lantern_candles_albedo.png
+3 kb                 assets/art/prefabs/map/1f/newbookarchive_exhibition.prefab
+768 kb               assets/art/purchased asset/coreywilton/halloweenprops/textures/t_candle_05_albedotransparency.tga
+2 kb                 assets/art/purchased asset/halloween_asset/meshes/materials/bonfire_albedo.mat
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/wooden_fence.prefab
+2 kb                 assets/art/purchased asset/coreywilton/halloweenprops/materials/m_coffin_lid_03.mat
+259 kb               assets/art/purchased asset/bird flocks/roaming bats/models/bat mdl @batflap.fbx
+3 kb                 assets/art/ui/quickchat/chatbutton.png
+330 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/v2/falling.anim
+3 mb                 assets/art/purchased asset/coreywilton/halloweenprops/textures/t_candlestick_01_albedotransparency.tga
+34 kb                assets/art/modelings/rooftop/beanpack2.fbx
+176 kb               assets/art/purchased asset/halloween_asset/textures/grass_mesh_o_albedo.png
+7 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/candle_07_green.prefab
+297 kb               assets/art/modelings/rooftop/light_bulbs.fbx
+44 kb                assets/art/purchased asset/halloween_asset/meshes/cauldron.fbx
+2 kb                 assets/art/materials/blinn3.mat
+262 kb               assets/art/modelings/1f/cnlounge_lamp1.fbx
+1 mb                 assets/art/modelings/234f/magazine_bookself1.fbx
+491 kb               assets/art/modelings/cafe/cafe_desk.fbx
+2 kb                 assets/art/prefabs/map/cafe/chair_black.prefab
+9 kb                 assets/art/purchased asset/little_ghost_hq/prefabs/lg_03.prefab
+3 kb                 assets/art/prefabs/map/1f/curation_desk.prefab
+17 kb                assets/art/ui/mafia/지도/맵_3층.png
+62 kb                assets/art/ui/mafia/게임방법/게임방법_대기실.png
+498 kb               assets/art/modelings/cafe/chair_black.fbx
+258 kb               assets/art/textures/texture_1stfloor_02.jpg
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/bench.prefab
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/spider.prefab
+34 kb                assets/art/modelings/rooftop/beer1.fbx
+5 kb                 assets/art/prefabs/map/rooftop/lamp_white.prefab
+292 kb               assets/art/modelings/1f/toilet_door_man.fbx
+940 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/run.anim
+87 kb                assets/art/modelings/rooftop/lamp_black.fbx
+3 kb                 assets/art/prefabs/map/234f/big_sofa1.prefab
+343 b                assets/art/ui/mafia/미션, 마피아 기본버튼/미션리스트_순서.png
+24 kb                assets/art/purchased asset/halloween_asset/meshes/stool.fbx
+25 kb                assets/art/purchased asset/halloween_asset/meshes/potion05.fbx
+28 kb                assets/art/purchased asset/halloween_asset/meshes/candy06.fbx
+4 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/gravestonetall_01.prefab
+29 kb                assets/art/purchased asset/halloween_asset/meshes/basket.fbx
+1 mb                 assets/art/textures/1f_uv_ver2.png
+10 kb                assets/art/purchased asset/little_ghost_hq/animation/little_ghost.controller
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/pumpkin02.prefab
+110 kb               assets/art/purchased asset/halloween_asset/textures/pumpkin03_emmisive.png
+498 kb               assets/art/modelings/cafe/chair_white.fbx
+2 kb                 assets/art/materials/light_vfx.mat
+1 mb                 assets/art/modelings/234f/small_sofa1.fbx
+2 kb                 packages/zepeto.character.controller/runtime/_resources/prefabs/shadow/fxt_blobshadow.mat
+2 kb                 assets/art/prefabs/map/rooftop/beanpack2.prefab
+2 kb                 packages/zepeto.character.controller/runtime/_resources/prefabs/eventsystem.prefab
+275 kb               assets/art/modelings/1f/cnlounge_lamp3.fbx
+8 kb                 assets/art/purchased asset/3d lowpoly tree pack/prefabs/tree02.prefab
+2 kb                 assets/art/prefabs/game/votecheckuiprefab.prefab
+2 kb                 assets/art/purchased asset/coreywilton/halloweenprops/materials/m_coffin_base_01.mat
+2 kb                 assets/art/materials/new material.mat
+12 mb                assets/art/purchased asset/coreywilton/halloweenprops/textures/t_gravestoneslab_01_albedotransparency.tga
+2 kb                 assets/art/prefabs/map/rooftop/pot1.prefab
+3 kb                 assets/art/purchased asset/halloween_asset/prefabs/broom_witch.prefab
+1 mb                 assets/art/textures/rooftop_bottom.jpg
+7 kb                 assets/art/purchased asset/coreywilton/halloweenprops/prefabs/candle_08_green.prefab
+46 kb                assets/art/modelings/rooftop/tent.fbx
+290 kb               assets/art/modelings/1f/curation_desk.fbx
+[resources]
+0 b                  assets/resources    
+0 b                  assets/textmesh pro/resources
+[streamingAssets]

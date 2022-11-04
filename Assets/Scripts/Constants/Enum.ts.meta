@@ -1,0 +1,40 @@
+fileFormatVersion: 2
+guid: cd5d1d5cd5988b242a91b66a37b7c3fa
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: '{"source":"\"use strict\";\r\nObject.defineProperty(exports, \"__esModule\",
+    { value: true });\r\nexports.ButtonType = exports.InGameInteractState = exports.JobState
+    = exports.MafiaPlayerState = void 0;\r\nvar MafiaPlayerState;\r\n(function (MafiaPlayerState)
+    {\r\n})(MafiaPlayerState = exports.MafiaPlayerState || (exports.MafiaPlayerState
+    = {}));\r\n// Ready = 1,\r\n// Play = 2,\r\nvar JobState;\r\n(function (JobState)
+    {\r\n    JobState[JobState[\"None\"] = -2] = \"None\";\r\n    JobState[JobState[\"Citizen\"]
+    = 1] = \"Citizen\";\r\n    JobState[JobState[\"Mafia\"] = 2] = \"Mafia\";\r\n})(JobState
+    = exports.JobState || (exports.JobState = {}));\r\nvar InGameInteractState;\r\n(function
+    (InGameInteractState) {\r\n    InGameInteractState[InGameInteractState[\"NONE\"]
+    = 0] = \"NONE\";\r\n    InGameInteractState[InGameInteractState[\"ALIVE\"] =
+    1] = \"ALIVE\";\r\n    InGameInteractState[InGameInteractState[\"GHOST\"] = 2]
+    = \"GHOST\";\r\n    InGameInteractState[InGameInteractState[\"CORPSE\"] = 3]
+    = \"CORPSE\";\r\n    InGameInteractState[InGameInteractState[\"MISSION\"] = 4]
+    = \"MISSION\";\r\n})(InGameInteractState = exports.InGameInteractState || (exports.InGameInteractState
+    = {}));\r\nvar ButtonType;\r\n(function (ButtonType) {\r\n    ButtonType[ButtonType[\"REPORT\"]
+    = 0] = \"REPORT\";\r\n    ButtonType[ButtonType[\"MISSION\"] = 1] = \"MISSION\";\r\n   
+    ButtonType[ButtonType[\"KILL\"] = 2] = \"KILL\";\r\n})(ButtonType = exports.ButtonType
+    || (exports.ButtonType = {}));\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRW51bS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIkVudW0udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7O0FBQUEsSUFBWSxnQkFBbUI7QUFBL0IsV0FBWSxnQkFBZ0I7QUFBRSxDQUFDLEVBQW5CLGdCQUFnQixHQUFoQix3QkFBZ0IsS0FBaEIsd0JBQWdCLFFBQUc7QUFDL0IsYUFBYTtBQUNiLFlBQVk7QUFFWixJQUFZLFFBSVg7QUFKRCxXQUFZLFFBQVE7SUFDbEIsd0NBQVMsQ0FBQTtJQUNULDZDQUFXLENBQUE7SUFDWCx5Q0FBUyxDQUFBO0FBQ1gsQ0FBQyxFQUpXLFFBQVEsR0FBUixnQkFBUSxLQUFSLGdCQUFRLFFBSW5CO0FBRUQsSUFBWSxtQkFNWDtBQU5ELFdBQVksbUJBQW1CO0lBQzdCLDZEQUFRLENBQUE7SUFDUiwrREFBUyxDQUFBO0lBQ1QsK0RBQVMsQ0FBQTtJQUNULGlFQUFVLENBQUE7SUFDVixtRUFBVyxDQUFBO0FBQ2IsQ0FBQyxFQU5XLG1CQUFtQixHQUFuQiwyQkFBbUIsS0FBbkIsMkJBQW1CLFFBTTlCO0FBRUQsSUFBWSxVQUlYO0FBSkQsV0FBWSxVQUFVO0lBQ3BCLCtDQUFNLENBQUE7SUFDTixpREFBTyxDQUFBO0lBQ1AsMkNBQUksQ0FBQTtBQUNOLENBQUMsRUFKVyxVQUFVLEdBQVYsa0JBQVUsS0FBVixrQkFBVSxRQUlyQiJ9","assetPath":"Assets/Scripts/Constants/Enum.ts","manifest":{"properties":[],"name":"Enum","description":""},"isCompiled":true}'
+  typescriptHash: ecfc6a468b0596cc9cd14cfbbd3526cb
+  onlyWriteTrigger: 0
