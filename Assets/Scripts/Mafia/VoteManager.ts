@@ -15,6 +15,8 @@ export default class VoteManager extends ZepetoScriptBehaviour {
 
   @SerializeField()
   private votePanel: Transform;
+  @SerializeField()
+  private tempVotePanel: Transform;
 
   @SerializeField()
   private reportButtonPrefab: GameObject;
@@ -396,7 +398,7 @@ export default class VoteManager extends ZepetoScriptBehaviour {
         // const playerId = corpse.character.GetComponent<PlayerId>();
         const voteButton = GameObject.Instantiate<GameObject>(
           this.reportButtonPrefab,
-          this.votePanel
+          this.tempVotePanel
         );
 
         item.voteButton = voteButton.GetComponent<Button>();
@@ -406,7 +408,7 @@ export default class VoteManager extends ZepetoScriptBehaviour {
 
         item.votedCheckUI = GameObject.Instantiate<GameObject>(
           this.voteCheckUIPrefab,
-          this.votePanel
+          this.tempVotePanel
         );
 
         item.voteTargetUI = new Array<GameObject>();
@@ -415,7 +417,7 @@ export default class VoteManager extends ZepetoScriptBehaviour {
           item.voteTargetUI.push(
             GameObject.Instantiate<GameObject>(
               this.voteTargetUIPrefab,
-              this.votePanel
+              this.tempVotePanel
             )
           );
         }
@@ -429,7 +431,7 @@ export default class VoteManager extends ZepetoScriptBehaviour {
 
       this.reporterProps.reporterUi = GameObject.Instantiate<GameObject>(
         this.reporterUiPrefab,
-        this.votePanel
+        this.tempVotePanel
       );
     } else {
       this.playerIdArray.forEach((item) => {
@@ -451,8 +453,10 @@ export default class VoteManager extends ZepetoScriptBehaviour {
 
       this.skipButton.gameObject.SetActive(false);
       if (this.reporterProps) {
-        GameObject.Destroy(this.reporterProps.reporterUi);
-        this.reporterProps.reporterUi = null;
+        if (this.reporterProps.reporterUi) {
+          GameObject.Destroy(this.reporterProps.reporterUi);
+          this.reporterProps.reporterUi = null;
+        }
         this.reporterProps = null;
       }
       this.playerIdArray = new Array<PlayerId>();
@@ -555,28 +559,30 @@ export default class VoteManager extends ZepetoScriptBehaviour {
       }
     });
 
-    this.reporterProps.reporterUi.transform.position =
-      camera.WorldToScreenPoint(
-        Vector3.op_Addition(
-          this.reporterProps.transform.position,
+    if (this.reporterProps.reporterUi) {
+      this.reporterProps.reporterUi.transform.position =
+        camera.WorldToScreenPoint(
           Vector3.op_Addition(
+            this.reporterProps.transform.position,
             Vector3.op_Addition(
-              Vector3.op_Multiply(
-                this.reporterOffset.x,
-                this.reporterProps.transform.right
+              Vector3.op_Addition(
+                Vector3.op_Multiply(
+                  this.reporterOffset.x,
+                  this.reporterProps.transform.right
+                ),
+                Vector3.op_Multiply(
+                  this.reporterOffset.y,
+                  this.reporterProps.transform.up
+                )
               ),
               Vector3.op_Multiply(
-                this.reporterOffset.y,
-                this.reporterProps.transform.up
+                this.reporterOffset.z,
+                this.reporterProps.transform.forward
               )
-            ),
-            Vector3.op_Multiply(
-              this.reporterOffset.z,
-              this.reporterProps.transform.forward
             )
           )
-        )
-      );
+        );
+    }
   }
 
   OnLeavePlayer(sessionId: string, player: Player) {
@@ -596,8 +602,10 @@ export default class VoteManager extends ZepetoScriptBehaviour {
 
     if (this.reporterProps) {
       if (this.reporterProps.sessionId == sessionId) {
-        GameObject.Destroy(this.reporterProps.reporterUi);
-        this.reporterProps.reporterUi = null;
+        if (this.reporterProps.reporterUi) {
+          GameObject.Destroy(this.reporterProps.reporterUi);
+          this.reporterProps.reporterUi = null;
+        }
         this.reporterProps = null;
       }
     }

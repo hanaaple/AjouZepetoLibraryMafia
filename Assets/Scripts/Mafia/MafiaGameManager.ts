@@ -49,6 +49,10 @@ export default class MafiaGameManager extends ZepetoScriptBehaviour {
 
   @SerializeField()
   private mafiaUI: GameObject;
+  @SerializeField()
+  private mafiaMissionList: GameObject;
+  @SerializeField()
+  private _mafiaMissionList: MafiaMissionList;
 
   @SerializeField()
   private animator: RuntimeAnimatorController;
@@ -79,6 +83,8 @@ export default class MafiaGameManager extends ZepetoScriptBehaviour {
   Start() {
     this.savedMaterials = new Map<string, SkinMesh[]>();
     this.corpseArray = new Array<GameObject>();
+    this._mafiaMissionList =
+      this.mafiaMissionList.GetComponent<MafiaMissionList>();
     ZepetoPlayers.instance.OnAddedPlayer.AddListener((sessionId: string) => {
       const character = ZepetoPlayers.instance.GetPlayer(sessionId).character;
       if (character.gameObject.GetComponent<PlayerId>()) {
@@ -367,7 +373,7 @@ export default class MafiaGameManager extends ZepetoScriptBehaviour {
         (localPlayer.InGamePlayerState == 2 ? "GHOST" : "ALIVE")
     );
 
-    MafiaMissionList.instance.Initialize(localPlayer.missionList);
+    this._mafiaMissionList.Initialize(localPlayer.missionList);
     this.state.mafiaPlayers.ForEach((sessionId: string, player: Player) => {
       const zepetoPlayer = ZepetoPlayers.instance.GetPlayer(sessionId);
 
@@ -393,7 +399,6 @@ export default class MafiaGameManager extends ZepetoScriptBehaviour {
           const mafia = zepetoPlayer.character.gameObject.GetComponent<Mafia>();
           mafia.Initialize(
             this.mafiaUI,
-
             zepetoPlayer.isLocalPlayer,
             player.jobState,
             zepetoPlayer.id
@@ -402,7 +407,6 @@ export default class MafiaGameManager extends ZepetoScriptBehaviour {
           const mafia = zepetoPlayer.character.gameObject.AddComponent<Mafia>();
           mafia.Initialize(
             this.mafiaUI,
-
             zepetoPlayer.isLocalPlayer,
             player.jobState,
             zepetoPlayer.id
@@ -415,7 +419,6 @@ export default class MafiaGameManager extends ZepetoScriptBehaviour {
 
           citizen.Initialize(
             this.mafiaUI,
-
             zepetoPlayer.isLocalPlayer,
             player.jobState,
             zepetoPlayer.id
@@ -426,7 +429,6 @@ export default class MafiaGameManager extends ZepetoScriptBehaviour {
 
           citizen.Initialize(
             this.mafiaUI,
-
             zepetoPlayer.isLocalPlayer,
             player.jobState,
             zepetoPlayer.id

@@ -101,7 +101,8 @@ export default class AnimationLinker extends ZepetoScriptBehaviour {
   SetisGesture(sessionId: string, gesture: AnimationClip) {
     if (this.playingGesture.has(sessionId)) {
       ClientStarter.instance.Debug("이미 갖고 있습니다.");
+    } else {
+      this.playingGesture.set(sessionId, gesture);
     }
-    this.playingGesture.set(sessionId, gesture);
   }
 }

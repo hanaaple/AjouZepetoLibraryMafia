@@ -27,24 +27,6 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-    "com.unity.ide.rider": {
-      "version": "2.0.7",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.test-framework": "1.1.1"
-      },
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.ide.visualstudio": {
-      "version": "2.0.16",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.test-framework": "1.1.9"
-      },
-      "url": "https://packages.unity.com"
-    },
     "com.unity.ide.vscode": {
       "version": "1.2.5",
       "depth": 0,
@@ -95,15 +77,6 @@
       },
       "url": "https://packages.unity.com"
     },
-    "com.unity.textmeshpro": {
-      "version": "3.0.6",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.ugui": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
-    },
     "com.unity.timeline": {
       "version": "1.5.4",
       "depth": 1,
@@ -126,23 +99,16 @@
       }
     },
     "zepeto.asset": {
-      "version": "1.0.12",
-      "depth": 1,
+      "version": "1.0.11",
+      "depth": 2,
       "source": "registry",
       "dependencies": {
         "com.unity.scriptablebuildpipeline": "1.7.3"
       },
       "url": "https://upm.zepeto.run"
     },
-    "zepeto.asset.protector": {
-      "version": "0.0.2",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://upm.zepeto.run"
-    },
     "zepeto.character": {
-      "version": "3.1.15",
+      "version": "3.1.13",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -203,17 +169,6 @@
       "depth": 1,
       "source": "registry",
       "dependencies": {},
-      "url": "https://upm.zepeto.run"
-    },
-    "zepeto.studio": {
-      "version": "3.2.3",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "zepeto.asset": "1.0.12",
-        "zepeto.asset.protector": "0.0.2",
-        "zepeto.character": "3.1.15"
-      },
       "url": "https://upm.zepeto.run"
     },
     "zepeto.world": {

@@ -14,6 +14,8 @@ export default class MafiaReadyUiController extends ZepetoScriptBehaviour {
 
   @SerializeField()
   private readyPanel: GameObject;
+  @SerializeField()
+  private tempReadyPanel: GameObject;
 
   public attendButton: Button;
 
@@ -40,7 +42,7 @@ export default class MafiaReadyUiController extends ZepetoScriptBehaviour {
   }
 
   Update() {
-    if (this.readyPanel.activeSelf) {
+    if (this.tempReadyPanel.activeSelf) {
       this.playerIds.forEach((item) => {
         if (!item || !item.readyImage) {
           return;
@@ -201,6 +203,7 @@ export default class MafiaReadyUiController extends ZepetoScriptBehaviour {
     this.startCountText.text = "";
     this.attendButton.gameObject.SetActive(true);
     this.readyPanel.SetActive(false);
+    this.tempReadyPanel.SetActive(false);
     this.playerIds.forEach((item) => {
       if (!item || !item.readyImage) {
         console.log("레디 버튼 없음 이상함 오류");

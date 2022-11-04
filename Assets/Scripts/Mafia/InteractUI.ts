@@ -1,3 +1,4 @@
+import { GameObject } from "UnityEngine";
 import { Button } from "UnityEngine.UI";
 import { ZepetoScriptBehaviour } from "ZEPETO.Script";
 import { ButtonType, JobState } from "../Constants/Enum";
@@ -6,6 +7,7 @@ export default class InteractUI extends ZepetoScriptBehaviour {
   public reportButton: Button;
   public missionButton: Button;
   public killButton: Button;
+  public killButtonBackground: GameObject;
 
   public Init(jobState: JobState) {
     this.gameObject.SetActive(true);
@@ -13,10 +15,12 @@ export default class InteractUI extends ZepetoScriptBehaviour {
       this.killButton.gameObject.SetActive(true);
       this.reportButton.gameObject.SetActive(true);
       this.missionButton.gameObject.SetActive(true);
+      this.killButtonBackground.SetActive(true);
     } else if (jobState == JobState.Citizen) {
       this.killButton.gameObject.SetActive(false);
       this.reportButton.gameObject.SetActive(true);
       this.missionButton.gameObject.SetActive(true);
+      this.killButtonBackground.SetActive(false);
     }
 
     this.ActiveButton(ButtonType.KILL, false);

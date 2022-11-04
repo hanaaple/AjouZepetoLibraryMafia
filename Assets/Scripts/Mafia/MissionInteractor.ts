@@ -1,8 +1,9 @@
 import { AnimationClip, Time, WaitUntil } from "UnityEngine";
+import { UnityAction$2 } from "UnityEngine.Events";
+import { Image, Text } from "UnityEngine.UI";
 import { ZepetoPlayers } from "ZEPETO.Character.Controller";
 import { ZepetoScriptBehaviour } from "ZEPETO.Script";
 import AnimationLinker from "../AnimationLinker";
-import MafiaMissionList from "./MafiaMissionList";
 
 export default class MissionInteractor extends ZepetoScriptBehaviour {
   public animationClip: AnimationClip;
@@ -18,6 +19,21 @@ export default class MissionInteractor extends ZepetoScriptBehaviour {
 
   @NonSerialized()
   public missionIndex: number;
+
+  public slide: Image;
+  public text: Text;
+
+  public onComplete: UnityAction$2<MissionInteractor, Text>;
+
+  Initialize(
+    slide: Image,
+    text: Text,
+    onComplete: UnityAction$2<MissionInteractor, Text>
+  ) {
+    this.slide = slide;
+    this.text = text;
+    this.onComplete = onComplete;
+  }
 
   Start() {
     this.isSuccess = false;
@@ -44,13 +60,12 @@ export default class MissionInteractor extends ZepetoScriptBehaviour {
     console.log("인터랙트 중");
     this.StartCoroutine(this.WaitForMove());
 
-    const slide = MafiaMissionList.instance.slide;
     console.log(this.animationSec);
     let t: number = 0;
     while (t <= this.animationSec) {
       t += Time.deltaTime;
-      slide.value = t / this.animationSec;
-      console.log(slide.value);
+      this.slide.fillAmount = t / this.animationSec;
+      console.log(this.slide.fillAmount);
       yield null;
     }
     this.OnComplete();
@@ -66,18 +81,16 @@ export default class MissionInteractor extends ZepetoScriptBehaviour {
       ZepetoPlayers.instance.LocalPlayer.zepetoPlayer
     );
 
-    MafiaMissionList.instance.Complete(this);
+    this.onComplete(this, this.text);
   }
 
   private SetObjs(isOn: boolean) {
-    const slide = MafiaMissionList.instance.slide;
-
     if (isOn) {
       // missionPanel.SetActive(true);
-      slide.gameObject.SetActive(true);
-      slide.value = 0;
+      this.slide.gameObject.SetActive(true);
+      this.slide.fillAmount = 0;
     } else {
-      slide.gameObject.SetActive(false);
+      this.slide.gameObject.SetActive(false);
       // missionPanel.SetActive(false);
     }
   }

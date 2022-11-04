@@ -24,8 +24,13 @@ ScriptedImporter:
     = require(\"ZEPETO.Character.Controller\");\r\nconst ZEPETO_Script_1 = require(\"ZEPETO.Script\");\r\nclass
     ZepetoController extends ZEPETO_Script_1.ZepetoScriptBehaviour {\r\n    Start()
     {\r\n        ZEPETO_Character_Controller_1.ZepetoPlayers.instance.OnAddedLocalPlayer.AddListener(()
-    => {\r\n            this.gameObject.GetComponentInChildren($typeof(UnityEngine_UI_1.CanvasScaler)).referenceResolution
+    => {\r\n            this.gameObject.GetComponentInChildren($typeof(UnityEngine_1.Canvas)).renderMode
+    =\r\n                UnityEngine_1.RenderMode.ScreenSpaceCamera;\r\n           
+    this.gameObject.GetComponentInChildren($typeof(UnityEngine_1.Canvas)).worldCamera
+    =\r\n                ZEPETO_Character_Controller_1.ZepetoPlayers.instance.LocalPlayer.zepetoCamera.camera;\r\n           
+    this.gameObject.GetComponentInChildren($typeof(UnityEngine_1.Canvas)).planeDistance
+    = 0.05;\r\n            this.gameObject.GetComponentInChildren($typeof(UnityEngine_UI_1.CanvasScaler)).referenceResolution
     =\r\n                new UnityEngine_1.Vector2(1280, 720);\r\n        });\r\n   
-    }\r\n}\r\nexports.default = ZepetoController;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiWmVwZXRvQ29udHJvbGxlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIlplcGV0b0NvbnRyb2xsZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSw2Q0FBc0M7QUFDdEMsbURBQThDO0FBQzlDLDZFQUE0RDtBQUM1RCxpREFBc0Q7QUFFdEQsTUFBcUIsZ0JBQWlCLFNBQVEscUNBQXFCO0lBQ2pFLEtBQUs7UUFDSCwyQ0FBYSxDQUFDLFFBQVEsQ0FBQyxrQkFBa0IsQ0FBQyxXQUFXLENBQUMsR0FBRyxFQUFFO1lBQ3pELElBQUksQ0FBQyxVQUFVLENBQUMsc0JBQXNCLFNBQUMsNkJBQVksR0FBSSxtQkFBbUI7Z0JBQ3hFLElBQUkscUJBQU8sQ0FBQyxJQUFJLEVBQUUsR0FBRyxDQUFDLENBQUM7UUFDM0IsQ0FBQyxDQUFDLENBQUM7SUFDTCxDQUFDO0NBQ0Y7QUFQRCxtQ0FPQyJ9","assetPath":"Assets/Scripts/ZepetoController.ts","manifest":{"properties":[],"name":"ZepetoController","description":""},"isCompiled":true}'
-  typescriptHash: c21941461ea9d414f932b9299177fbe0
+    }\r\n}\r\nexports.default = ZepetoController;\r\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiWmVwZXRvQ29udHJvbGxlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIlplcGV0b0NvbnRyb2xsZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSw2Q0FBMEQ7QUFDMUQsbURBQThDO0FBQzlDLDZFQUE0RDtBQUM1RCxpREFBc0Q7QUFFdEQsTUFBcUIsZ0JBQWlCLFNBQVEscUNBQXFCO0lBQ2pFLEtBQUs7UUFDSCwyQ0FBYSxDQUFDLFFBQVEsQ0FBQyxrQkFBa0IsQ0FBQyxXQUFXLENBQUMsR0FBRyxFQUFFO1lBQ3pELElBQUksQ0FBQyxVQUFVLENBQUMsc0JBQXNCLFNBQUMsb0JBQU0sR0FBSSxVQUFVO2dCQUN6RCx3QkFBVSxDQUFDLGlCQUFpQixDQUFDO1lBQy9CLElBQUksQ0FBQyxVQUFVLENBQUMsc0JBQXNCLFNBQUMsb0JBQU0sR0FBSSxXQUFXO2dCQUMxRCwyQ0FBYSxDQUFDLFFBQVEsQ0FBQyxXQUFXLENBQUMsWUFBWSxDQUFDLE1BQU0sQ0FBQztZQUN6RCxJQUFJLENBQUMsVUFBVSxDQUFDLHNCQUFzQixTQUFDLG9CQUFNLEdBQUksYUFBYSxHQUFHLElBQUksQ0FBQztZQUN0RSxJQUFJLENBQUMsVUFBVSxDQUFDLHNCQUFzQixTQUFDLDZCQUFZLEdBQUksbUJBQW1CO2dCQUN4RSxJQUFJLHFCQUFPLENBQUMsSUFBSSxFQUFFLEdBQUcsQ0FBQyxDQUFDO1FBQzNCLENBQUMsQ0FBQyxDQUFDO0lBQ0wsQ0FBQztDQUNGO0FBWkQsbUNBWUMifQ==","assetPath":"Assets/Scripts/ZepetoController.ts","manifest":{"properties":[],"name":"ZepetoController","description":""},"isCompiled":true}'
+  typescriptHash: 89600f182928505cd1fc99ad09b73070
   onlyWriteTrigger: 0

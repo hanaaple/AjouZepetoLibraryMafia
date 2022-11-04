@@ -1,5 +1,5 @@
 import { GameObject } from "UnityEngine";
-import { Image, Slider, Text } from "UnityEngine.UI";
+import { Image, Text } from "UnityEngine.UI";
 import { ZepetoPlayers } from "ZEPETO.Character.Controller";
 import { RoomData } from "ZEPETO.Multiplay";
 import { ZepetoScriptBehaviour } from "ZEPETO.Script";
@@ -11,8 +11,6 @@ import MissionInteractor from "./MissionInteractor";
 import PlayerId from "./PlayerId";
 
 export default class MafiaMissionList extends ZepetoScriptBehaviour {
-  public static instance: MafiaMissionList;
-
   public missionBarImage: Image;
 
   public missionInteractors: GameObject[];
@@ -22,11 +20,7 @@ export default class MafiaMissionList extends ZepetoScriptBehaviour {
 
   public missionLists: Text[];
 
-  public slide: Slider;
-
-  Awake() {
-    MafiaMissionList.instance = this;
-  }
+  public missionProgressBar: Image;
 
   Start() {
     console.log("1");
@@ -36,8 +30,13 @@ export default class MafiaMissionList extends ZepetoScriptBehaviour {
     this.selectedMissionInteractors = new Array<MissionInteractor>();
 
     console.log("3");
-    this.missionInteractors.forEach((item) => {
+    this.missionInteractors.forEach((item, index) => {
       const interactor = item.GetComponent<MissionInteractor>();
+      // interactor.Initialize(
+      //   this.missionProgressBar,
+      //   this.missionLists[index],
+      //   this.Complete
+      // );
       this._missionInteractors.push(interactor);
       interactor.enabled = false;
     });
@@ -55,15 +54,24 @@ export default class MafiaMissionList extends ZepetoScriptBehaviour {
   Initialize(missionListIdx: string) {
     console.log("미션 초기화");
     const idxs = missionListIdx.split(",");
-
     idxs.forEach((item, idx) => {
+      this._missionInteractors[item].Initialize(
+        this.missionProgressBar,
+        this.missionLists[idx],
+        this.Complete
+      );
       this._missionInteractors[item].enabled = true;
       this.selectedMissionInteractors.push(this._missionInteractors[item]);
       console.log(
-        "idx: " + item + ", " + this._missionInteractors[item].context
+        "idx: " +
+          item +
+          ", " +
+          idx +
+          " " +
+          this._missionInteractors[item].context
       );
       this._missionInteractors[item].index = idx;
-      this._missionInteractors[item].missionIndex = item;
+      this._missionInteractors[item].missionIndex = parseInt(item);
 
       this.missionLists[idx].text = this._missionInteractors[item].context;
       this.missionLists[idx].enabled = true;
@@ -72,9 +80,18 @@ export default class MafiaMissionList extends ZepetoScriptBehaviour {
     this.missionBarImage.fillAmount = 0;
   }
 
-  Complete(mission: MissionInteractor) {
-    this.missionLists[mission.index].text =
-      "(완료)" + this.missionLists[mission.index].text;
+  Complete(mission: MissionInteractor, text: Text) {
+    console.log(this);
+    console.log(mission);
+    console.log(mission.index);
+    console.log(this.missionLists);
+    console.log(text);
+    if (this.missionLists) {
+      this.missionLists[mission.index].text =
+        "(완료)" + this.missionLists[mission.index].text;
+    } else if (text) {
+      text.text = "(완료)" + text.text;
+    }
 
     //해당 미션 체크, 슬라이드
     const playerId =

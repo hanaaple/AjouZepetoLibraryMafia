@@ -60,9 +60,13 @@ export default class UIController extends ZepetoScriptBehaviour {
   @SerializeField()
   private readyPanel: GameObject;
   @SerializeField()
+  private tempReadyPanel: GameObject;
+  @SerializeField()
   private playPanel: GameObject;
   @SerializeField()
   private votePanel: GameObject;
+  @SerializeField()
+  private tempVotePanel: GameObject;
 
   @SerializeField()
   private howToPlayJobButton: Button;
@@ -242,14 +246,6 @@ export default class UIController extends ZepetoScriptBehaviour {
         ClientStarter.instance
           .GetRoom()
           .AddMessageHandler("onReport", (message: any) => {
-            console.log(
-              "리포트!! :" +
-                !ClientStarter.instance
-                  .GetRoom()
-                  .State.mafiaPlayers.ContainsKey(
-                    ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
-                  )
-            );
             if (
               !ClientStarter.instance
                 .GetRoom()
@@ -360,7 +356,12 @@ export default class UIController extends ZepetoScriptBehaviour {
             if (playerId.jobState == JobState.Citizen) {
               const citizen = character.GetComponent<Citizen>();
               citizen.interactUI.Init(citizen.jobState);
-              citizen.interactUI.reportButton.gameObject.SetActive(true);
+
+              if (playerId.state == InGameInteractState.GHOST) {
+                citizen.interactUI.reportButton.gameObject.SetActive(false);
+              } else {
+                citizen.interactUI.reportButton.gameObject.SetActive(true);
+              }
               citizen.interactUI.killButton.gameObject.SetActive(false);
               citizen.interactUI.missionButton.gameObject.SetActive(true);
             } else if (
@@ -372,10 +373,12 @@ export default class UIController extends ZepetoScriptBehaviour {
               mafia.interactUI.reportButton.gameObject.SetActive(true);
               mafia.interactUI.killButton.gameObject.SetActive(true);
               mafia.interactUI.missionButton.gameObject.SetActive(true);
+              mafia.interactUI.killButtonBackground.SetActive(true);
             }
 
             this.playPanel.SetActive(true);
             this.votePanel.gameObject.SetActive(false);
+            this.tempVotePanel.gameObject.SetActive(false);
           });
 
         ClientStarter.instance
@@ -450,13 +453,14 @@ export default class UIController extends ZepetoScriptBehaviour {
       citizen.interactUI.Init(citizen.jobState);
       citizen.interactUI.reportButton.gameObject.SetActive(false);
       citizen.interactUI.killButton.gameObject.SetActive(false);
-      citizen.interactUI.missionButton.gameObject.SetActive(false);
+      citizen.interactUI.missionButton.gameObject.SetActive(true);
     } else if (playerId.jobState == JobState.Mafia) {
       const mafia = character.GetComponent<Mafia>();
       mafia.interactUI.Init(mafia.jobState);
       mafia.interactUI.reportButton.gameObject.SetActive(false);
       mafia.interactUI.killButton.gameObject.SetActive(false);
       mafia.interactUI.missionButton.gameObject.SetActive(false);
+      mafia.interactUI.killButtonBackground.SetActive(false);
     }
 
     this.onEventImage.gameObject.SetActive(true);
@@ -478,8 +482,6 @@ export default class UIController extends ZepetoScriptBehaviour {
     this.onEventImage.color = color;
     this.onEventImage.gameObject.SetActive(false);
     this.event = null;
-
-    this.playPanel.SetActive(false);
   }
 
   private *ReportEvent() {
@@ -497,6 +499,7 @@ export default class UIController extends ZepetoScriptBehaviour {
       mafia.interactUI.reportButton.gameObject.SetActive(false);
       mafia.interactUI.killButton.gameObject.SetActive(false);
       mafia.interactUI.missionButton.gameObject.SetActive(false);
+      mafia.interactUI.killButtonBackground.SetActive(false);
     }
 
     console.log("신고 이미지 활성화" + this.playPanel.activeSelf);
@@ -555,22 +558,27 @@ export default class UIController extends ZepetoScriptBehaviour {
 
     const character = ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character;
     const playerId = character.GetComponent<PlayerId>();
-    if (playerId.jobState == JobState.Citizen) {
-      const citizen = character.GetComponent<Citizen>();
-      citizen.interactUI.Init(citizen.jobState);
-      citizen.interactUI.reportButton.gameObject.SetActive(true);
-      citizen.interactUI.killButton.gameObject.SetActive(false);
-      citizen.interactUI.missionButton.gameObject.SetActive(true);
-    } else if (
-      playerId.jobState == JobState.Mafia &&
-      playerId.state == InGameInteractState.ALIVE
-    ) {
-      const mafia = character.GetComponent<Mafia>();
-      mafia.interactUI.Init(mafia.jobState);
-      mafia.interactUI.reportButton.gameObject.SetActive(true);
-      mafia.interactUI.killButton.gameObject.SetActive(true);
-      mafia.interactUI.missionButton.gameObject.SetActive(true);
-    }
+    // if (playerId.jobState == JobState.Citizen) {
+    //   const citizen = character.GetComponent<Citizen>();
+    //   citizen.interactUI.Init(citizen.jobState);
+    //   if (playerId.state == InGameInteractState.GHOST){
+    //     citizen.interactUI.reportButton.gameObject.SetActive(false);
+    //   }else{
+    //     citizen.interactUI.reportButton.gameObject.SetActive(true);
+    //   }
+    //   citizen.interactUI.killButton.gameObject.SetActive(false);
+    //   citizen.interactUI.missionButton.gameObject.SetActive(true);
+    // } else if (
+    //   playerId.jobState == JobState.Mafia &&
+    //   playerId.state == InGameInteractState.ALIVE
+    // ) {
+    //   const mafia = character.GetComponent<Mafia>();
+    //   mafia.interactUI.Init(mafia.jobState);
+    //   mafia.interactUI.reportButton.gameObject.SetActive(true);
+    //   mafia.interactUI.killButton.gameObject.SetActive(true);
+    //   mafia.interactUI.missionButton.gameObject.SetActive(true);
+    //   mafia.interactUI.killButtonBackground.SetActive(true);
+    // }
   }
 
   OnDebateToast(timeout: number) {
@@ -592,6 +600,7 @@ export default class UIController extends ZepetoScriptBehaviour {
     if (localPlayer && localPlayer.InGamePlayerState == 1) {
       this.playPanel.SetActive(false);
       this.votePanel.gameObject.SetActive(true);
+      this.tempVotePanel.gameObject.SetActive(true);
       this.voteSkipPanel.SetActive(false);
       this.voteCountPanel.SetActive(false);
       this.voteToastImage.gameObject.SetActive(true);
@@ -736,8 +745,10 @@ export default class UIController extends ZepetoScriptBehaviour {
       this.event = null;
     }
     this.readyPanel.SetActive(true);
+    this.tempReadyPanel.SetActive(true);
     this.playPanel.SetActive(false);
     this.votePanel.SetActive(false);
+    this.tempVotePanel.SetActive(false);
     this.mapPanel.SetActive(false);
 
     this.howToPlayButton.gameObject.SetActive(true);

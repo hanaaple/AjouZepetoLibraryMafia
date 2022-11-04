@@ -1,0 +1,557 @@
+[World Settings]
+world id             com.ajou.librarywitch
+version              1.02                
+max clients          8                   
+orientation          horizontal          
+disable invite       false               
+disable room list    false               
+disable private room false               
+
+[Build Manifest]
+[scenes]
+578 kb               assets/scenes/buildscene.unity
+[assets]
+24 kb                assets/art/purchased asset/toyspack/models/bucket_01.fbx
+3 kb                 assets/art/prefabs/map/1f/toilet_board_woman.prefab
+2 kb                 packages/zepeto.character.controller/runtime/_resources/animations/ui/controller/touchpad_handle_off.anim
+2 kb                 assets/art/prefabs/map/rooftop/mugcup2.prefab
+7 kb                 assets/art/purchased asset/toyspack/prefabs/helicopter_01.prefab
+271 kb               assets/art/modelings/1f/newbookarchive_chair1.fbx
+26 kb                assets/art/ui/mafia/승리 화면/승리_시민.png
+2 kb                 assets/art/purchased asset/ultimate 10 plus shaders/materials/unique/force field.mat
+35 kb                packages/zepeto.character.controller/runtime/_resources/inputactions/zepetoinputcontrol.inputactions
+3 kb                 assets/art/prefabs/map/1f/multimedia_wheelchair.prefab
+151 kb               assets/art/purchased asset/3d lowpoly tree pack/model/tree05_leaves.fbx
+43 kb                assets/art/ui/mafia/지도/맵_바깥.png
+600 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/v2/landingslight.anim
+3 kb                 assets/art/prefabs/map/info/floor_info_3_4.prefab
+793 kb               assets/art/modelings/center_terrass_chair.fbx
+118 kb               assets/art/prefabs/map/lights_vfx_yellow 1.prefab
+46 kb                assets/art/purchased asset/toyspack/models/toystacker_01.fbx
+2 kb                 assets/art/prefabs/map/rooftop/beer1.prefab
+2 kb                 assets/art/purchased asset/toyspack/prefabs/rocket_01.prefab
+2 kb                 assets/art/materials/blinn1.mat
+3 kb                 assets/art/prefabs/map/1f/toilet_door_man.prefab
+257 kb               assets/art/modelings/1f/toilet_board_etc.fbx
+281 kb               assets/art/modelings/1f/newbookarchive_wheelchair.fbx
+3 kb                 assets/art/ui/mafia/미션, 마피아 기본버튼/미션완료도_수정.png
+14 kb                assets/art/prefabs/map/stairs.prefab
+3 kb                 assets/art/prefabs/map/1f/hall_sofa1.prefab
+2 kb                 assets/art/prefabs/map/rooftop/chair2.prefab
+1 mb                 packages/zepeto.character.controller/runtime/_resources/animations/base/walk.anim
+1 kb                 assets/art/ui/mafia/투표/투표_투표전.png
+3 kb                 assets/art/prefabs/map/1f/hall_bench.prefab
+5 kb                 assets/art/prefabs/map/cafe/window_table.prefab
+34 kb                assets/art/modelings/rooftop/beanpack3.fbx
+290 kb               assets/art/modelings/234f/new folder/newbookarchive_desk_6.fbx
+2 kb                 assets/art/materials/rock_texture.mat
+57 kb                assets/art/purchased asset/toyspack/models/bunny_01.fbx
+8 kb                 assets/art/purchased asset/3d lowpoly tree pack/prefabs/tree03.prefab
+306 kb               assets/animator/zepetoanimatorv2.controller
+1 mb                 assets/art/modelings/234f/small_sofa3.fbx
+1 kb                 assets/art/ui/quickchat/chatitem.png
+14 kb                assets/art/ui/mafia/게임준비/직업_시민.png
+3 kb                 assets/art/prefabs/map/rooftop/parasol.prefab
+1 mb                 assets/art/modelings/234f/new folder/newbookarchive_chair.fbx
+3 kb                 assets/art/prefabs/map/library_common/multimedia_mouse.prefab
+2 kb                 assets/art/materials/ver4.mat
+258 kb               assets/art/modelings/1f/multimedia_dvd_speaker.fbx
+278 kb               assets/art/modelings/1f/revolving_door.fbx
+20 kb                assets/art/ui/mafia/지도/맵_옥상정원_수정.png
+2 kb                 assets/art/materials/texture_1stfloor_01.mat
+3 kb                 assets/art/prefabs/map/1f/newbookarchive_sofa1.prefab
+2 kb                 assets/art/purchased asset/3d lowpoly tree pack/texture/materials/tree03_trunk.mat
+2 mb                 assets/art/purchased asset/3d lowpoly tree pack/texture/tree05_trunk.png
+14 kb                assets/art/purchased asset/toyspack/prefabs/robot_01.prefab
+2 kb                 assets/art/purchased asset/toyspack/prefabs/horse_01.prefab
+34 kb                assets/art/modelings/rooftop/beanpack4.fbx
+1 mb                 packages/zepeto.character.controller/runtime/_resources/animations/base/jump_move.anim
+1 mb                 assets/art/modelings/234f/datapc_computerset.fbx
+2 kb                 assets/art/prefabs/map/rooftop/tent.prefab
+27 kb                packages/zepeto.character.controller/runtime/_resources/prefabs/uicontroller_touchpad_horizontal.prefab
+5 kb                 assets/art/prefabs/map/cafe/cafetable_small.prefab
+54 kb                assets/art/ui/mafia/게임방법/게임방법_마녀.png
+574 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/v2/landingroll.anim
+2 kb                 assets/art/purchased asset/3d lowpoly tree pack/texture/materials/tree02_trunk.mat
+28 kb                assets/art/purchased asset/toyspack/models/rugbyball_01.fbx
+2 kb                 assets/art/prefabs/map/234f/datapc_clearwall.prefab
+3 kb                 assets/art/prefabs/map/234f/big_sofa2.prefab
+2 kb                 assets/art/prefabs/map/rooftop/chair1.prefab
+28 kb                assets/art/ui/mafia/승리 화면/승리_미션승.png
+2 kb                 assets/art/materials/rooftop_terrass_ver2.mat
+43 kb                assets/art/purchased asset/toyspack/models/pool_01.fbx
+563 kb               assets/animator/animation/organize book.fbx
+2 kb                 assets/art/purchased asset/toyspack/prefabs/bunny_01.prefab
+2 kb                 assets/art/ui/mafia/투표/투표_신고자표시.png
+27 kb                packages/zepeto.character.controller/runtime/_resources/prefabs/uicontroller_touchpad_vertical.prefab
+36 kb                assets/art/modelings/rooftop/mugcup.fbx
+325 kb               assets/art/modelings/1f/loan_bookshelf.fbx
+240 kb               assets/art/prefabs/map/portal.prefab
+2 kb                 assets/art/prefabs/map/center_terrass_bottom.prefab
+465 kb               assets/art/textures/cafe_interior_ver1.png
+2 kb                 assets/art/prefabs/map/rooftop/table_big.prefab
+3 kb                 assets/art/prefabs/map/234f/newbookarchive_chair.prefab
+1 mb                 assets/art/modelings/4floor.fbx
+1 kb                 packages/com.unity.inputsystem/inputsystem/editor/icons/inputsystemuiinputmodule@64.png
+10 kb                assets/art/ui/mafia/미션, 마피아 기본버튼/미션버튼.png
+2 kb                 assets/art/prefabs/map/234f/cnlounge_hallwall.prefab
+53 kb                assets/art/modelings/rooftop/chair3.fbx
+97 kb                assets/art/modelings/library_common/tray.fbx
+495 kb               assets/art/modelings/cafe/cafetable_big.fbx
+1 mb                 assets/art/modelings/234f/datapc_desk.fbx
+8 kb                 assets/art/ui/quickchat/chatbackground.png
+2 kb                 assets/art/purchased asset/toyspack/prefabs/rubberduck_01.prefab
+75 kb                assets/art/modelings/library_common/sterilizer.fbx
+70 kb                assets/art/modelings/info/floor_info_3_4.fbx
+3 kb                 assets/art/prefabs/map/1f/multimedia_dvd_desk.prefab
+291 kb               assets/art/modelings/234f/new folder/newbookarchive_desk_4.fbx
+65 kb                assets/art/modelings/rooftop/tarp.fbx
+54 kb                assets/art/purchased asset/3d lowpoly tree pack/model/tree04_leaves.fbx
+3 kb                 assets/art/prefabs/map/1f/cnlounge_cleanwall.prefab
+2 kb                 assets/art/materials/block.mat
+58 kb                assets/art/purchased asset/toyspack/models/horse_01.fbx
+2 kb                 assets/art/prefabs/game/reporteruiprefab.prefab
+286 kb               assets/art/modelings/1f/multimedia_wheelchair.fbx
+26 kb                assets/art/purchased asset/toyspack/models/slide_01.fbx
+311 kb               assets/art/modelings/1f/hall_sofa2.fbx
+51 kb                assets/art/textures/texture_etc.png
+1 mb                 assets/art/modelings/1f/cnlounge_desk_person.fbx
+127 kb               assets/art/prefabs/waiting room.fbm/waitingroom_ver1.png
+10 kb                assets/art/ui/mafia/투표/투표시간.png
+29 kb                assets/art/purchased asset/toyspack/models/boat_01.fbx
+2 kb                 assets/art/prefabs/map/books/graybook.prefab
+2 kb                 assets/art/prefabs/map/1f/multimedia_computer_set.prefab
+442 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/v2/jumpmove.anim
+5 kb                 assets/art/prefabs/map/cafe/kiosk.prefab
+3 kb                 assets/art/ui/mafia/지도/4층버튼.png
+3 kb                 assets/art/prefabs/map/1f/newbookarchive_desk_high.prefab
+2 kb                 assets/art/ui/mafia/투표/투표버튼.png
+6 kb                 assets/art/ui/mafia/게임준비/플레이어수.png
+2 kb                 assets/art/purchased asset/toyspack/prefabs/rugbyball_01.prefab
+3 kb                 assets/art/ui/mafia/지도/2층버튼.png
+62 kb                packages/zepeto.character.controller/runtime/_resources/animations/base/gesture.anim
+261 kb               assets/art/modelings/1f/gate.fbx
+1 mb                 assets/art/modelings/1f/cnlounge_desk2.fbx
+258 kb               assets/art/modelings/books/yellowbook.fbx
+28 kb                assets/art/prefabs/map/rooftop/shelf_set.prefab
+84 kb                assets/art/purchased asset/toyspack/models/helicopter_01.fbx
+1 mb                 assets/art/modelings/234f/loan_desk_2nd.fbx
+5 kb                 assets/art/prefabs/map/cafe/cafe_desk.prefab
+3 kb                 assets/art/prefabs/map/234f/magazine_bookself1.prefab
+1 kb                 assets/art/ui/quickchat/chatexit.png
+2 kb                 assets/art/prefabs/map/rooftop/doma.prefab
+3 kb                 assets/art/prefabs/map/234f/datapc_computerset.prefab
+2 kb                 assets/art/prefabs/game/votetargetuiprefab.prefab
+258 kb               assets/art/modelings/books/greenbook.fbx
+3 kb                 assets/art/prefabs/map/info/bookcuration_info.prefab
+3 kb                 assets/art/prefabs/map/1f/hall_sofa2.prefab
+292 kb               assets/art/modelings/1f/toilet_door_woman.fbx
+2 kb                 assets/art/materials/blinn2.mat
+33 kb                assets/art/modelings/rooftop/doma.fbx
+560 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/idle.anim
+8 kb                 assets/art/purchased asset/3d lowpoly tree pack/prefabs/tree01.prefab
+3 kb                 assets/art/prefabs/map/info/loan_info1.prefab
+263 kb               assets/art/modelings/1f/endtrance_door.fbx
+33 kb                assets/art/purchased asset/3d lowpoly tree pack/model/tree04_trunk.fbx
+2 kb                 assets/art/ui/mafia/지도/1층버튼.png
+8 kb                 assets/art/ui/mafia/미션, 마피아 기본버튼/신고버튼.png
+1 mb                 assets/art/textures/ver4.png
+1 mb                 assets/art/modelings/1f/multimedia_computer_set.fbx
+21 kb                assets/art/ui/mafia/지도/맵_3층_수정.png
+3 kb                 assets/art/prefabs/map/info/floor_info_2_3.prefab
+1 mb                 assets/art/modelings/3floor.fbx
+1 mb                 assets/animator/animation/typing.fbx
+3 kb                 assets/art/prefabs/map/234f/bookself_wood.prefab
+326 kb               assets/art/modelings/rooftop/screen.fbx
+3 kb                 assets/art/prefabs/map/light.prefab
+3 kb                 assets/art/purchased asset/toyspack/textures/toys_textureatlas.png
+1 kb                 assets/audio/mixer/audiomixer.mixer
+257 kb               assets/art/modelings/1f/toilet_board_man.fbx
+3 kb                 assets/art/prefabs/map/library_common/multimedia_computer.prefab
+374 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/v2/moverunfast.anim
+828 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/v2/moveturn.anim
+1 mb                 assets/art/modelings/1f/cnlounge_desk1.fbx
+258 kb               assets/art/modelings/1f/hall_board.fbx
+35 kb                assets/art/purchased asset/toyspack/models/trampoline_01.fbx
+264 kb               assets/art/modelings/1f/multimedia_kiosk.fbx
+2 kb                 assets/art/ui/mafia/지도/나가기버튼.png
+510 kb               assets/animator/animation/print.fbx
+2 kb                 assets/art/prefabs/map/rooftop/screen.prefab
+76 kb                assets/art/modelings/info/info_2f.fbx
+34 kb                assets/art/modelings/rooftop/beanpack1.fbx
+3 kb                 assets/art/prefabs/map/1f/newbookarchive_bookshelf.prefab
+3 kb                 assets/art/prefabs/map/1f/newbookarchive_wheelchair.prefab
+2 kb                 assets/art/prefabs/map/cafe/cafe_chair.prefab
+69 kb                assets/art/modelings/info/bookcuration_info.fbx
+2 kb                 assets/art/prefabs/map/rooftop/beanpack1.prefab
+2 kb                 assets/art/prefabs/game/readyimageprefab.prefab
+49 kb                assets/art/modelings/rooftop/chair1.fbx
+2 kb                 assets/art/purchased asset/toyspack/prefabs/trampoline_01.prefab
+734 kb               assets/fonts/바른공군체(내용)/rokaf sans bold.ttf
+398 kb               assets/art/modelings/234f/new folder/big_sofa2.fbx
+80 kb                assets/art/purchased asset/3d lowpoly tree pack/model/tree01_trunk.fbx
+3 kb                 assets/art/prefabs/map/library_common/printer.prefab
+445 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/v2/moverun.anim
+3 kb                 assets/art/ui/mafia/게임준비/게임준비_상태_준비중.png
+3 kb                 assets/art/prefabs/map/1f/newbookarchive_sofa2.prefab
+2 kb                 assets/art/purchased asset/toyspack/prefabs/rockinghorse_01.prefab
+2 kb                 assets/art/purchased asset/toyspack/prefabs/fish_01.prefab
+2 kb                 assets/art/purchased asset/toyspack/materials/toys_textureatlas_01.mat
+51 kb                assets/art/purchased asset/toyspack/models/dinosaur_01.fbx
+1 mb                 packages/zepeto.character.controller/runtime/_resources/animations/base/jump_idle.anim
+2 kb                 assets/art/purchased asset/3d lowpoly tree pack/texture/materials/tree03_leaves.mat
+7 kb                 assets/art/purchased asset/ultimate 10 plus shaders/shaders/force field.shader
+1 mb                 assets/art/modelings/1f/multimedia_dvd_shelf.fbx
+2 kb                 assets/art/purchased asset/toyspack/prefabs/sortingcube_01.prefab
+2 kb                 packages/zepeto.character.controller/runtime/_resources/animations/ui/controller/touchpad_handle_origin_off.anim
+5 kb                 assets/art/prefabs/map/1f/cnlounge_lamp3.prefab
+58 kb                assets/art/prefabs/waiting room.fbm/게임방법_대기실.png
+68 kb                assets/art/modelings/1f/loan_monitor_black.fbx
+14 kb                assets/art/ui/mafia/게임준비/직업_마녀.png
+8 kb                 assets/art/purchased asset/3d lowpoly tree pack/prefabs/tree04.prefab
+6 kb                 assets/art/ui/mafia/투표/토론시간.png
+2 kb                 assets/art/prefabs/materials/waitingroom_ver1.mat
+61 kb                assets/art/ui/mafia/게임방법/게임방법_시민.png
+2 kb                 assets/art/purchased asset/toyspack/prefabs/boat_02.prefab
+766 kb               assets/art/textures/center_terrass_texture.png
+35 kb                assets/art/modelings/rooftop/pot2.fbx
+2 kb                 assets/art/ui/mafia/지도/바깥버튼.png
+2 kb                 assets/art/purchased asset/toyspack/prefabs/sortingcube_01_block_cylinder.prefab
+5 kb                 packages/zepeto.character.controller/runtime/_resources/images/touchpad_handle_icon.png
+3 kb                 assets/art/prefabs/map/info/floor_info_1_2.prefab
+43 kb                assets/art/materials/skybox_2.png
+5 kb                 packages/zepeto.character.controller/runtime/_resources/images/touchpad_jump_icon.png
+3 kb                 assets/art/prefabs/map/1f/multimedia_dvd_speaker.prefab
+36 kb                assets/art/modelings/rooftop/pergola.fbx
+69 kb                assets/art/modelings/info/loan_info1.fbx
+2 kb                 assets/art/modelings/materials/waitingroom_ver1.mat
+67 kb                assets/art/purchased asset/3d lowpoly tree pack/model/tree03_leaves.fbx
+1 mb                 assets/art/textures/texture_1stfloor_01.jpg
+2 kb                 assets/art/prefabs/map/books/whitebook.prefab
+1 mb                 assets/art/modelings/1f/newbookarchive_exhibition.fbx
+2 kb                 assets/art/purchased asset/toyspack/prefabs/sortingcube_01_block_star.prefab
+3 kb                 assets/art/prefabs/map/1f/multimedia_dvd_shelf.prefab
+69 kb                assets/art/modelings/info/loan_info2.fbx
+1 kb                 packages/zepeto.character.controller/runtime/_resources/camera/zepetocamera.prefab
+2 kb                 assets/art/prefabs/map/books/redbook.prefab
+36 kb                assets/art/modelings/rooftop/mugcup2.fbx
+2 kb                 assets/art/prefabs/map/rooftop/plate.prefab
+6 kb                 assets/art/prefabs/map/rooftop/box.prefab
+5 kb                 assets/art/prefabs/map/rooftop/lamp_black.prefab
+2 kb                 assets/art/purchased asset/toyspack/prefabs/woodentrain_01_wagon_02.prefab
+261 kb               assets/art/modelings/1f/cnlounge_cleanwall.fbx
+516 kb               assets/art/textures/cafe_ver1.png
+2 kb                 assets/art/prefabs/map/cafe/cafetable_big.prefab
+3 kb                 assets/art/prefabs/map/library_common/multimedia_keyboard.prefab
+2 kb                 assets/art/modelings/materials/lambert5.mat
+306 kb               assets/animator/diedanimator.controller
+2 kb                 assets/art/ui/mafia/투표/투표스킵버튼.png
+2 kb                 assets/art/prefabs/map/rooftop/chair3.prefab
+262 kb               assets/art/modelings/1f/newbookarchive_desk.fbx
+2 kb                 assets/art/prefabs/map/rooftop/beer2.prefab
+3 kb                 assets/art/prefabs/game/reportbuttonprefab.prefab
+310 kb               assets/art/modelings/1f/hall_sofa1.fbx
+189 kb               assets/art/modelings/stairs.fbx
+3 kb                 assets/art/prefabs/map/1f/multimedia_partition.prefab
+258 kb               assets/art/modelings/books/whitebook.fbx
+3 kb                 assets/art/ui/mafia/미션, 마피아 기본버튼/미션리스트_창.png
+2 kb                 assets/art/purchased asset/toyspack/prefabs/sheep_01.prefab
+65 kb                assets/art/modelings/library_common/multimedia_computer.fbx
+51 kb                assets/art/purchased asset/toyspack/models/doll_03.fbx
+34 kb                assets/art/modelings/rooftop/beer2.fbx
+262 kb               assets/art/modelings/1f/multimedia_partition.fbx
+464 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/v2/jumpdouble.anim
+1 kb                 assets/art/ui/mafia/게임방법/게임방법_마피아_나가기버튼.png
+3 kb                 assets/art/prefabs/map/cafe_fence.prefab
+44 kb                assets/art/purchased asset/3d lowpoly tree pack/model/tree02_trunk.fbx
+1 mb                 assets/animator/animation/bake barbaeque.fbx
+3 kb                 assets/art/prefabs/map/1f/newbookarchive_chair.prefab
+2 mb                 assets/art/modelings/cafe_fence.fbx
+5 kb                 assets/art/prefabs/map/1f/cnlounge_lamp4.prefab
+2 kb                 assets/art/materials/skybox.mat
+792 kb               assets/art/modelings/center_terrass_bottom.fbx
+28 kb                assets/art/ui/mafia/지도/맵_4층_수정.png
+2 kb                 assets/art/prefabs/map/books/yellowbook.prefab
+2 kb                 assets/art/materials/lights.mat
+743 kb               assets/fonts/바른공군체(내용)/rokaf sans medium.ttf
+2 kb                 assets/art/materials/texture_common_01.mat
+2 kb                 assets/art/prefabs/map/rooftop/beanpack3.prefab
+36 kb                assets/art/modelings/rooftop/plate.fbx
+2 kb                 assets/art/purchased asset/toyspack/prefabs/doll_02.prefab
+2 kb                 assets/art/ui/mafia/투표/투표_남은시간.png
+260 kb               assets/art/modelings/1f/cnlounge_lamp2.fbx
+5 mb                 assets/art/modelings/center_library.fbx
+13 kb                packages/zepeto.character.controller/runtime/_resources/images/touchpad_handle_base.png
+95 kb                assets/art/modelings/library_common/printer.fbx
+3 mb                 assets/art/purchased asset/ultimate 10 plus shaders/materials/textures/noise1.png
+3 kb                 assets/art/prefabs/map/234f/newbookarchive_desk_4.prefab
+2 kb                 assets/art/purchased asset/3d lowpoly tree pack/texture/materials/tree06_leaves.mat
+2 kb                 assets/art/prefabs/map/rooftop/pergola.prefab
+2 kb                 assets/art/prefabs/map/rooftop/mugcup.prefab
+3 kb                 assets/art/prefabs/map/1f/loan_monitor_black.prefab
+2 kb                 assets/art/materials/default_material.mat
+142 kb               assets/art/modelings/garland_lights.fbx
+3 kb                 assets/art/prefabs/map/library_common/sterilizer.prefab
+24 kb                assets/art/ui/mafia/지도/맵_2층_수정.png
+3 kb                 assets/art/prefabs/map/1f/loan_desk.prefab
+3 kb                 assets/art/prefabs/map/234f/small_sofa1.prefab
+267 kb               assets/art/modelings/1f/multimedia_dvd_desk.fbx
+2 kb                 assets/art/materials/blinn4.mat
+62 kb                packages/zepeto.character.controller/runtime/_resources/animations/base/action1.anim
+2 kb                 assets/art/prefabs/map/cafe/trash.prefab
+1 mb                 assets/art/textures/ver3.png
+1 mb                 assets/art/modelings/1f/hall_bench.fbx
+3 kb                 assets/art/prefabs/map/1f/cnlounge_desk2.prefab
+78 kb                assets/art/modelings/rooftop/grill.fbx
+50 kb                assets/art/modelings/234f/datapc_clearwall.fbx
+3 kb                 assets/art/prefabs/map/1f/multimedia_kiosk.prefab
+1 mb                 assets/art/modelings/2floor.fbx
+3 kb                 assets/art/prefabs/map/1f/cnlounge_wall.prefab
+60 kb                assets/art/modelings/rooftop/parasol.fbx
+33 kb                assets/art/purchased asset/3d lowpoly tree pack/model/tree03_trunk.fbx
+757 kb               assets/art/purchased asset/3d lowpoly tree pack/texture/tree01_leaves.png
+3 kb                 packages/zepeto.character.controller/runtime/_resources/animations/ui/controller/touchpad_handle_ziggle.anim
+260 kb               assets/art/modelings/1f/cnlounge_wall.fbx
+2 kb                 assets/art/prefabs/map/cafe/chair_white.prefab
+2 kb                 packages/zepeto.character.controller/runtime/_resources/animations/ui/controller/touchpad_handle_on.anim
+34 kb                assets/art/ui/mafia/지도/맵_1층_수정.png
+2 kb                 assets/art/materials/glow_portal 1.mat
+565 kb               assets/art/prefabs/map/2f.prefab
+70 kb                assets/art/modelings/library_common/multimedia_keyboard.fbx
+76 kb                assets/art/modelings/info/multimedia_info02.fbx
+1 kb                 assets/art/ui/mafia/투표/투표_선택.png
+127 kb               assets/art/modelings/waiting room.fbm/waitingroom_ver1.png
+38 kb                assets/art/purchased asset/toyspack/models/fish_01.fbx
+4 kb                 assets/art/ui/mafia/지도/맵버튼.png
+155 kb               assets/art/textures/texture_common_01.jpg
+53 kb                assets/art/modelings/rooftop/chair2.fbx
+2 kb                 assets/art/materials/white.mat
+4 kb                 assets/art/ui/mafia/지도/옥상정원버튼.png
+3 kb                 assets/art/prefabs/map/1f/gate.prefab
+3 kb                 assets/art/prefabs/map/1f/revolving_door.prefab
+491 kb               assets/art/modelings/cafe/window_table.fbx
+3 kb                 assets/art/prefabs/map/1f/endtrance_door.prefab
+258 kb               assets/art/modelings/books/graybook.fbx
+2 kb                 assets/art/purchased asset/toyspack/prefabs/dinosaur_01.prefab
+2 kb                 assets/art/materials/texture_etc.mat
+3 kb                 assets/art/prefabs/map/1f/toilet_door_woman.prefab
+2 kb                 assets/art/materials/center_terrass_texture.mat
+13 kb                assets/art/prefabs/map/rooftop/anchorage_set.prefab
+1 mb                 assets/art/modelings/1f/newbookarchive_desk_high.fbx
+2 kb                 assets/art/purchased asset/toyspack/prefabs/doll_03.prefab
+2 mb                 assets/art/purchased asset/3d lowpoly tree pack/texture/tree03_trunk.png
+2 kb                 assets/art/prefabs/map/garland_lights.prefab
+1 mb                 assets/art/modelings/celing_1f.fbx
+7 kb                 packages/zepeto.character.controller/runtime/_resources/animatorcontroller/uicontrollertouchpadhandleorigin.controller
+3 kb                 assets/art/prefabs/map/1f/hall_chair.prefab
+636 kb               assets/animator/animation/spawn evil.fbx
+2 kb                 assets/art/prefabs/map/rooftop/tarp.prefab
+460 kb               assets/art/purchased asset/3d lowpoly tree pack/texture/tree01_trunk.png
+62 kb                packages/zepeto.character.controller/runtime/_resources/animations/base/action2.anim
+5 kb                 assets/art/purchased asset/toyspack/prefabs/bucket_01.prefab
+34 kb                assets/art/modelings/rooftop/table_big.fbx
+39 kb                assets/art/purchased asset/toyspack/models/rubberduck_01.fbx
+2 kb                 assets/art/modelings/materials/lambert3.mat
+257 kb               assets/art/modelings/1f/cnlounge_lamp4.fbx
+2 kb                 assets/art/prefabs/map/rooftop/grill.prefab
+9 kb                 assets/art/ui/mafia/게임준비/게임준비_시작버튼.png
+3 kb                 assets/art/ui/mafia/투표/투표_스킵_갯수.png
+58 kb                assets/art/purchased asset/3d lowpoly tree pack/model/tree05_trunk.fbx
+510 kb               assets/animator/animation/order beverage.fbx
+1 mb                 assets/art/textures/line_glow.png
+69 kb                assets/art/modelings/library_common/bookloan.fbx
+8 kb                 assets/art/ui/mafia/게임준비/게임준비_준비완료.png
+7 kb                 packages/zepeto.character.controller/runtime/_resources/animatorcontroller/uicontrollertouchpadhandle.controller
+110 kb               assets/art/textures/rock_texture.jpg
+70 kb                assets/art/modelings/info/floor_info_2_3.fbx
+3 kb                 assets/art/prefabs/map/234f/newbookarchive_desk_6.prefab
+86 kb                assets/art/purchased asset/3d lowpoly tree pack/model/tree02_leaves.fbx
+451 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/v2/jumpdash.anim
+3 kb                 assets/art/prefabs/map/info/loan_info2.prefab
+23 kb                assets/art/purchased asset/toyspack/models/boat_02.fbx
+3 kb                 assets/art/prefabs/map/library_common/tray.prefab
+3 kb                 assets/art/prefabs/map/1f/cnlounge_desk_person.prefab
+2 kb                 assets/art/prefabs/map/rooftop/light_bulbs.prefab
+7 kb                 assets/art/ui/mafia/미션, 마피아 기본버튼/킬버튼.png
+489 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/v2/movewalkfast.anim
+3 kb                 packages/zepeto.character.controller/runtime/_resources/prefabs/shadow/charactershadow.prefab
+6 kb                 assets/art/textures/rooftop_terrass_ver2.png
+12 kb                packages/zepeto.character.controller/runtime/_resources/images/touchpad_jump_base.png
+2 kb                 assets/art/materials/1f_uv_ver2.mat
+3 kb                 assets/art/ui/mafia/지도/3층버튼.png
+2 kb                 assets/art/prefabs/map/center_terrass_chair.prefab
+3 kb                 assets/art/prefabs/map/234f/loan_desk_2nd.prefab
+72 kb                assets/art/purchased asset/toyspack/models/sheep_01.fbx
+493 kb               assets/art/modelings/cafe/cafe_chair.fbx
+2 kb                 assets/art/materials/paver.mat
+261 kb               assets/art/modelings/1f/newbookarchive_sofa1.fbx
+34 kb                assets/art/modelings/rooftop/pot1.fbx
+119 kb               assets/art/modelings/rooftop/garland.fbx
+1 mb                 assets/art/modelings/234f/bookself.fbx
+261 kb               assets/art/modelings/1f/newbookarchive_sofa2.fbx
+151 kb               assets/art/modelings/rooftop/anchorage_set.fbx
+34 kb                assets/art/modelings/rooftop/table_small.fbx
+2 kb                 packages/zepeto.character.controller/runtime/_resources/animations/ui/controller/touchpad_handle_origin_on.anim
+3 kb                 assets/art/prefabs/map/1f/loan_bookshelf.prefab
+35 kb                assets/art/ui/mafia/투표/투표결과_시민.png
+515 kb               assets/art/purchased asset/3d lowpoly tree pack/model/tree01_leaves.fbx
+2 kb                 assets/art/purchased asset/toyspack/prefabs/sandcastle_01.prefab
+1 mb                 assets/art/modelings/234f/bookself_wood.fbx
+8 kb                 assets/art/purchased asset/3d lowpoly tree pack/prefabs/tree05.prefab
+753 kb               assets/animator/animation/pick candy.fbx
+1 mb                 assets/art/modelings/celing_3f.fbx
+70 kb                assets/art/modelings/info/floor_info_1_2.fbx
+2 mb                 assets/art/modelings/terrass.fbx
+2 kb                 assets/art/materials/cafe_ver1.mat
+3 kb                 assets/art/prefabs/map/1f/hall_board.prefab
+972 b                assets/art/ui/mafia/미션, 마피아 기본버튼/미션완료_안쪽색.png
+287 kb               assets/art/prefabs/map/4f.prefab
+72 kb                assets/art/modelings/library_common/multimedia_mouse.fbx
+49 kb                assets/art/purchased asset/toyspack/models/robot_01.fbx
+2 mb                 assets/art/textures/glow_blue.png
+965 b                assets/art/ui/mafia/미션, 마피아 기본버튼/미션리스트_나가기.png
+2 kb                 assets/art/prefabs/map/rooftop/pot2.prefab
+3 kb                 assets/art/prefabs/map/234f/small_sofa3.prefab
+2 kb                 assets/art/prefabs/map/rooftop/table_small.prefab
+2 kb                 assets/art/purchased asset/toyspack/prefabs/bee_01.prefab
+2 kb                 assets/art/prefabs/materials/게임방법_대기실.mat
+1 mb                 assets/art/modelings/celing_2f.fbx
+277 kb               assets/art/modelings/1f/multimedia_door_open.fbx
+2 kb                 assets/art/prefabs/map/wall.prefab
+2 kb                 assets/art/materials/rooftop_terrass_ver1 1.mat
+25 kb                assets/art/ui/mafia/승리 화면/승리_마녀.png
+1 mb                 assets/art/modelings/1f/newbookarchive_chair.fbx
+1 kb                 packages/zepeto.character.controller/runtime/_resources/prefabs/shadow/fxt_blobshadow.png
+3 kb                 assets/art/prefabs/map/1f/gate_desk.prefab
+3 kb                 assets/art/prefabs/map/library_common/bookloan.prefab
+2 kb                 assets/art/materials/blinn5.mat
+3 kb                 assets/art/prefabs/map/info/multimedia_info02.prefab
+3 kb                 assets/art/prefabs/map/234f/bookself.prefab
+47 kb                assets/art/ui/mafia/event/신고.png
+1 mb                 assets/art/purchased asset/3d lowpoly tree pack/texture/tree03_leaves.png
+1 mb                 packages/zepeto.character.controller/runtime/_resources/animations/gesture/4_ok.anim
+2 kb                 assets/art/prefabs/map/rooftop/garland.prefab
+260 kb               assets/art/modelings/1f/gate_desk.fbx
+55 kb                assets/art/modelings/234f/cnlounge_hallwall.fbx
+3 mb                 assets/art/purchased asset/3d lowpoly tree pack/texture/tree05_leaves.png
+2 kb                 assets/art/materials/lambert1.mat
+1 mb                 assets/art/modelings/celing_4f.fbx
+2 kb                 assets/art/materials/cafe_interior_ver1.mat
+2 kb                 assets/art/purchased asset/3d lowpoly tree pack/texture/materials/tree01_trunk.mat
+498 kb               assets/animator/animation/stir pot.fbx
+2 kb                 assets/art/purchased asset/toyspack/prefabs/teddybear_01.prefab
+3 kb                 assets/art/prefabs/map/1f/cnlounge_lamp2.prefab
+337 kb               assets/art/modelings/234f/new folder/big_sofa1.fbx
+102 kb               assets/art/purchased asset/toyspack/models/woodentrain_01.fbx
+1 mb                 assets/animator/animation/put in pot.fbx
+1 mb                 packages/zepeto.character.controller/runtime/_resources/animations/base/v2/landingdeep.anim
+257 kb               assets/art/modelings/1f/toilet_board_woman.fbx
+40 kb                assets/art/modelings/rooftop/kettle.fbx
+3 kb                 assets/art/prefabs/map/234f/datapc_desk.prefab
+30 kb                assets/art/purchased asset/toyspack/models/rockinghorse_01.fbx
+3 kb                 assets/art/prefabs/map/1f/multimedia_door_open.prefab
+2 kb                 assets/art/purchased asset/toyspack/prefabs/sortingcube_01_block_triangle.prefab
+258 kb               assets/art/modelings/books/redbook.fbx
+26 kb                assets/art/textures/paver 1.jpg
+2 kb                 assets/art/purchased asset/3d lowpoly tree pack/texture/materials/tree05_trunk.mat
+43 kb                assets/art/modelings/rooftop/box.fbx
+499 kb               assets/art/modelings/cafe/trash.fbx
+3 kb                 assets/art/prefabs/map/1f/newbookarchive_chair1.prefab
+26 kb                assets/art/ui/mafia/투표/투표결과_동점스킵.png
+3 kb                 assets/art/prefabs/map/1f/toilet_board_etc.prefab
+1 mb                 assets/art/modelings/1f/newbookarchive_bookshelf.fbx
+5 mb                 assets/art/purchased asset/3d lowpoly tree pack/texture/tree02_trunk.png
+263 kb               assets/art/modelings/1f/hall_chair.fbx
+3 kb                 assets/art/ui/mafia/게임준비/게임준비_상태_준비완료.png
+3 kb                 assets/art/prefabs/map/1f/newbookarchive_exhibition.prefab
+259 kb               assets/art/modelings/1f/multimedia_dvd_monitor.fbx
+2 kb                 assets/art/prefabs/map/rooftop/kettle.prefab
+62 kb                assets/art/modelings/waiting room.fbm/게임방법_대기실.png
+3 kb                 assets/art/ui/quickchat/chatbutton.png
+494 kb               assets/art/modelings/cafe/cafetable_small.fbx
+491 kb               assets/art/modelings/cafe/kiosk.fbx
+330 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/v2/falling.anim
+55 kb                assets/art/purchased asset/toyspack/models/doll_02.fbx
+34 kb                assets/art/modelings/rooftop/beanpack2.fbx
+2 kb                 assets/art/prefabs/map/rooftop/beanpack4.prefab
+24 kb                assets/art/modelings/234f/texture_etc.png
+297 kb               assets/art/modelings/rooftop/light_bulbs.fbx
+467 kb               assets/art/textures/block 2.png
+262 kb               assets/art/modelings/1f/cnlounge_lamp1.fbx
+2 kb                 assets/art/materials/blinn3.mat
+1 mb                 assets/art/modelings/234f/magazine_bookself1.fbx
+1 mb                 assets/art/modelings/1f/loan_desk.fbx
+618 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/v2/jumpidle.anim
+451 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/v2/stamp.anim
+2 kb                 assets/art/prefabs/map/cafe/chair_black.prefab
+2 mb                 assets/art/prefabs/ajou_central_library_witch_fix.prefab
+125 kb               assets/art/modelings/rooftop/shelf_set.fbx
+3 kb                 assets/art/prefabs/map/1f/curation_desk.prefab
+491 kb               assets/art/modelings/cafe/cafe_desk.fbx
+2 kb                 assets/art/purchased asset/toyspack/prefabs/woodentrain_01_wagon_03.prefab
+58 kb                assets/art/ui/mafia/게임방법/게임방법_대기실.png
+40 kb                assets/art/purchased asset/toyspack/models/sandcastle_01.fbx
+87 kb                assets/art/modelings/rooftop/lamp_white.fbx
+498 kb               assets/art/modelings/cafe/chair_black.fbx
+1 mb                 assets/art/modelings/1floor.fbx
+35 kb                assets/art/materials/candle_light.png
+10 kb                assets/art/ui/mafia/승리 화면/승리_되돌아가기.png
+258 kb               assets/art/textures/texture_1stfloor_02.jpg
+3 kb                 assets/art/prefabs/map/1f/cnlounge_lamp1.prefab
+34 kb                assets/art/modelings/rooftop/beer1.fbx
+17 kb                assets/art/purchased asset/toyspack/prefabs/toystacker_01.prefab
+292 kb               assets/art/modelings/1f/toilet_door_man.fbx
+5 kb                 assets/art/prefabs/map/rooftop/lamp_white.prefab
+87 kb                assets/art/modelings/rooftop/lamp_black.fbx
+940 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/run.anim
+549 kb               assets/animator/animation/dying.fbx
+2 kb                 assets/art/purchased asset/3d lowpoly tree pack/texture/materials/tree01_leaves.mat
+3 kb                 assets/art/prefabs/map/waiting room.prefab
+3 kb                 assets/art/prefabs/map/234f/big_sofa1.prefab
+343 b                assets/art/ui/mafia/미션, 마피아 기본버튼/미션리스트_순서.png
+2 kb                 assets/art/ui/mafia/게임방법/게임방법_버튼.png
+224 kb               assets/art/modelings/waiting room.fbx
+2 kb                 assets/art/materials/glow_portal.mat
+2 kb                 assets/art/materials/lambert11.mat
+37 kb                assets/art/purchased asset/toyspack/models/bee_01.fbx
+1 mb                 assets/art/textures/1f_uv_ver2.png
+2 kb                 assets/art/purchased asset/toyspack/prefabs/slide_01.prefab
+1 mb                 packages/zepeto.character.controller/runtime/_resources/animations/base/v2/movewalk.anim
+2 kb                 assets/art/purchased asset/toyspack/prefabs/boat_01.prefab
+498 kb               assets/art/modelings/cafe/chair_white.fbx
+2 kb                 assets/art/materials/light_vfx.mat
+33 kb                assets/art/purchased asset/toyspack/models/sortingcube_01.fbx
+1 mb                 assets/art/modelings/234f/small_sofa1.fbx
+2 kb                 assets/art/modelings/materials/게임방법_대기실.mat
+2 kb                 packages/zepeto.character.controller/runtime/_resources/prefabs/shadow/fxt_blobshadow.mat
+2 kb                 assets/art/prefabs/map/rooftop/beanpack2.prefab
+2 kb                 packages/zepeto.character.controller/runtime/_resources/prefabs/eventsystem.prefab
+275 kb               assets/art/modelings/1f/cnlounge_lamp3.fbx
+1014 kb              packages/zepeto.character.controller/runtime/_resources/animations/base/v2/idle.anim
+8 kb                 assets/art/purchased asset/3d lowpoly tree pack/prefabs/tree02.prefab
+2 kb                 assets/art/prefabs/game/votecheckuiprefab.prefab
+45 kb                assets/art/ui/mafia/event/킬.png
+1 mb                 packages/zepeto.character.controller/runtime/_resources/animations/base/fall_end.anim
+3 kb                 assets/art/prefabs/map/1f/toilet_board_man.prefab
+3 kb                 assets/art/prefabs/map/1f/cnlounge_desk1.prefab
+2 kb                 assets/art/materials/new material.mat
+3 kb                 assets/art/prefabs/map/1f/multimedia_dvd_monitor.prefab
+2 kb                 assets/art/materials/rooftop_bottom.mat
+2 kb                 assets/art/prefabs/map/books/greenbook.prefab
+30 kb                assets/art/purchased asset/toyspack/models/rocket_01.fbx
+2 kb                 assets/art/prefabs/map/rooftop/pot1.prefab
+428 kb               packages/zepeto.character.controller/runtime/_resources/animations/base/hand_idle_01.anim
+2 kb                 assets/art/purchased asset/toyspack/prefabs/pool_01.prefab
+31 kb                packages/com.unity.inputsystem/inputsystem/plugins/playerinput/defaultinputactions.inputactions
+50 kb                assets/art/purchased asset/toyspack/models/teddybear_01.fbx
+3 kb                 assets/art/prefabs/map/1f/newbookarchive_desk.prefab
+1 mb                 assets/art/textures/rooftop_bottom.jpg
+2 kb                 assets/art/materials/rooftop_terrass_ver1.mat
+10 kb                assets/art/ui/mafia/게임준비/카운트.png
+46 kb                assets/art/modelings/rooftop/tent.fbx
+290 kb               assets/art/modelings/1f/curation_desk.fbx
+3 kb                 packages/zepeto.character.controller/runtime/_resources/animations/ui/controller/touchpad_handle_origin_ziggle.anim
+[resources]
+0 b                  assets/resources    
+0 b                  assets/textmesh pro/resources
+[streamingAssets]

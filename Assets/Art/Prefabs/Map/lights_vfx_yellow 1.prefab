@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8989367484551762792}
   - component: {fileID: 8989367484551762795}
   m_Layer: 0
-  m_Name: lights_vfx_yellow 1
+  m_Name: lights_vfx_yellow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -13,7 +13,6 @@ export default class extends Sandbox {
     this.state.gameState = 1;
 
     this.onMessage("onChangedTransform", (client, message) => {
-      console.log("onChangeTransform");
       const player = this.state.players.get(client.sessionId);
 
       const transform = new Transform();
@@ -49,6 +48,8 @@ export default class extends Sandbox {
       this.state.players.forEach((item) => {
         console.log(item.sessionId);
       });
+      console.log("전체 인수: " + this.state.players.size);
+      console.log("레디 인수: " + this.state.mafiaPlayers.size);
       console.log("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
       if (this.state.mafiaPlayers.has(client.sessionId)) {
         this.state.mafiaPlayers.delete(client.sessionId);
@@ -62,7 +63,10 @@ export default class extends Sandbox {
         this.broadcast("UpdateReadyMafiaPlayer", this.state.readyPlayerCount);
         this.broadcast("OnAddReadyPlayer", client.sessionId);
         /// 플레이어 수
-        if (this.state.readyPlayerCount == 6) {
+        if (
+          this.state.readyPlayerCount >= 4 &&
+          this.state.readyPlayerCount == this.state.players.size
+        ) {
           let Idx: number = Math.floor(Math.random() * 8);
           this.state.mafiaPlayers.forEach((item: Player) => {
             item.order = Idx;
@@ -138,7 +142,7 @@ export default class extends Sandbox {
         const wait = (timeToDelay: number) =>
           new Promise((resolve) => setTimeout(resolve, timeToDelay + 10)); //이와 같이 선언 후
         await wait(3500);
-        let debateTimeout = 5 * 1000;
+        let debateTimeout = 60 * 1000;
         this.broadcast("StartDebateCount", debateTimeout / 1000);
         console.log("토론 시작");
         while (debateTimeout > 2000) {
@@ -148,7 +152,7 @@ export default class extends Sandbox {
         await wait(debateTimeout);
         console.log("토론 종료");
         console.log("투표 시작");
-        let voteTimeout = 100 * 1000;
+        let voteTimeout = 30 * 1000;
         this.broadcast("onVoteStart", message);
         this.broadcast("StartVoteCount", voteTimeout / 1000);
         while (voteTimeout > 2000) {
@@ -380,7 +384,7 @@ export default class extends Sandbox {
         player.jobState = 1; // Citizen
       }
       const selectCount = 3; /// 선택 미션 개수
-      const totalCount = 5; /// 미션 최대 개수
+      const totalCount = 11; /// 미션 최대 개수
       let randomIndexArray = [];
       for (let i = 0; i < selectCount; i++) {
         let randomNum = Math.floor(Math.random() * totalCount);
