@@ -4,6 +4,7 @@ import { Image, Text } from "UnityEngine.UI";
 import { ZepetoPlayers } from "ZEPETO.Character.Controller";
 import { ZepetoScriptBehaviour } from "ZEPETO.Script";
 import AnimationLinker from "../AnimationLinker";
+import ClientStarter from "../ClientStarter";
 
 export default class MissionInteractor extends ZepetoScriptBehaviour {
   public animationClip: AnimationClip;
@@ -40,6 +41,21 @@ export default class MissionInteractor extends ZepetoScriptBehaviour {
     if (this.animationSec == 0) {
       this.animationSec = 5;
     }
+    ZepetoPlayers.instance.OnAddedLocalPlayer.AddListener(() => {
+      ClientStarter.instance
+        .GetRoom()
+        .AddMessageHandler("onReset", (message: any) => {
+          this.Reset();
+        });
+    });
+  }
+
+  Reset() {
+    this.StopAllCoroutines();
+
+    AnimationLinker.instance.StopGesture(
+      ZepetoPlayers.instance.LocalPlayer.zepetoPlayer
+    );
   }
   public Interact() {
     if (this.isSuccess) {

@@ -310,16 +310,6 @@ export default class MafiaGameManager extends ZepetoScriptBehaviour {
     });
   }
 
-  // public RemovePlayer() {
-  //   if (
-  //     this.state.players.ContainsKey(
-  //       ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
-  //     )
-  //   ) {
-  //     ClientStarter.instance.GetRoom().Send("onRemoveMafiaPlayer");
-  //   }
-  // }
-
   StartNextDay() {
     // 맵 내 랜덤 이동 - spawn point[]가 존재
     let randomIdx = Math.floor(Random.Range(0, this.spawnPoints.length));
@@ -468,7 +458,8 @@ export default class MafiaGameManager extends ZepetoScriptBehaviour {
     yield new WaitWhile(() => this.isKilled);
     console.log("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
     console.log("리셋");
-    this.state.mafiaPlayers.ForEach((sessionId: string, player: Player) => {
+
+    this.state.players.ForEach((sessionId: string, player: Player) => {
       const character = ZepetoPlayers.instance.GetPlayer(sessionId).character;
       character.transform.position = ClientStarter.instance.spawnPoint.position;
       character.transform.rotation = ClientStarter.instance.spawnPoint.rotation;
@@ -478,9 +469,12 @@ export default class MafiaGameManager extends ZepetoScriptBehaviour {
       const mafia = character.gameObject.GetComponent<Mafia>();
       const citizen = character.gameObject.GetComponent<Citizen>();
       const playerId = character.gameObject.GetComponent<PlayerId>();
-      playerId.order = -1;
-      playerId.jobState = JobState.None;
-      playerId.state = InGameInteractState.NONE;
+
+      if (playerId) {
+        playerId.order = -1;
+        playerId.jobState = JobState.None;
+        playerId.state = InGameInteractState.NONE;
+      }
       if (mafia) {
         mafia.SetEnable(false);
       }

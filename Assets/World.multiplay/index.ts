@@ -115,7 +115,7 @@ export default class extends Sandbox {
       console.log("남은 살아있는 시민 수: " + livingCitizenCount);
       console.log("남은 마피아 수: " + mafiaCount);
 
-      if (mafiaCount == 0) {
+      if (mafiaCount == 0 && livingCitizenCount != 0) {
         //시민 승
         this.WinCitizen();
       } else if (livingCitizenCount <= mafiaCount) {
@@ -310,6 +310,14 @@ export default class extends Sandbox {
         this.broadcast("onVoteResultEventInit", item.toString());
       });
     }
+    {
+      const livingCitizenCount = this.getLivingCitizenCount();
+      const mafiaCount = this.getMafiaCount();
+
+      if (mafiaCount == 0 || livingCitizenCount <= mafiaCount) {
+        this.state.gameState = 1;
+      }
+    }
 
     (async () => {
       const gameCount = 1000;
@@ -365,10 +373,15 @@ export default class extends Sandbox {
   onNextDay() {
     console.log("다음날");
 
-    this.broadcast("onStartNextDay", "");
+    if (this.state.gameState != 1) {
+      this.broadcast("onStartNextDay", "");
+    }
   }
 
   onStartGame() {
+    if (this.state.gameState == 1) {
+      return;
+    }
     const ran = Math.floor(Math.random() * this.state.mafiaPlayers.size);
 
     let num: number = 0;
@@ -452,11 +465,11 @@ export default class extends Sandbox {
         console.log("남은 마피아 수: " + mafiaCount);
 
         if (mafiaCount == 0) {
+          this.DelayWinCitizen();
           //시민 승
-          this.WinCitizen();
         } else if (livingCitizenCount <= mafiaCount) {
           //마피아 승
-          this.WinMafia();
+          this.DelayWinMafia();
         }
       } else if (this.state.gameState == 3) {
         // vote
@@ -468,10 +481,10 @@ export default class extends Sandbox {
 
         if (mafiaCount == 0) {
           //시민 승
-          this.WinCitizen();
+          this.DelayWinCitizen();
         } else if (livingCitizenCount <= mafiaCount) {
           //마피아 승
-          this.WinMafia();
+          this.DelayWinMafia();
         }
 
         const livingCount = this.getLivingCount();
@@ -529,8 +542,34 @@ export default class extends Sandbox {
     this.ResetGame();
   }
 
+  DelayWinCitizen() {
+    console.log("시민 승");
+    this.broadcast("onCitizenWin", "");
+    this.state.gameState = 1;
+    (async () => {
+      const gameCount = 1000;
+      const wait = (timeToDelay: number) =>
+        new Promise((resolve) => setTimeout(resolve, timeToDelay + 10)); //이와 같이 선언 후
+      await wait(gameCount);
+      this.ResetGame();
+    })();
+  }
+  DelayWinMafia() {
+    console.log("마피아 승");
+    this.broadcast("onMafiaWin", "");
+    this.state.gameState = 1;
+    (async () => {
+      const gameCount = 1000;
+      const wait = (timeToDelay: number) =>
+        new Promise((resolve) => setTimeout(resolve, timeToDelay + 10)); //이와 같이 선언 후
+      await wait(gameCount);
+      this.ResetGame();
+    })();
+  }
+
   ResetGame() {
     (async () => {
+      this.state.gameState = 1;
       this.broadcast("onReset", "");
 
       const gameCount = 1000;
@@ -538,7 +577,6 @@ export default class extends Sandbox {
         new Promise((resolve) => setTimeout(resolve, timeToDelay + 10)); //이와 같이 선언 후
       await wait(gameCount);
       this.state.readyPlayerCount = 0;
-      this.state.gameState = 1;
       this.state.mafiaPlayers.forEach((player) => {
         player.missionList = "";
         player.completeMissionList = "";

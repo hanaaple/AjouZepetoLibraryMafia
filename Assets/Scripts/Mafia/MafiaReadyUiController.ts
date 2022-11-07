@@ -1,4 +1,14 @@
-import { GameObject, Sprite, Time, Transform, Vector3 } from "UnityEngine";
+import {
+  GameObject,
+  Object,
+  RectTransform,
+  RectTransformUtility,
+  Sprite,
+  Time,
+  Transform,
+  Vector2,
+  Vector3,
+} from "UnityEngine";
 import { Button, Image, Text } from "UnityEngine.UI";
 import { ZepetoPlayers } from "ZEPETO.Character.Controller";
 import { Room } from "ZEPETO.Multiplay";
@@ -10,12 +20,13 @@ import PlayerId from "./PlayerId";
 
 export default class MafiaReadyUiController extends ZepetoScriptBehaviour {
   @SerializeField()
-  private canvasRoot: Transform;
+  private canvas: RectTransform;
+
+  @SerializeField()
+  private root: Transform;
 
   @SerializeField()
   private readyPanel: GameObject;
-  @SerializeField()
-  private tempReadyPanel: GameObject;
 
   public attendButton: Button;
 
@@ -32,6 +43,8 @@ export default class MafiaReadyUiController extends ZepetoScriptBehaviour {
   public playerGettingReadySprite: Sprite;
   public playerReadySprite: Sprite;
 
+  public playingText: Text;
+
   private playerIds: Map<string, PlayerId>;
 
   Start() {
@@ -42,16 +55,54 @@ export default class MafiaReadyUiController extends ZepetoScriptBehaviour {
   }
 
   Update() {
-    if (this.tempReadyPanel.activeSelf) {
+    if (this.readyPanel.activeSelf) {
       this.playerIds.forEach((item) => {
         if (!item || !item.readyImage) {
           return;
         }
         if (item.readyImage.gameObject.activeSelf) {
-          item.readyImage.transform.position =
+          // item.readyImage.rectTransform.anchoredPosition =
+          //   RectTransformUtility.WorldToScreenPoint(
+          //     ZepetoPlayers.instance.ZepetoCamera.camera,
+          //     Vector3.op_Addition(item.transform.position, new Vector3(0, 2, 0))
+          //   );
+          // item.readyImage.SetNativeSize();
+          // item.readyImage.rectTransform.position.z = 0;
+          // item.readyImage.rectTransform.anchorMax = new Vector2(0.5, 0.5);
+
+          // item.readyImage.transform.position =
+          //   ZepetoPlayers.instance.ZepetoCamera.camera.WorldToScreenPoint(
+          //     Vector3.op_Addition(item.transform.position, new Vector3(0, 2, 0))
+          //   );
+
+          // Final position of marker above GO in world space
+          const offsetPos = Vector3.op_Addition(
+            item.transform.position,
+            new Vector3(0, 2, 0)
+          );
+
+          const screenPoint =
             ZepetoPlayers.instance.ZepetoCamera.camera.WorldToScreenPoint(
-              Vector3.op_Addition(item.transform.position, new Vector3(0, 2, 0))
+              offsetPos
             );
+
+          let ref = $ref<Vector2>();
+          if (
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+              this.canvas,
+              new Vector2(screenPoint.x, screenPoint.y),
+              ZepetoPlayers.instance.ZepetoCamera.camera,
+              ref
+            )
+          ) {
+            let canvasPos = $unref(ref);
+            // Set
+            item.readyImage.rectTransform.localPosition = new Vector3(
+              canvasPos.x,
+              canvasPos.y,
+              0
+            );
+          }
         }
       });
     }
@@ -70,7 +121,7 @@ export default class MafiaReadyUiController extends ZepetoScriptBehaviour {
 
         playerId.readyImage = GameObject.Instantiate<GameObject>(
           this.readyImagePrefab,
-          this.canvasRoot
+          this.root
         ).GetComponent<Image>();
         if (state.gameState == 1) {
           playerId.readyImage.gameObject.SetActive(true);
@@ -85,7 +136,7 @@ export default class MafiaReadyUiController extends ZepetoScriptBehaviour {
         playerId.state = InGameInteractState.NONE;
         playerId.readyImage = GameObject.Instantiate<GameObject>(
           this.readyImagePrefab,
-          this.canvasRoot
+          this.root
         ).GetComponent<Image>();
         if (state.gameState == 1) {
           playerId.readyImage.gameObject.SetActive(true);
@@ -113,6 +164,12 @@ export default class MafiaReadyUiController extends ZepetoScriptBehaviour {
           }
         });
       }
+
+      if (state.gameState != 1) {
+        this.attendButton.gameObject.SetActive(false);
+        this.root.gameObject.SetActive(false);
+        this.playingText.gameObject.SetActive(true);
+      }
     });
 
     state.players.OnRemove += (player: Player, sessionId: string) => {
@@ -134,6 +191,11 @@ export default class MafiaReadyUiController extends ZepetoScriptBehaviour {
           this.UpdatePlayerCount(readyPlayerCount);
         }
       );
+    ClientStarter.instance
+      .GetRoom()
+      .AddMessageHandler("onReset", (message: any) => {
+        this.Reset();
+      });
 
     ClientStarter.instance
       .GetRoom()
@@ -203,7 +265,6 @@ export default class MafiaReadyUiController extends ZepetoScriptBehaviour {
     this.startCountText.text = "";
     this.attendButton.gameObject.SetActive(true);
     this.readyPanel.SetActive(false);
-    this.tempReadyPanel.SetActive(false);
     this.playerIds.forEach((item) => {
       if (!item || !item.readyImage) {
         console.log("레디 버튼 없음 이상함 오류");
@@ -214,5 +275,11 @@ export default class MafiaReadyUiController extends ZepetoScriptBehaviour {
     });
     this.UpdatePlayerCount(0);
     this.playerCountPanel.SetActive(true);
+  }
+
+  private Reset() {
+    this.root.gameObject.SetActive(true);
+    this.playingText.gameObject.SetActive(false);
+    this.attendButton.gameObject.SetActive(true);
   }
 }

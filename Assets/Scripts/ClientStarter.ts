@@ -15,6 +15,7 @@ import { ZepetoWorldMultiplay } from "ZEPETO.World";
 import {
   AudioListener,
   GameObject,
+  Object,
   Quaternion,
   Time,
   Transform,
@@ -212,27 +213,29 @@ export default class ClientStarter extends ZepetoScriptBehaviour {
   }
 
   public Teleport(transform: Transform) {
-    this.StartCoroutine(this.TeleportCoroutine(transform));
+    if (transform) {
+      this.StartCoroutine(this.TeleportCoroutine(transform));
+    }
   }
 
   private *TeleportCoroutine(transform: Transform) {
     yield WaitForSecondsCash.instance.WaitForSeconds(0.1);
-    const data = new RoomData();
+    if (transform) {
+      const data = new RoomData();
+      const pos = new RoomData();
+      pos.Add("x", transform.position.x);
+      pos.Add("y", transform.position.y);
+      pos.Add("z", transform.position.z);
+      data.Add("position", pos.GetObject());
 
-    const pos = new RoomData();
-    pos.Add("x", transform.position.x);
-    pos.Add("y", transform.position.y);
-    pos.Add("z", transform.position.z);
-    data.Add("position", pos.GetObject());
-
-    const rot = new RoomData();
-    rot.Add("x", transform.eulerAngles.x);
-    rot.Add("y", transform.eulerAngles.y);
-    rot.Add("z", transform.eulerAngles.z);
-    data.Add("rotation", rot.GetObject());
-    this.room.Send("onChangedTransform", data.GetObject());
+      const rot = new RoomData();
+      rot.Add("x", transform.eulerAngles.x);
+      rot.Add("y", transform.eulerAngles.y);
+      rot.Add("z", transform.eulerAngles.z);
+      data.Add("rotation", rot.GetObject());
+      this.room.Send("onChangedTransform", data.GetObject());
+    }
   }
-
   public SendTransform(transform: Transform) {
     const data = new RoomData();
 

@@ -60,13 +60,9 @@ export default class UIController extends ZepetoScriptBehaviour {
   @SerializeField()
   private readyPanel: GameObject;
   @SerializeField()
-  private tempReadyPanel: GameObject;
-  @SerializeField()
   private playPanel: GameObject;
   @SerializeField()
   private votePanel: GameObject;
-  @SerializeField()
-  private tempVotePanel: GameObject;
 
   @SerializeField()
   private howToPlayJobButton: Button;
@@ -378,7 +374,6 @@ export default class UIController extends ZepetoScriptBehaviour {
 
             this.playPanel.SetActive(true);
             this.votePanel.gameObject.SetActive(false);
-            this.tempVotePanel.gameObject.SetActive(false);
           });
 
         ClientStarter.instance
@@ -555,30 +550,6 @@ export default class UIController extends ZepetoScriptBehaviour {
     color.a = 1;
     this.voteResultImage.color = color;
     this.voteResultImage.gameObject.SetActive(false);
-
-    const character = ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character;
-    const playerId = character.GetComponent<PlayerId>();
-    // if (playerId.jobState == JobState.Citizen) {
-    //   const citizen = character.GetComponent<Citizen>();
-    //   citizen.interactUI.Init(citizen.jobState);
-    //   if (playerId.state == InGameInteractState.GHOST){
-    //     citizen.interactUI.reportButton.gameObject.SetActive(false);
-    //   }else{
-    //     citizen.interactUI.reportButton.gameObject.SetActive(true);
-    //   }
-    //   citizen.interactUI.killButton.gameObject.SetActive(false);
-    //   citizen.interactUI.missionButton.gameObject.SetActive(true);
-    // } else if (
-    //   playerId.jobState == JobState.Mafia &&
-    //   playerId.state == InGameInteractState.ALIVE
-    // ) {
-    //   const mafia = character.GetComponent<Mafia>();
-    //   mafia.interactUI.Init(mafia.jobState);
-    //   mafia.interactUI.reportButton.gameObject.SetActive(true);
-    //   mafia.interactUI.killButton.gameObject.SetActive(true);
-    //   mafia.interactUI.missionButton.gameObject.SetActive(true);
-    //   mafia.interactUI.killButtonBackground.SetActive(true);
-    // }
   }
 
   OnDebateToast(timeout: number) {
@@ -600,7 +571,6 @@ export default class UIController extends ZepetoScriptBehaviour {
     if (localPlayer && localPlayer.InGamePlayerState == 1) {
       this.playPanel.SetActive(false);
       this.votePanel.gameObject.SetActive(true);
-      this.tempVotePanel.gameObject.SetActive(true);
       this.voteSkipPanel.SetActive(false);
       this.voteCountPanel.SetActive(false);
       this.voteToastImage.gameObject.SetActive(true);
@@ -744,17 +714,21 @@ export default class UIController extends ZepetoScriptBehaviour {
       this.onEventImage.gameObject.SetActive(false);
       this.event = null;
     }
+    this.StopAllCoroutines();
     this.readyPanel.SetActive(true);
-    this.tempReadyPanel.SetActive(true);
     this.playPanel.SetActive(false);
     this.votePanel.SetActive(false);
-    this.tempVotePanel.SetActive(false);
     this.mapPanel.SetActive(false);
 
     this.howToPlayButton.gameObject.SetActive(true);
     this.howToPlayPanel.SetActive(false);
     this.howToPlayJobButton.gameObject.SetActive(true);
     this.howToPlayJobPanel.SetActive(false);
+
+    this.winnerImage.sprite = null;
+
+    this.mafiaImage.sprite = null;
+    this.mafiaName.text = "";
 
     this.voteToastImage.gameObject.SetActive(true);
     if (this.timeout) {

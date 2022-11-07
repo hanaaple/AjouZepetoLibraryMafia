@@ -1,4 +1,12 @@
-import { GameObject, Sprite, Transform, Vector3 } from "UnityEngine";
+import {
+  GameObject,
+  RectTransform,
+  RectTransformUtility,
+  Sprite,
+  Transform,
+  Vector2,
+  Vector3,
+} from "UnityEngine";
 import { Button, Image, Text } from "UnityEngine.UI";
 import { ZepetoPlayers } from "ZEPETO.Character.Controller";
 import { Room, RoomData } from "ZEPETO.Multiplay";
@@ -14,9 +22,10 @@ export default class VoteManager extends ZepetoScriptBehaviour {
   private votePoints: Transform[];
 
   @SerializeField()
-  private votePanel: Transform;
+  private canvas: RectTransform;
+
   @SerializeField()
-  private tempVotePanel: Transform;
+  private voteRoot: Transform;
 
   @SerializeField()
   private reportButtonPrefab: GameObject;
@@ -321,10 +330,6 @@ export default class VoteManager extends ZepetoScriptBehaviour {
   }
 
   *EndVote() {
-    // 뭔가를 띄운다
-    // 머리 위 카운트가 123 늘어나고 카메라가 저기로 이동되도록
-    // 귀찮네
-    // 모든 ui 삭제
     if (
       ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.GetComponent<PlayerId>()
         .state != InGameInteractState.ALIVE
@@ -362,10 +367,10 @@ export default class VoteManager extends ZepetoScriptBehaviour {
         }
       });
       console.log("기권 수: " + state.abstentionCount);
-      if (index < state.abstentionCount) {
-        // isContinue = true;
-        // 업데이트
-      }
+      // if (index < state.abstentionCount) {
+      //   // isContinue = true;
+      //   // 업데이트
+      // }
       yield yield WaitForSecondsCash.instance.WaitForSeconds(0.5);
       if (!isContinue) {
         break;
@@ -398,7 +403,7 @@ export default class VoteManager extends ZepetoScriptBehaviour {
         // const playerId = corpse.character.GetComponent<PlayerId>();
         const voteButton = GameObject.Instantiate<GameObject>(
           this.reportButtonPrefab,
-          this.tempVotePanel
+          this.voteRoot
         );
 
         item.voteButton = voteButton.GetComponent<Button>();
@@ -408,7 +413,7 @@ export default class VoteManager extends ZepetoScriptBehaviour {
 
         item.votedCheckUI = GameObject.Instantiate<GameObject>(
           this.voteCheckUIPrefab,
-          this.tempVotePanel
+          this.voteRoot
         );
 
         item.voteTargetUI = new Array<GameObject>();
@@ -417,7 +422,7 @@ export default class VoteManager extends ZepetoScriptBehaviour {
           item.voteTargetUI.push(
             GameObject.Instantiate<GameObject>(
               this.voteTargetUIPrefab,
-              this.tempVotePanel
+              this.voteRoot
             )
           );
         }
@@ -431,7 +436,7 @@ export default class VoteManager extends ZepetoScriptBehaviour {
 
       this.reporterProps.reporterUi = GameObject.Instantiate<GameObject>(
         this.reporterUiPrefab,
-        this.tempVotePanel
+        this.voteRoot
       );
     } else {
       this.playerIdArray.forEach((item) => {
@@ -469,44 +474,85 @@ export default class VoteManager extends ZepetoScriptBehaviour {
     }
     const camera = ZepetoPlayers.instance.ZepetoCamera.camera;
     this.playerIdArray.forEach((item) => {
-      if (!item.voteButton) {
-        console.log("리포트 버튼 없음 이상함 오류");
-        return;
+      if (item.voteButton) {
+        const screenPoint = camera.WorldToScreenPoint(
+          Vector3.op_Addition(
+            item.transform.position,
+            Vector3.op_Addition(
+              Vector3.op_Addition(
+                Vector3.op_Multiply(
+                  this.voteButtonOffset.x,
+                  item.transform.right
+                ),
+                Vector3.op_Multiply(this.voteButtonOffset.y, item.transform.up)
+              ),
+              Vector3.op_Multiply(
+                this.voteButtonOffset.z,
+                item.transform.forward
+              )
+            )
+          )
+        );
+
+        let ref = $ref<Vector2>();
+        if (
+          RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            this.canvas,
+            new Vector2(screenPoint.x, screenPoint.y),
+            camera,
+            ref
+          )
+        ) {
+          let canvasPos = $unref(ref);
+          // Set
+          item.voteButton.image.rectTransform.localPosition = new Vector3(
+            canvasPos.x,
+            canvasPos.y,
+            0
+          );
+        }
       }
 
-      item.voteButton.transform.position = camera.WorldToScreenPoint(
-        Vector3.op_Addition(
-          item.transform.position,
+      if (item.votedCheckUI) {
+        const screenPoint = camera.WorldToScreenPoint(
           Vector3.op_Addition(
+            item.transform.position,
             Vector3.op_Addition(
-              Vector3.op_Multiply(
-                this.voteButtonOffset.x,
-                item.transform.right
+              Vector3.op_Addition(
+                Vector3.op_Multiply(
+                  this.voteCheckOffset.x,
+                  item.transform.right
+                ),
+                Vector3.op_Multiply(this.voteCheckOffset.y, item.transform.up)
               ),
-              Vector3.op_Multiply(this.voteButtonOffset.y, item.transform.up)
-            ),
-            Vector3.op_Multiply(this.voteButtonOffset.z, item.transform.forward)
+              Vector3.op_Multiply(
+                this.voteCheckOffset.z,
+                item.transform.forward
+              )
+            )
           )
-        )
-      );
+        );
 
-      item.votedCheckUI.transform.position = camera.WorldToScreenPoint(
-        Vector3.op_Addition(
-          item.transform.position,
-          Vector3.op_Addition(
-            Vector3.op_Addition(
-              Vector3.op_Multiply(this.voteCheckOffset.x, item.transform.right),
-              Vector3.op_Multiply(this.voteCheckOffset.y, item.transform.up)
-            ),
-            Vector3.op_Multiply(this.voteCheckOffset.z, item.transform.forward)
+        let ref = $ref<Vector2>();
+        if (
+          RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            this.canvas,
+            new Vector2(screenPoint.x, screenPoint.y),
+            camera,
+            ref
           )
-        )
-      );
+        ) {
+          let canvasPos = $unref(ref);
+          // Set
+          item.votedCheckUI.GetComponent<RectTransform>().localPosition =
+            new Vector3(canvasPos.x, canvasPos.y, 0);
+        }
+      }
 
       if (item.voteTargetUI) {
         item.voteTargetUI.forEach((voteTargetUI, idx) => {
           if (voteTargetUI && voteTargetUI.activeSelf) {
-            voteTargetUI.transform.position = camera.WorldToScreenPoint(
+            const screenPoint = camera.WorldToScreenPoint(
               Vector3.op_Addition(
                 item.transform.position,
                 Vector3.op_Addition(
@@ -554,34 +600,62 @@ export default class VoteManager extends ZepetoScriptBehaviour {
                 )
               )
             );
+            let ref = $ref<Vector2>();
+            if (
+              RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                this.canvas,
+                new Vector2(screenPoint.x, screenPoint.y),
+                camera,
+                ref
+              )
+            ) {
+              let canvasPos = $unref(ref);
+              // Set
+              voteTargetUI.GetComponent<RectTransform>().localPosition =
+                new Vector3(canvasPos.x, canvasPos.y, 0);
+            }
           }
         });
       }
     });
 
-    if (this.reporterProps.reporterUi) {
-      this.reporterProps.reporterUi.transform.position =
-        camera.WorldToScreenPoint(
+    if (this.reporterProps && this.reporterProps.reporterUi) {
+      const screenPoint = camera.WorldToScreenPoint(
+        Vector3.op_Addition(
+          this.reporterProps.transform.position,
           Vector3.op_Addition(
-            this.reporterProps.transform.position,
             Vector3.op_Addition(
-              Vector3.op_Addition(
-                Vector3.op_Multiply(
-                  this.reporterOffset.x,
-                  this.reporterProps.transform.right
-                ),
-                Vector3.op_Multiply(
-                  this.reporterOffset.y,
-                  this.reporterProps.transform.up
-                )
+              Vector3.op_Multiply(
+                this.reporterOffset.x,
+                this.reporterProps.transform.right
               ),
               Vector3.op_Multiply(
-                this.reporterOffset.z,
-                this.reporterProps.transform.forward
+                this.reporterOffset.y,
+                this.reporterProps.transform.up
               )
+            ),
+            Vector3.op_Multiply(
+              this.reporterOffset.z,
+              this.reporterProps.transform.forward
             )
           )
-        );
+        )
+      );
+
+      let ref = $ref<Vector2>();
+      if (
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+          this.canvas,
+          new Vector2(screenPoint.x, screenPoint.y),
+          camera,
+          ref
+        )
+      ) {
+        let canvasPos = $unref(ref);
+        // Set
+        this.reporterProps.reporterUi.GetComponent<RectTransform>().localPosition =
+          new Vector3(canvasPos.x, canvasPos.y, 0);
+      }
     }
   }
 
@@ -609,9 +683,15 @@ export default class VoteManager extends ZepetoScriptBehaviour {
         this.reporterProps = null;
       }
     }
+    if (this.playerIdArray) {
+      this.playerIdArray = this.playerIdArray.filter(
+        (playerId) => playerId.sessionId != sessionId
+      );
+    }
   }
 
   Reset() {
+    this.StopAllCoroutines();
     this.SetUI(false);
   }
 }
