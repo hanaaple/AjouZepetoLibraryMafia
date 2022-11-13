@@ -1,5 +1,4 @@
-import { List$1 } from "System.Collections.Generic";
-import { WaitForEndOfFrame, WaitForSeconds } from "UnityEngine";
+import { WaitForSeconds } from "UnityEngine";
 import { ZepetoScriptBehaviour } from "ZEPETO.Script";
 
 export default class WaitForSecondsCash extends ZepetoScriptBehaviour {
@@ -9,11 +8,11 @@ export default class WaitForSecondsCash extends ZepetoScriptBehaviour {
     return this._instance;
   }
 
-  private _timeInterval: Map<float, WaitForSeconds>;
+  private _timeInterval: Map<number, WaitForSeconds>;
 
   Awake() {
     WaitForSecondsCash._instance = this;
-    this._timeInterval = new Map<float, WaitForSeconds>();
+    this._timeInterval = new Map<number, WaitForSeconds>();
   }
   public WaitForSeconds(seconds: number): WaitForSeconds {
     if (!this._timeInterval.has(seconds)) {

@@ -81,6 +81,75 @@ export default class MafiaPlayer extends ZepetoScriptBehaviour {
           if (this.alivePlayer.length == 0) {
             this.interactUI.ActiveButton(ButtonType.KILL, false);
           }
+
+          if (killed.isLocalPlayer) {
+            this.alivePlayer = new Array<PlayerId>();
+            this.corpsePlayer = new Array<PlayerId>();
+          }
+        });
+
+      ClientStarter.instance
+        .GetRoom()
+        .AddMessageHandler("onReset", (message: any) => {
+          if (
+            !ClientStarter.instance
+              .GetRoom()
+              .State.players.ContainsKey(
+                ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
+              ) ||
+            !ClientStarter.instance
+              .GetRoom()
+              .State.players.get_Item(
+                ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
+              ).isMafiaPlayer
+          ) {
+            return;
+          }
+
+          this.alivePlayer = new Array<PlayerId>();
+          this.corpsePlayer = new Array<PlayerId>();
+        });
+      ClientStarter.instance
+        .GetRoom()
+        .AddMessageHandler("onReport", (message: any) => {
+          if (
+            !ClientStarter.instance
+              .GetRoom()
+              .State.players.ContainsKey(
+                ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
+              ) ||
+            !ClientStarter.instance
+              .GetRoom()
+              .State.players.get_Item(
+                ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
+              ).isMafiaPlayer
+          ) {
+            return;
+          }
+
+          this.alivePlayer = new Array<PlayerId>();
+          this.corpsePlayer = new Array<PlayerId>();
+        });
+      ClientStarter.instance
+        .GetRoom()
+        .AddMessageHandler("onStartNextDay", (message: any) => {
+          if (
+            !ClientStarter.instance
+              .GetRoom()
+              .State.players.ContainsKey(
+                ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
+              ) ||
+            !ClientStarter.instance
+              .GetRoom()
+              .State.players.get_Item(
+                ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
+              ).isMafiaPlayer
+          ) {
+            return;
+          }
+
+          this.alivePlayer = new Array<PlayerId>();
+          this.corpsePlayer = new Array<PlayerId>();
         });
     }
   }
@@ -103,13 +172,6 @@ export default class MafiaPlayer extends ZepetoScriptBehaviour {
           ? cur
           : prev
     );
-    if (nearPlayer.sessionId == this.sessionId) {
-      console.log("오류오류오류오류오류오류오류오류오류");
-      const nearPlayer = this.corpsePlayer.forEach((item) => {
-        console.log(item);
-        console.log(item.sessionId);
-      });
-    }
     const roomData = new RoomData();
     roomData.Add("reporter", this.sessionId);
     roomData.Add("corpse", nearPlayer.sessionId);
@@ -117,41 +179,12 @@ export default class MafiaPlayer extends ZepetoScriptBehaviour {
     this.interactUI.ActiveButton(ButtonType.REPORT, false);
   }
   OnTriggerEnter(other: Collider) {
-    if (!this.isEnable) return;
+    if (!this.isEnable || !this.isLocal) {
+      return;
+    }
     const player: PlayerId = other.GetComponent<PlayerId>();
     const missionInteractor = other.GetComponent<MissionInteractor>();
     this.missionInteractor = missionInteractor;
-    if (!this.isLocal) return;
-
-    if (
-      ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.GetComponent<PlayerId>()
-        .state == InGameInteractState.CORPSE
-    ) {
-      return;
-    }
-    if (player && player.sessionId != this.sessionId) {
-      if (player.state == InGameInteractState.ALIVE) {
-        const hasPlayer = this.alivePlayer.find((item) => {
-          return item == player;
-        });
-
-        if (!hasPlayer) {
-          console.log("플레이어 추가");
-          this.alivePlayer.push(player);
-          if (this.jobState == JobState.Mafia) {
-            this.interactUI.ActiveButton(ButtonType.KILL, true);
-          }
-        }
-      } else if (player.state == InGameInteractState.CORPSE) {
-        const hasPlayer = this.corpsePlayer.find((item) => {
-          return item == player;
-        });
-        if (!hasPlayer) {
-          this.corpsePlayer.push(player);
-          this.interactUI.ActiveButton(ButtonType.REPORT, true);
-        }
-      }
-    }
 
     if (
       missionInteractor &&
@@ -159,6 +192,33 @@ export default class MafiaPlayer extends ZepetoScriptBehaviour {
       !missionInteractor.isSuccess
     ) {
       this.interactUI.ActiveButton(ButtonType.MISSION, true);
+    }
+
+    if (
+      ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.GetComponent<PlayerId>()
+        .state != InGameInteractState.GHOST
+    ) {
+      if (player && player.sessionId != this.sessionId) {
+        if (player.state == InGameInteractState.ALIVE) {
+          const hasPlayer = this.alivePlayer.find((item) => {
+            return item == player;
+          });
+
+          if (!hasPlayer) {
+            console.log("플레이어 추가");
+            this.alivePlayer.push(player);
+            if (this.jobState == JobState.Mafia) {
+              this.interactUI.ActiveButton(ButtonType.KILL, true);
+            }
+          }
+        } else if (player.state == InGameInteractState.CORPSE) {
+          const hasPlayer = this.corpsePlayer.find((item) => item == player);
+          if (!hasPlayer) {
+            this.corpsePlayer.push(player);
+            this.interactUI.ActiveButton(ButtonType.REPORT, true);
+          }
+        }
+      }
     }
   }
 
@@ -178,11 +238,7 @@ export default class MafiaPlayer extends ZepetoScriptBehaviour {
         this.ActiveInteractUi(ButtonType.REPORT, false);
       }
     }
-    if (
-      missionInteractor &&
-      missionInteractor.enabled &&
-      !missionInteractor.isSuccess
-    ) {
+    if (this.missionInteractor) {
       this.ActiveInteractUi(ButtonType.MISSION, false);
     }
   }

@@ -13,9 +13,10 @@ import { Room, RoomData } from "ZEPETO.Multiplay";
 import { Player, State } from "ZEPETO.Multiplay.Schema";
 import { ZepetoScriptBehaviour } from "ZEPETO.Script";
 import ClientStarter from "../ClientStarter";
-import { InGameInteractState } from "../Constants/Enum";
+import { InGameInteractState, MafiaGameState } from "../Constants/Enum";
 import WaitForSecondsCash from "../WaitForSecondsCash";
 import PlayerId from "./PlayerId";
+import UIController from "./UIController";
 
 export default class VoteManager extends ZepetoScriptBehaviour {
   @SerializeField()
@@ -74,10 +75,14 @@ export default class VoteManager extends ZepetoScriptBehaviour {
   Start() {
     ClientStarter.instance.multiplay.RoomJoined += (room: Room) => {
       room.OnStateChange += (state: State, isFirst: boolean) => {
+        //console.log("입장 시 " + isFirst);
         if (!isFirst) return;
 
-        state.mafiaPlayers.OnRemove += (player: Player, sessionId: string) =>
-          this.OnLeavePlayer(sessionId, player);
+        state.players.OnRemove += (player: Player, sessionId: string) => {
+          if (player.isMafiaPlayer) {
+            this.OnLeavePlayer(sessionId, player);
+          }
+        };
       };
 
       ClientStarter.instance
@@ -91,9 +96,14 @@ export default class VoteManager extends ZepetoScriptBehaviour {
           if (
             !ClientStarter.instance
               .GetRoom()
-              .State.mafiaPlayers.ContainsKey(
+              .State.players.ContainsKey(
                 ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
-              )
+              ) ||
+            !ClientStarter.instance
+              .GetRoom()
+              .State.players.get_Item(
+                ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
+              ).isMafiaPlayer
           ) {
             return;
           }
@@ -104,6 +114,8 @@ export default class VoteManager extends ZepetoScriptBehaviour {
 
           // ui 및 애니메이션 대기 후 실행
           this.ReadyVote(message.reporter, message.corpse);
+
+          this.StartCoroutine(this.VoteCoroutine(message));
         });
       ClientStarter.instance
         .GetRoom()
@@ -111,9 +123,14 @@ export default class VoteManager extends ZepetoScriptBehaviour {
           if (
             !ClientStarter.instance
               .GetRoom()
-              .State.mafiaPlayers.ContainsKey(
+              .State.players.ContainsKey(
                 ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
-              )
+              ) ||
+            !ClientStarter.instance
+              .GetRoom()
+              .State.players.get_Item(
+                ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
+              ).isMafiaPlayer
           ) {
             return;
           }
@@ -128,9 +145,14 @@ export default class VoteManager extends ZepetoScriptBehaviour {
           if (
             !ClientStarter.instance
               .GetRoom()
-              .State.mafiaPlayers.ContainsKey(
+              .State.players.ContainsKey(
                 ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
-              )
+              ) ||
+            !ClientStarter.instance
+              .GetRoom()
+              .State.players.get_Item(
+                ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
+              ).isMafiaPlayer
           ) {
             return;
           }
@@ -154,9 +176,14 @@ export default class VoteManager extends ZepetoScriptBehaviour {
           if (
             !ClientStarter.instance
               .GetRoom()
-              .State.mafiaPlayers.ContainsKey(
+              .State.players.ContainsKey(
                 ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
-              )
+              ) ||
+            !ClientStarter.instance
+              .GetRoom()
+              .State.players.get_Item(
+                ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
+              ).isMafiaPlayer
           ) {
             return;
           }
@@ -183,9 +210,14 @@ export default class VoteManager extends ZepetoScriptBehaviour {
           if (
             !ClientStarter.instance
               .GetRoom()
-              .State.mafiaPlayers.ContainsKey(
+              .State.players.ContainsKey(
                 ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
-              )
+              ) ||
+            !ClientStarter.instance
+              .GetRoom()
+              .State.players.get_Item(
+                ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
+              ).isMafiaPlayer
           ) {
             return;
           }
@@ -198,6 +230,34 @@ export default class VoteManager extends ZepetoScriptBehaviour {
     };
   }
 
+  *VoteCoroutine(message: any) {
+    yield WaitForSecondsCash.instance.WaitForSeconds(3.6);
+    if (
+      ClientStarter.instance.GetRoom().State.gameState == MafiaGameState.Vote
+    ) {
+      UIController.instance.OnDebateCount(60);
+      console.log("토론시작");
+      yield WaitForSecondsCash.instance.WaitForSeconds(60);
+      if (
+        ClientStarter.instance.GetRoom().State.gameState == MafiaGameState.Vote
+      ) {
+        console.log("토론 종료");
+        console.log("투표 시작");
+        this.StartVote(message.reporter, message.corpse);
+        this.VoteCountUpdate(0, 0);
+
+        UIController.instance.OnVoteToast(30);
+        yield WaitForSecondsCash.instance.WaitForSeconds(30);
+        if (
+          ClientStarter.instance.GetRoom().State.gameState ==
+          MafiaGameState.Vote
+        ) {
+          console.log("투표 종료");
+          ClientStarter.instance.GetRoom().Send("InitVoteResult", "");
+        }
+      }
+    }
+  }
   ReadyVote(reporterId: string, corpseId: string) {
     if (
       ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.GetComponent<PlayerId>()
@@ -213,45 +273,29 @@ export default class VoteManager extends ZepetoScriptBehaviour {
     // const corpse = ZepetoPlayers.instance.GetPlayer(corpseId);
     this.playerIdArray = new Array<PlayerId>();
 
-    const mafiaPlayers = ClientStarter.instance.GetRoom().State.mafiaPlayers;
-    mafiaPlayers.ForEach((sessionId: string, player: Player) => {
-      console.log("플레이어:  " + sessionId);
-    });
-    const mafiaPlayerCount = mafiaPlayers.Count;
-    for (let count = 0, idx = 0; count < mafiaPlayerCount; idx++) {
-      const t = mafiaPlayers.GetByIndex(idx);
-      if (t != null) {
-        count++;
-        console.log(t + ", " + idx + "번째");
-        console.log(t.sessionId);
-      }
-    }
+    ClientStarter.instance
+      .GetRoom()
+      .State.players.ForEach((sessionId: string, player: Player) => {
+        if (!player.isMafiaPlayer) {
+          return;
+        }
+        console.log("플레이어 추가");
+        const character = ZepetoPlayers.instance.GetPlayer(sessionId).character;
+        const playerId = character.gameObject.GetComponent<PlayerId>();
+        if (playerId.state == InGameInteractState.ALIVE) {
+          this.playerIdArray.push(playerId);
 
-    mafiaPlayers.ForEach((sessionId: string, player: Player) => {
-      console.log("플레이어 추가");
-      const character = ZepetoPlayers.instance.GetPlayer(sessionId).character;
-      const playerId = character.gameObject.GetComponent<PlayerId>();
-      if (playerId.state == InGameInteractState.ALIVE) {
-        this.playerIdArray.push(playerId);
-
-        const voteTransform = this.votePoints[playerId.order];
-        character.transform.position = voteTransform.position;
-        character.transform.rotation = voteTransform.rotation;
-      }
-    });
+          const voteTransform = this.votePoints[playerId.order];
+          character.transform.position = voteTransform.position;
+          character.transform.rotation = voteTransform.rotation;
+        }
+      });
     ClientStarter.instance.Teleport(
       ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.transform
     );
 
-    console.log(this.playerIdArray.length);
-
     this.SetUI(true);
     this.SetMove(false);
-
-    // 사람들 머리 위에 ui
-    // ui를 누르면 투표
-    // 자기 투표는 옆에 버튼
-    // 안누르면 기권
   }
 
   StartVote(reporterId: string, corpseId: string) {
@@ -273,10 +317,15 @@ export default class VoteManager extends ZepetoScriptBehaviour {
       ZepetoPlayers.instance.characterData.walkSpeed = this.walkSpeed;
       ZepetoPlayers.instance.characterData.runSpeed = this.runSpeed;
     } else {
-      this.walkSpeed = ZepetoPlayers.instance.characterData.walkSpeed;
-      this.runSpeed = ZepetoPlayers.instance.characterData.runSpeed;
-      ZepetoPlayers.instance.characterData.walkSpeed = 0;
-      ZepetoPlayers.instance.characterData.runSpeed = 0;
+      if (
+        ZepetoPlayers.instance.characterData.walkSpeed != 0 &&
+        ZepetoPlayers.instance.characterData.runSpeed != 0
+      ) {
+        this.walkSpeed = ZepetoPlayers.instance.characterData.walkSpeed;
+        this.runSpeed = ZepetoPlayers.instance.characterData.runSpeed;
+        ZepetoPlayers.instance.characterData.walkSpeed = 0;
+        ZepetoPlayers.instance.characterData.runSpeed = 0;
+      }
     }
   }
   Vote(targetSessionId: string) {
@@ -341,16 +390,24 @@ export default class VoteManager extends ZepetoScriptBehaviour {
     // 투표 수 집계
     const state = ClientStarter.instance.GetRoom().State;
 
+    console.log("기권 수: " + state.abstentionCount);
+
     let index: number = 0;
     // 0 ~ 3까지 4번
+    yield yield WaitForSecondsCash.instance.WaitForSeconds(0.1);
     while (true) {
       let isContinue = false;
       console.log("인덱스: " + index);
       this.playerIdArray.forEach((playerId: PlayerId) => {
-        const player = state.mafiaPlayers.get_Item(playerId.sessionId);
-        if (playerId.state != InGameInteractState.ALIVE) {
+        if (
+          !playerId ||
+          !state.players.ContainsKey(playerId.sessionId) ||
+          !state.players.get_Item(playerId.sessionId).isMafiaPlayer ||
+          playerId.state != InGameInteractState.ALIVE
+        ) {
           return;
         }
+        const player = state.players.get_Item(playerId.sessionId);
 
         console.log(
           playerId.sessionId + " 플레이어가 투표 당한 수: " + player.votedCount
@@ -361,16 +418,9 @@ export default class VoteManager extends ZepetoScriptBehaviour {
           console.log(
             playerId.sessionId + " 플레이어가 " + index + "번 지목당함"
           );
-          console.log(playerId.voteTargetUI.length);
-          console.log(playerId.voteTargetUI[index]);
           playerId.voteTargetUI[index].SetActive(true);
         }
       });
-      console.log("기권 수: " + state.abstentionCount);
-      // if (index < state.abstentionCount) {
-      //   // isContinue = true;
-      //   // 업데이트
-      // }
       yield yield WaitForSecondsCash.instance.WaitForSeconds(0.5);
       if (!isContinue) {
         break;
@@ -378,29 +428,28 @@ export default class VoteManager extends ZepetoScriptBehaviour {
       index++;
     }
     yield WaitForSecondsCash.instance.WaitForSeconds(1);
-
     this.isVoting = false;
     this.SetMove(true);
     this.SetUI(false);
+    if (ClientStarter.instance.GetRoom().State.gameState == 3) {
+      yield WaitForSecondsCash.instance.WaitForSeconds(1);
+      if (ClientStarter.instance.GetRoom().State.gameState == 3) {
+        ClientStarter.instance.GetRoom().Send("VoteResult", "");
+      }
+    }
   }
 
   SetUI(isOn: bool) {
+    console.log("ui 세팅");
     if (!this.playerIdArray) {
       return;
     }
-    // this.votePanel.gameObject.SetActive(isOn);
-
-    console.log("ui 세팅");
-    console.log(this.playerIdArray);
-    console.log(this.playerIdArray.length);
     if (isOn) {
       this.playerIdArray.forEach((item) => {
-        console.log(item.sessionId);
         if (item.state != InGameInteractState.ALIVE) {
           console.log("오류오류오류");
         }
-        // if (!zepetoPlayer.isLocalPlayer) {
-        // const playerId = corpse.character.GetComponent<PlayerId>();
+
         const voteButton = GameObject.Instantiate<GameObject>(
           this.reportButtonPrefab,
           this.voteRoot
@@ -417,7 +466,7 @@ export default class VoteManager extends ZepetoScriptBehaviour {
         );
 
         item.voteTargetUI = new Array<GameObject>();
-        console.log(this.playerIdArray.length + "개 넣기");
+
         for (let i = 0; i < this.playerIdArray.length; i++) {
           item.voteTargetUI.push(
             GameObject.Instantiate<GameObject>(
@@ -469,7 +518,7 @@ export default class VoteManager extends ZepetoScriptBehaviour {
   }
 
   Update() {
-    if (!this.isVoting) {
+    if (!this.isVoting || !this.playerIdArray) {
       return;
     }
     const camera = ZepetoPlayers.instance.ZepetoCamera.camera;
@@ -660,17 +709,19 @@ export default class VoteManager extends ZepetoScriptBehaviour {
   }
 
   OnLeavePlayer(sessionId: string, player: Player) {
-    const mafiaPlayerId = ZepetoPlayers.instance
-      .GetPlayer(sessionId)
-      .character.GetComponent<PlayerId>();
-    if (mafiaPlayerId) {
-      if (mafiaPlayerId.voteButton) {
-        GameObject.Destroy(mafiaPlayerId.voteButton.gameObject);
-        mafiaPlayerId.voteButton = null;
-      }
-      if (mafiaPlayerId.votedCheckUI) {
-        GameObject.Destroy(mafiaPlayerId.votedCheckUI);
-        mafiaPlayerId.votedCheckUI = null;
+    if (ZepetoPlayers.instance.HasPlayer(sessionId)) {
+      const mafiaPlayerId = ZepetoPlayers.instance
+        .GetPlayer(sessionId)
+        .character.GetComponent<PlayerId>();
+      if (mafiaPlayerId) {
+        if (mafiaPlayerId.voteButton) {
+          GameObject.Destroy(mafiaPlayerId.voteButton.gameObject);
+          mafiaPlayerId.voteButton = null;
+        }
+        if (mafiaPlayerId.votedCheckUI) {
+          GameObject.Destroy(mafiaPlayerId.votedCheckUI);
+          mafiaPlayerId.votedCheckUI = null;
+        }
       }
     }
 
@@ -693,5 +744,7 @@ export default class VoteManager extends ZepetoScriptBehaviour {
   Reset() {
     this.StopAllCoroutines();
     this.SetUI(false);
+    this.SetMove(true);
+    this.isVoting = false;
   }
 }

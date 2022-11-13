@@ -21,4 +21,11 @@ export default class PlayerId extends ZepetoScriptBehaviour {
   public votedCheckUI: GameObject;
 
   public voteTargetUI: GameObject[];
+
+  public Init(sessionId: string) {
+    this.order = -1;
+    this.sessionId = sessionId;
+    this.jobState = JobState.None;
+    this.state = InGameInteractState.NONE;
+  }
 }

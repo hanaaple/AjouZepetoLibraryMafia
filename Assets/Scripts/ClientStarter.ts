@@ -23,6 +23,7 @@ import {
 } from "UnityEngine";
 import WaitForSecondsCash from "./WaitForSecondsCash";
 import AnimationLinker from "./AnimationLinker";
+import PlayerId from "./Mafia/PlayerId";
 
 export default class ClientStarter extends ZepetoScriptBehaviour {
   public multiplay: ZepetoWorldMultiplay;
@@ -75,7 +76,10 @@ export default class ClientStarter extends ZepetoScriptBehaviour {
   }
 
   private OnStateChange(state: State, isFirst: boolean) {
+    //console.log("입장 시 " + isFirst);
     if (isFirst) {
+      console.log("[첫 접속] ");
+      this.Debug("[첫 접속] ");
       state.players.ForEach((sessionId: string, player: Player) =>
         this.OnJoinPlayer(sessionId, player)
       );
@@ -148,8 +152,16 @@ export default class ClientStarter extends ZepetoScriptBehaviour {
 
   private OnLeavePlayer(sessionId: string, player: Player) {
     console.log(`[OnRemove] players - sessionId : ${sessionId}`);
+    // this.StartCoroutine(this.RemovePlayer(sessionId));
     ZepetoPlayers.instance.RemovePlayer(sessionId);
     AnimationLinker.instance.OnRemovePlayer(sessionId);
+  }
+  *RemovePlayer(sessionId: string) {
+    const character = ZepetoPlayers.instance.GetPlayer(sessionId).character;
+    character.gameObject.SetActive(false);
+    character.GetComponent<PlayerId>().Init("");
+    yield WaitForSecondsCash.instance.WaitForSeconds(1);
+    ZepetoPlayers.instance.RemovePlayer(sessionId);
   }
 
   private OnUpdateMultiPlayer(sessionId: string, player: Player) {
@@ -219,7 +231,7 @@ export default class ClientStarter extends ZepetoScriptBehaviour {
   }
 
   private *TeleportCoroutine(transform: Transform) {
-    yield WaitForSecondsCash.instance.WaitForSeconds(0.1);
+    yield WaitForSecondsCash.instance.WaitForSeconds(0.2);
     if (transform) {
       const data = new RoomData();
       const pos = new RoomData();
@@ -275,7 +287,7 @@ export default class ClientStarter extends ZepetoScriptBehaviour {
   public Debug(obj: any) {
     const data = new RoomData();
     data.Add("sentence", obj);
-    this.room.Send("DebugUpdate", data.GetObject());
+    this.room.Send("Debug", data.GetObject());
   }
 
   private ParseVector3(vector3: Vector3Schema): Vector3 {

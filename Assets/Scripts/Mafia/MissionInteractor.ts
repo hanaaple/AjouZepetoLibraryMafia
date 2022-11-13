@@ -1,5 +1,5 @@
 import { AnimationClip, Time, WaitUntil } from "UnityEngine";
-import { UnityAction$2 } from "UnityEngine.Events";
+import { UnityAction$1 } from "UnityEngine.Events";
 import { Image, Text } from "UnityEngine.UI";
 import { ZepetoPlayers } from "ZEPETO.Character.Controller";
 import { ZepetoScriptBehaviour } from "ZEPETO.Script";
@@ -15,25 +15,26 @@ export default class MissionInteractor extends ZepetoScriptBehaviour {
 
   public context: string;
 
-  @NonSerialized()
+  // @NonSerialized()
   public index: number;
 
-  @NonSerialized()
+  // @NonSerialized()
   public missionIndex: number;
 
   public slide: Image;
   public text: Text;
 
-  public onComplete: UnityAction$2<MissionInteractor, Text>;
+  public onComplete: UnityAction$1<MissionInteractor>;
 
   Initialize(
     slide: Image,
     text: Text,
-    onComplete: UnityAction$2<MissionInteractor, Text>
+    onComplete: UnityAction$1<MissionInteractor>
   ) {
     this.slide = slide;
     this.text = text;
     this.onComplete = onComplete;
+    this.isSuccess = false;
   }
 
   Start() {
@@ -48,28 +49,55 @@ export default class MissionInteractor extends ZepetoScriptBehaviour {
           this.Reset();
         });
     });
+
+    ZepetoPlayers.instance.OnAddedLocalPlayer.AddListener(() => {
+      ClientStarter.instance
+        .GetRoom()
+        .AddMessageHandler("onKill", (message: any) => {
+          if (
+            message.killed == ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
+          ) {
+            this.StopInteract();
+          }
+        });
+    });
+    ZepetoPlayers.instance.OnAddedLocalPlayer.AddListener(() => {
+      ClientStarter.instance
+        .GetRoom()
+        .AddMessageHandler("onReport", (message: any) => {
+          this.StopInteract();
+        });
+    });
   }
 
   Reset() {
-    this.StopAllCoroutines();
+    this.StopInteract();
 
-    AnimationLinker.instance.StopGesture(
-      ZepetoPlayers.instance.LocalPlayer.zepetoPlayer
-    );
+    this.slide = null;
+    this.text = null;
+    this.onComplete = null;
+    this.isSuccess = false;
   }
   public Interact() {
     if (this.isSuccess) {
       console.log("잘못함잘못함잘못함잘못함잘못함잘못함잘못함잘못함");
+      return;
     }
     console.log("인터랙트 시작");
     this.SetObjs(true);
     const player = ZepetoPlayers.instance.LocalPlayer.zepetoPlayer;
     if (!AnimationLinker.instance.GetIsGesturing(player.id)) {
       AnimationLinker.instance.PlayGesture(this.animationClip.name);
-      this.StartCoroutine(this.WaitForMove());
+      this.StartCoroutine(this.Interacting());
     }
+  }
 
-    this.StartCoroutine(this.Interacting());
+  public StopInteract() {
+    this.StopAllCoroutines();
+    this.SetObjs(false);
+    AnimationLinker.instance.StopGesture(
+      ZepetoPlayers.instance.LocalPlayer.zepetoPlayer
+    );
   }
 
   *Interacting() {
@@ -89,15 +117,10 @@ export default class MissionInteractor extends ZepetoScriptBehaviour {
 
   private OnComplete() {
     console.log("성공");
-    this.SetObjs(false);
-    this.StopAllCoroutines();
+    this.StopInteract();
     this.isSuccess = true;
 
-    AnimationLinker.instance.StopGesture(
-      ZepetoPlayers.instance.LocalPlayer.zepetoPlayer
-    );
-
-    this.onComplete(this, this.text);
+    this.onComplete(this);
   }
 
   private SetObjs(isOn: boolean) {
@@ -118,11 +141,6 @@ export default class MissionInteractor extends ZepetoScriptBehaviour {
         ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.character.tryJump
       );
     });
-    AnimationLinker.instance.StopGesture(
-      ZepetoPlayers.instance.LocalPlayer.zepetoPlayer
-    );
-
-    this.SetObjs(false);
-    this.StopAllCoroutines();
+    this.StopInteract();
   }
 }

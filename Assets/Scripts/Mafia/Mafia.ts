@@ -34,32 +34,18 @@ export default class Mafia extends MafiaPlayer {
     ZepetoPlayers.instance.OnAddedLocalPlayer.AddListener(() => {
       ClientStarter.instance
         .GetRoom()
-        .AddMessageHandler("GameStart", (message: any) => {
+        .AddMessageHandler("GameStart", (message) => {
           if (
             !ClientStarter.instance
               .GetRoom()
-              .State.mafiaPlayers.ContainsKey(
+              .State.players.ContainsKey(
                 ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
-              )
-          ) {
-            return;
-          }
-          if (this.attackDelay) {
-            this.interactUI.killButton.image.fillAmount = 1;
-            this.interactUI.killButton.interactable = true;
-            this.StopCoroutine(this.attackDelay);
-            this.attackDelay = null;
-          }
-        });
-      ClientStarter.instance
-        .GetRoom()
-        .AddMessageHandler("onReport", (message: any) => {
-          if (
+              ) ||
             !ClientStarter.instance
               .GetRoom()
-              .State.mafiaPlayers.ContainsKey(
+              .State.players.get_Item(
                 ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
-              )
+              ).isMafiaPlayer
           ) {
             return;
           }
@@ -70,6 +56,60 @@ export default class Mafia extends MafiaPlayer {
             } else {
               this.interactUI.killButton.interactable = false;
             }
+            this.StopCoroutine(this.attackDelay);
+            this.attackDelay = null;
+          }
+        });
+
+      ClientStarter.instance
+        .GetRoom()
+        .AddMessageHandler("onStartNextDay", (message) => {
+          if (
+            !ClientStarter.instance
+              .GetRoom()
+              .State.players.ContainsKey(
+                ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
+              ) ||
+            !ClientStarter.instance
+              .GetRoom()
+              .State.players.get_Item(
+                ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
+              ).isMafiaPlayer
+          ) {
+            return;
+          }
+          if (this.attackDelay) {
+            this.interactUI.killButton.image.fillAmount = 1;
+            if (this.alivePlayer) {
+              this.interactUI.killButton.interactable = true;
+            } else {
+              this.interactUI.killButton.interactable = false;
+            }
+            this.StopCoroutine(this.attackDelay);
+            this.attackDelay = null;
+          }
+        });
+
+      ClientStarter.instance
+        .GetRoom()
+        .AddMessageHandler("onReport", (message: any) => {
+          if (
+            !ClientStarter.instance
+              .GetRoom()
+              .State.players.ContainsKey(
+                ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
+              ) ||
+            !ClientStarter.instance
+              .GetRoom()
+              .State.players.get_Item(
+                ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
+              ).isMafiaPlayer
+          ) {
+            return;
+          }
+          if (this.attackDelay) {
+            this.interactUI.killButton.image.fillAmount = 1;
+            this.interactUI.killButton.interactable = false;
             this.StopCoroutine(this.attackDelay);
             this.attackDelay = null;
           }
@@ -80,19 +120,20 @@ export default class Mafia extends MafiaPlayer {
           if (
             !ClientStarter.instance
               .GetRoom()
-              .State.mafiaPlayers.ContainsKey(
+              .State.players.ContainsKey(
                 ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
-              )
+              ) ||
+            !ClientStarter.instance
+              .GetRoom()
+              .State.players.get_Item(
+                ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
+              ).isMafiaPlayer
           ) {
             return;
           }
           if (this.attackDelay) {
             this.interactUI.killButton.image.fillAmount = 1;
-            if (this.alivePlayer) {
-              this.interactUI.killButton.interactable = true;
-            } else {
-              this.interactUI.killButton.interactable = false;
-            }
+            this.interactUI.killButton.interactable = false;
             this.StopCoroutine(this.attackDelay);
             this.attackDelay = null;
           }
@@ -102,13 +143,18 @@ export default class Mafia extends MafiaPlayer {
 
   private Interact() {
     console.log("Interact");
-    this.missionInteractor.Interact();
+    if (this.missionInteractor) {
+      this.missionInteractor.Interact();
+    } else {
+      this.missionInteractor.StopInteract();
+    }
   }
 
   public Attack() {
     console.log("공격!");
-    if (this.alivePlayer) {
-      console.log("범위 내 플레이어: " + this.alivePlayer.length);
+    if (!this.alivePlayer || this.alivePlayer.length == 0) {
+      this.interactUI.ActiveButton(ButtonType.KILL, false);
+      return;
     }
     const position = this.transform.position;
     const nearPlayer = this.alivePlayer.reduce(

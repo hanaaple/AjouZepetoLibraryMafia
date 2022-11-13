@@ -1,6 +1,6 @@
 {
-"State" : {"players" : {"map" : "Player"},"readyPlayerCount" : "int8","mafiaPlayers" : {"map" : "Player"},"voteCount" : "int8","abstentionCount" : "int8","gameState" : "int8"},
-"Player" : {"sessionId" : "string","zepetoHash" : "string","zepetoUserId" : "string","transform" : "Transform","state" : "number","subState" : "number","jobState" : "number","InGamePlayerState" : "number","order" : "uint8","gesture" : "string","missionList" : "string","completeMissionList" : "string","votedCount" : "int8"},
+"State" : {"players" : {"map" : "Player"},"voteCount" : "int8","abstentionCount" : "int8","gameState" : "int8"},
+"Player" : {"sessionId" : "string","zepetoHash" : "string","zepetoUserId" : "string","transform" : "Transform","state" : "number","subState" : "number","jobState" : "number","InGamePlayerState" : "number","order" : "uint8","gesture" : "string","missionList" : "string","completeMissionList" : "string","votedCount" : "int8","isReady" : "boolean","isPlay" : "boolean","isMafiaPlayer" : "boolean","isAbstention" : "boolean","isVoted" : "boolean","voteTarget" : "string"},
 "Transform" : {"position" : "Vector3","rotation" : "Vector3"},
 "Vector3" : {"x" : "number","y" : "number","z" : "number"}
 }

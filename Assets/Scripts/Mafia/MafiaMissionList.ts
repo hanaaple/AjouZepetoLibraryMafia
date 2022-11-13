@@ -23,24 +23,6 @@ export default class MafiaMissionList extends ZepetoScriptBehaviour {
   public missionProgressBar: Image;
 
   Start() {
-    console.log("1");
-    this._missionInteractors = new Array<MissionInteractor>();
-
-    console.log("2");
-    this.selectedMissionInteractors = new Array<MissionInteractor>();
-
-    console.log("3");
-    this.missionInteractors.forEach((item, index) => {
-      const interactor = item.GetComponent<MissionInteractor>();
-      // interactor.Initialize(
-      //   this.missionProgressBar,
-      //   this.missionLists[index],
-      //   this.Complete
-      // );
-      this._missionInteractors.push(interactor);
-      interactor.enabled = false;
-    });
-    console.log("4");
     ZepetoPlayers.instance.OnAddedLocalPlayer.AddListener(() => {
       ClientStarter.instance
         .GetRoom()
@@ -49,48 +31,60 @@ export default class MafiaMissionList extends ZepetoScriptBehaviour {
           this.missionBarImage.fillAmount = percantage;
         });
     });
+    this._missionInteractors = new Array<MissionInteractor>();
+    this.missionInteractors.forEach((item, index) => {
+      const interactor = item.GetComponent<MissionInteractor>();
+      this._missionInteractors.push(interactor);
+    });
   }
 
   Initialize(missionListIdx: string) {
-    console.log("미션 초기화");
-    const idxs = missionListIdx.split(",");
+    this.selectedMissionInteractors = new Array<MissionInteractor>();
+
+    this._missionInteractors.forEach((interactor, index) => {
+      interactor.enabled = false;
+      interactor.isSuccess = false;
+    });
+
+    console.log("미션 초기화 " + missionListIdx.toString());
+    const idxs = missionListIdx.toString().split(",");
     idxs.forEach((item, idx) => {
-      this._missionInteractors[item].Initialize(
+      const missionIdx = parseInt(item);
+
+      this._missionInteractors[missionIdx].Initialize(
         this.missionProgressBar,
         this.missionLists[idx],
         this.Complete
       );
-      this._missionInteractors[item].enabled = true;
-      this.selectedMissionInteractors.push(this._missionInteractors[item]);
+      this.selectedMissionInteractors.push(
+        this._missionInteractors[missionIdx]
+      );
       console.log(
         "idx: " +
-          item +
+          missionIdx +
           ", " +
           idx +
           " " +
-          this._missionInteractors[item].context
+          this._missionInteractors[missionIdx].context
       );
-      this._missionInteractors[item].index = idx;
-      this._missionInteractors[item].missionIndex = parseInt(item);
+      this._missionInteractors[missionIdx].index = idx;
+      this._missionInteractors[missionIdx].missionIndex = missionIdx;
 
-      this.missionLists[idx].text = this._missionInteractors[item].context;
-      this.missionLists[idx].enabled = true;
+      this._missionInteractors[missionIdx].text.text =
+        this._missionInteractors[missionIdx].context;
+      this._missionInteractors[missionIdx].enabled = true;
     });
 
     this.missionBarImage.fillAmount = 0;
   }
 
-  Complete(mission: MissionInteractor, text: Text) {
+  Complete(mission: MissionInteractor) {
     console.log(this);
     console.log(mission);
     console.log(mission.index);
     console.log(this.missionLists);
-    console.log(text);
-    if (this.missionLists) {
-      this.missionLists[mission.index].text =
-        "(완료)" + this.missionLists[mission.index].text;
-    } else if (text) {
-      text.text = "(완료)" + text.text;
+    if (mission.text) {
+      mission.text.text = "(완료)" + mission.context;
     }
 
     //해당 미션 체크, 슬라이드

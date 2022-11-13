@@ -1,0 +1,34 @@
+fileFormatVersion: 2
+guid: 88fe1da081b7cb542bd26fe78b130f46
+importerOverride: ZEPETO.Script.Compiler:ZEPETO.Script:TypescriptAssetImporter
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: -1123457745, guid: 54cf806323ffe4418a4ce4cc63fe6b9d, type: 3}
+  isAssemblyDeclarations: 0
+  assembly: 
+  generateAllTypes: 1
+  types: []
+  generateWrapper: 0
+  overrideWrapperTypes: 0
+  wrapperTypes: []
+  WrapperFilters: []
+  wrapperOutputDirectory: Generated
+  compiledResult: "{\"source\":\"\\\"use strict\\\";\\r\\nObject.defineProperty(exports,
+    \\\"__esModule\\\", { value: true });\\r\\nconst ZEPETO_Script_1 = require(\\\"ZEPETO.Script\\\");\\r\\nconst
+    ClientStarter_1 = require(\\\"./ClientStarter\\\");\\r\\nclass Debuger extends
+    ZEPETO_Script_1.ZepetoScriptBehaviour {\\r\\n    Start() {\\r\\n        ClientStarter_1.default.instance.multiplay.add_RoomJoined((room)
+    => {\\r\\n            room.add_OnStateChange((state, isFirst) => {\\r\\n               
+    //console.log(\\\"\uC785\uC7A5 \uC2DC \\\" + isFirst);\\r\\n                if
+    (!isFirst) {\\r\\n                    return;\\r\\n                }\\r\\n               
+    ClientStarter_1.default.instance\\r\\n                    .GetRoom()\\r\\n                   
+    .AddMessageHandler(\\\"onConsoleLog\\\", (message) => {\\r\\n                   
+    console.log(\\\"[Index.ts] \uC11C\uBC84 - \\\" + message);\\r\\n               
+    });\\r\\n            });\\r\\n        });\\r\\n    }\\r\\n}\\r\\nexports.default
+    = Debuger;\\r\\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRGVidWdlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIkRlYnVnZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFFQSxpREFBc0Q7QUFDdEQsbURBQTRDO0FBRTVDLE1BQXFCLE9BQVEsU0FBUSxxQ0FBcUI7SUFDeEQsS0FBSztRQUNILHVCQUFhLENBQUMsUUFBUSxDQUFDLFNBQVMsZ0JBQWUsQ0FBQyxJQUFVLEVBQUUsRUFBRTtZQUM1RCxJQUFJLG1CQUFrQixDQUFDLEtBQVksRUFBRSxPQUFnQixFQUFFLEVBQUU7Z0JBQ3ZELGlDQUFpQztnQkFDakMsSUFBSSxDQUFDLE9BQU8sRUFBRTtvQkFDWixPQUFPO2lCQUNSO2dCQUVELHVCQUFhLENBQUMsUUFBUTtxQkFDbkIsT0FBTyxFQUFFO3FCQUNULGlCQUFpQixDQUFDLGNBQWMsRUFBRSxDQUFDLE9BQVksRUFBRSxFQUFFO29CQUNsRCxPQUFPLENBQUMsR0FBRyxDQUFDLGtCQUFrQixHQUFHLE9BQU8sQ0FBQyxDQUFDO2dCQUM1QyxDQUFDLENBQUMsQ0FBQztZQUNQLENBQUMsRUFBQztRQUNKLENBQUMsRUFBQztJQUNKLENBQUM7Q0FDRjtBQWpCRCwwQkFpQkMifQ==\",\"assetPath\":\"Assets/Scripts/Debuger.ts\",\"manifest\":{\"properties\":[],\"name\":\"Debuger\",\"description\":\"\"},\"isCompiled\":true}"
+  typescriptHash: c992f4fdbbc42017cb663e2bc27564d7
+  onlyWriteTrigger: 0

@@ -24,12 +24,17 @@ import { Room } from "ZEPETO.Multiplay";
 import { Player, State } from "ZEPETO.Multiplay.Schema";
 import { ZepetoScriptBehaviour } from "ZEPETO.Script";
 import ClientStarter from "../ClientStarter";
-import { InGameInteractState, JobState } from "../Constants/Enum";
+import {
+  InGameInteractState,
+  JobState,
+  MafiaGameState,
+} from "../Constants/Enum";
 import Citizen from "./Citizen";
 import KilledCharacter from "./KilledCharacter";
 import Mafia from "./Mafia";
 import MafiaMissionList from "./MafiaMissionList";
 import PlayerId from "./PlayerId";
+import WaitForSecondsCash from "../WaitForSecondsCash";
 
 class SkinMesh {
   public materials: Material[];
@@ -107,17 +112,38 @@ export default class MafiaGameManager extends ZepetoScriptBehaviour {
   }
 
   OnStateChange(state: State, isFirst: boolean) {
+    //console.log("입장 시 " + isFirst);
     if (!isFirst) return;
 
     this.state = state;
 
+    // ClientStarter.instance
+    //   .GetRoom()
+    //   .AddMessageHandler("TestMission", (message: string) => {
+    //     this._mafiaMissionList.Initialize(message);
+    //   });
+
     ClientStarter.instance
       .GetRoom()
       .AddMessageHandler("GameStart", (message) => {
-        if (
-          !state.mafiaPlayers.ContainsKey(
+        console.log("GameStart  게임 시작이요");
+        console.log(
+          !state.players.ContainsKey(
             ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
           )
+        );
+        console.log(
+          !state.players.get_Item(
+            ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
+          ).isMafiaPlayer
+        );
+        if (
+          !state.players.ContainsKey(
+            ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
+          ) ||
+          !state.players.get_Item(
+            ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
+          ).isMafiaPlayer
         ) {
           return;
         }
@@ -128,9 +154,12 @@ export default class MafiaGameManager extends ZepetoScriptBehaviour {
       .GetRoom()
       .AddMessageHandler("onKill", (message: any) => {
         if (
-          !state.mafiaPlayers.ContainsKey(
+          !state.players.ContainsKey(
             ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
-          )
+          ) ||
+          !state.players.get_Item(
+            ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
+          ).isMafiaPlayer
         ) {
           return;
         }
@@ -202,9 +231,12 @@ export default class MafiaGameManager extends ZepetoScriptBehaviour {
       .GetRoom()
       .AddMessageHandler("onReport", (message: any) => {
         if (
-          !state.mafiaPlayers.ContainsKey(
+          !state.players.ContainsKey(
             ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
-          )
+          ) ||
+          !state.players.get_Item(
+            ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
+          ).isMafiaPlayer
         ) {
           return;
         }
@@ -217,9 +249,11 @@ export default class MafiaGameManager extends ZepetoScriptBehaviour {
             message.corpse
         );
 
-        this.corpseArray.forEach((item) => {
-          GameObject.Destroy(item);
-        });
+        if (this.corpseArray) {
+          this.corpseArray.forEach((item) => {
+            GameObject.Destroy(item);
+          });
+        }
         this.corpseArray = new Array<GameObject>();
       });
 
@@ -227,14 +261,17 @@ export default class MafiaGameManager extends ZepetoScriptBehaviour {
       .GetRoom()
       .AddMessageHandler("onVoteTarget", (sessionId: string) => {
         if (
-          !state.mafiaPlayers.ContainsKey(
+          !state.players.ContainsKey(
             ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
-          )
+          ) ||
+          !state.players.get_Item(
+            ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
+          ).isMafiaPlayer
         ) {
           return;
         }
 
-        this.state.mafiaPlayers.ForEach((sId: string, player: Player) => {
+        this.state.players.ForEach((sId: string, player: Player) => {
           if (sessionId == sId) {
             sessionId = sId;
           }
@@ -264,9 +301,12 @@ export default class MafiaGameManager extends ZepetoScriptBehaviour {
       .GetRoom()
       .AddMessageHandler("onStartNextDay", (message: any) => {
         if (
-          !state.mafiaPlayers.ContainsKey(
+          !state.players.ContainsKey(
             ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
-          )
+          ) ||
+          !state.players.get_Item(
+            ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
+          ).isMafiaPlayer
         ) {
           return;
         }
@@ -275,9 +315,26 @@ export default class MafiaGameManager extends ZepetoScriptBehaviour {
 
     ClientStarter.instance
       .GetRoom()
+      .AddMessageHandler("WaitStartNextDay", (count: number) => {
+        this.StartCoroutine(this.WaitStartNextDay(count));
+      });
+
+    ClientStarter.instance
+      .GetRoom()
       .AddMessageHandler("onReset", (message: any) => {
         this.StartCoroutine(this.Reset());
       });
+  }
+
+  *WaitStartNextDay(count: number) {
+    yield WaitForSecondsCash.instance.WaitForSeconds(count);
+    console.log(ClientStarter.instance.GetRoom().State.gameState);
+    if (
+      ClientStarter.instance.GetRoom().State.gameState == MafiaGameState.Vote
+    ) {
+      console.log("다음날");
+      ClientStarter.instance.GetRoom().Send("StartNextDay", "");
+    }
   }
 
   public AddMaterial(material: Material, trans: Transform, sessionId: string) {
@@ -304,7 +361,7 @@ export default class MafiaGameManager extends ZepetoScriptBehaviour {
   private ResetMaterial(trans: Transform, sessionId: string) {
     const skinnedMeshs = trans.GetComponentsInChildren<SkinnedMeshRenderer>();
     skinnedMeshs.forEach((item: SkinnedMeshRenderer, idx: number) => {
-      if (this.savedMaterials.get(sessionId)) {
+      if (this.savedMaterials.has(sessionId)) {
         item.materials = this.savedMaterials.get(sessionId)[idx].materials;
       }
     });
@@ -351,7 +408,7 @@ export default class MafiaGameManager extends ZepetoScriptBehaviour {
   GameStart() {
     console.log("게임 시작");
     this.isKilled = false;
-    const localPlayer = this.state.mafiaPlayers.get_Item(
+    const localPlayer = this.state.players.get_Item(
       ZepetoPlayers.instance.LocalPlayer.zepetoPlayer.id
     );
     this.StartCoroutine(this.ShowJobText(localPlayer.jobState));
@@ -364,7 +421,10 @@ export default class MafiaGameManager extends ZepetoScriptBehaviour {
     );
 
     this._mafiaMissionList.Initialize(localPlayer.missionList);
-    this.state.mafiaPlayers.ForEach((sessionId: string, player: Player) => {
+    this.state.players.ForEach((sessionId: string, player: Player) => {
+      if (!player.isMafiaPlayer) {
+        return;
+      }
       const zepetoPlayer = ZepetoPlayers.instance.GetPlayer(sessionId);
 
       this.ChangeLayersRecursively(zepetoPlayer.character.transform, "Live");
@@ -458,12 +518,17 @@ export default class MafiaGameManager extends ZepetoScriptBehaviour {
     yield new WaitWhile(() => this.isKilled);
     console.log("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
     console.log("리셋");
+    console.log("this 길이: " + this.state.players.Count);
+    console.log(
+      "client 길이: " + ClientStarter.instance.GetRoom().State.players.Count
+    );
 
     this.state.players.ForEach((sessionId: string, player: Player) => {
       const character = ZepetoPlayers.instance.GetPlayer(sessionId).character;
       character.transform.position = ClientStarter.instance.spawnPoint.position;
       character.transform.rotation = ClientStarter.instance.spawnPoint.rotation;
-      ClientStarter.instance.Teleport(character.transform);
+      console.log(character);
+      console.log(character.transform);
       this.ChangeLayersRecursively(character.transform, "Player");
 
       const mafia = character.gameObject.GetComponent<Mafia>();
@@ -482,14 +547,7 @@ export default class MafiaGameManager extends ZepetoScriptBehaviour {
         citizen.SetEnable(false);
       }
 
-      console.log(
-        sessionId + "의 현재 상태: " + player.InGamePlayerState
-          ? "GHOST"
-          : "ALIVE"
-      );
-      if (player.InGamePlayerState == 2) {
-        this.ResetMaterial(character.transform, sessionId);
-      }
+      this.ResetMaterial(character.transform, sessionId);
     });
     ZepetoPlayers.instance.LocalPlayer.zepetoCamera.camera.cullingMask = ~0;
 
@@ -501,5 +559,15 @@ export default class MafiaGameManager extends ZepetoScriptBehaviour {
 
     this.savedMaterials.clear();
     console.log("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+
+    yield new WaitForSeconds(0.5);
+    this.state.players.ForEach((sessionId: string, player: Player) => {
+      if (ZepetoPlayers.instance.GetPlayer(sessionId)) {
+        const character = ZepetoPlayers.instance.GetPlayer(sessionId).character;
+        if (character && character.transform) {
+          ClientStarter.instance.Teleport(character.transform);
+        }
+      }
+    });
   }
 }

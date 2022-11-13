@@ -1,6 +1,9 @@
-export enum MafiaPlayerState {}
-// Ready = 1,
-// Play = 2,
+export enum MafiaGameState {
+  Ready = 1,
+  Play = 2,
+  Vote = 3,
+  StartCount = 4,
+}
 
 export enum JobState {
   None = -2,
